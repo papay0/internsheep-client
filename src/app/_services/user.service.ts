@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,7 @@ export class UserService {
             this.token = token;
             this.loggedIn = true;
             localStorage.setItem('auth_token', token);
+            localStorage.setItem('auth_identity', email);
             return true;
         } else {
             return false;
@@ -41,4 +43,5 @@ export class UserService {
   isLoggedIn() {
     return this.loggedIn;
   }
+
 }

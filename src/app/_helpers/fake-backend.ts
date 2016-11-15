@@ -8,7 +8,7 @@ export let fakeBackendProvider = {
         // configure fake backend
         backend.connections.subscribe((connection: MockConnection) => {
             let testUser = { email: 'a', password: 'z' };
-            console.log('I am in my fack backend');
+            let testProfile = { name: 'Franky', familyName: 'Vincent' };
             // wrap in timeout to simulate server api call
             setTimeout(() => {
  
@@ -29,12 +29,12 @@ export let fakeBackendProvider = {
                 }
  
                 // fake users api end point
-                if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
+                if (connection.request.url.endsWith('/api/profile') && connection.request.method === RequestMethod.Get) {
                     // check for fake auth token in header and return test users if valid, this security is implemented server side
                     // in a real application
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: [testUser] })
+                            new ResponseOptions({ status: 200, body: { profile: testProfile } })
                         ));
                     } else {
                         // return 401 not authorised if token is null or invalid

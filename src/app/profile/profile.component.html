@@ -1,0 +1,10 @@
+<h1>Coucou !</h1>
+<button md-raised-button color="accent" (click)="getProfile()">Show me my profile</button>
+<div *ngIf="user">
+  <h2>{{user.name}} details!</h2>
+  <div>
+    <label>Name: </label> {{user.name}}
+  <div>
+    <label>Family name: </label> {{user.familyName}}
+  </div>
+</div>

@@ -12,6 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { UserService } from './_services/user.service';
+import { ProfileService } from './_services/profile.service';
+import { RoutingService } from './_services/routing.service';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -35,7 +37,9 @@ import { BaseRequestOptions } from '@angular/http';
     MaterialModule.forRoot()
   ],
   providers: [
-    UserService, 
+    UserService,
+    ProfileService,
+    RoutingService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
