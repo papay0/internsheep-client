@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
 import { RoutingService } from './_services/routing.service';
+import { ToastService } from './_services/toast.service';
+
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -40,6 +42,7 @@ import { BaseRequestOptions } from '@angular/http';
     UserService,
     ProfileService,
     RoutingService,
+    ToastService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,

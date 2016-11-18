@@ -17,8 +17,8 @@ export class UserService {
 
     return this.http
       .post(
-        '/api/authenticate', 
-        JSON.stringify({ email, password }), 
+        '/api/authenticate',
+        JSON.stringify({ email, password }),
         { headers }
       )
       .map((res) => {
@@ -34,7 +34,7 @@ export class UserService {
         }
       });
   }
-  
+
   logout() {
     localStorage.removeItem('auth_token');
     this.loggedIn = false;

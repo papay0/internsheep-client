@@ -12,7 +12,7 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router, private routingService: RoutingService) { }
 
   onSubmit(event, email, password) {
-    console.log('[login] You submitted a value, email: '+email+', password: '+password);
+    console.log('[login] You submitted a value, email: ' + email + ', password: ' + password);
     event.preventDefault();
     this.userService.login(email, password).subscribe((result) => {
       if (result) {

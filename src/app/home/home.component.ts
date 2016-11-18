@@ -7,9 +7,9 @@ import { UserService } from '../_services/user.service';
   selector: 'app-home',
   templateUrl: 'home.component.html'
 })
-export class HomeComponent { 
+export class HomeComponent {
   constructor(private userService: UserService, private router: Router) { }
-  
+
   goLogin(): void {
     this.router.navigate(['login']);
   }

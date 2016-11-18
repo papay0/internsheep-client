@@ -16,4 +16,16 @@ export class ProfileService {
       .map(res => res.json())
       .map((res) => res.profile );
   }
+
+  loadStarredOffers() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    return this.http
+      .get('/api/starredOffers', { headers })
+      .map(res => res.json())
+      .map((res) => res.offers );
+  }
 }

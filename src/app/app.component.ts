@@ -13,10 +13,8 @@ import 'hammerjs';
       <div class="app-content">
         <router-outlet></router-outlet>
       </div>
+      <div id="snackbar"></div>
     </md-sidenav-layout>
-    <span class="app-action">
-      <button md-fab><md-icon>check circle</md-icon></button>
-    </span>
   `,
   styleUrls: [ 'app.component.css' ]
 })
