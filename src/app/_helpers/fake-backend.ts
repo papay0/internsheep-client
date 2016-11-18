@@ -1,37 +1,18 @@
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
+import { Data } from './fake-data';
+
 export let fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
     provide: Http,
     useFactory: (backend, options) => {
         // configure fake backend
         backend.connections.subscribe((connection: MockConnection) => {
-            let testUser = { email: 'a', password: 'z' };
-            let testProfile = { name: 'Franky', familyName: 'Vincent' };
-            let testStarredOffers = [
-                {
-                    company: 'Google',
-                    title: 'Software Engineer',
-                    description: 'Blablabla'
-                }, {
-                    company: 'Google',
-                    title: 'Software Engineer',
-                    description: 'Blablabla'
-                }, {
-                    company: 'Google',
-                    title: 'Software Engineer',
-                    description: 'Blablabla'
-                }, {
-                    company: 'Google',
-                    title: 'Software Engineer',
-                    description: 'Blablabla'
-                }, {
-                    company: 'Google',
-                    title: 'Software Engineer',
-                    description: 'Blablabla'
-                }
-            ];
+            let testUser = Data.testUser
+            let testProfile = Data.testProfile;
+            let testStarredOffers = Data.testStarredOffers;
+            
             // wrap in timeout to simulate server api call
             setTimeout(() => {
 

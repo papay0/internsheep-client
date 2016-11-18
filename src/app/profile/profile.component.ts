@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   stateFormProfile = this.readState;
-  mockStarredOffers: any;
+  mockStarredOffers = [];
 
   ngOnInit() {
     this.profileService.loadStarredOffers().subscribe((result) => {

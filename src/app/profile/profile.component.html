@@ -25,7 +25,7 @@
   </form>
 </md-card>
 
-<md-card>
+<md-card *ngIf="mockStarredOffers.length !== 0">
   <md-card-title>Starred offers</md-card-title>
   <md-list *ngFor="let offer of mockStarredOffers">
       <md-list-item (click)="menuClick(offer)">
