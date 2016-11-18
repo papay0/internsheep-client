@@ -9,17 +9,7 @@ import { UserService } from '../_services/user.service';
 })
 export class HomeComponent {
   constructor(private userService: UserService, private router: Router) { }
-
-  goLogin(): void {
-    this.router.navigate(['login']);
-  }
-
   goProfile(): void {
     this.router.navigate(['profile']);
-  }
-
-  logout(): void {
-    this.userService.logout();
-    this.router.navigate(['']);
   }
 }
