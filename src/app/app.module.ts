@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OffersComponent } from './offers/offers.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { UserService } from './_services/user.service';
@@ -29,7 +30,8 @@ import { BaseRequestOptions } from '@angular/http';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,

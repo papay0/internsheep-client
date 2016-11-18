@@ -12,4 +12,7 @@ export class HomeComponent {
   goProfile(): void {
     this.router.navigate(['profile']);
   }
+  goOffers(): void {
+    this.router.navigate(['offers']);
+  }
 }
