@@ -25,9 +25,9 @@
   </form>
 </md-card>
 
-<md-card *ngIf="mockStarredOffers.length !== 0">
+<md-card *ngIf="starredOffers.length !== 0">
   <md-card-title>Starred offers</md-card-title>
-  <md-list *ngFor="let offer of mockStarredOffers">
+  <md-list *ngFor="let offer of starredOffers">
       <md-list-item (click)="menuClick(offer)">
         <img md-list-avatar src="http://papailhau.fr/img/me.jpg">
         <h3 md-line> {{offer.company}} </h3>

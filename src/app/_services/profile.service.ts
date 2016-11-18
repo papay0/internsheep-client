@@ -26,6 +26,6 @@ export class ProfileService {
     return this.http
       .get('/api/starredOffers', { headers })
       .map(res => res.json())
-      .map((res) => res.offers );
+      .map(res => res.offers );
   }
 }

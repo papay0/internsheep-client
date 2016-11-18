@@ -16,11 +16,14 @@ import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
 import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
+import { OffersService } from './_services/offers.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
+
+import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
 
 // http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial#auth-guard-ts
 // https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.d63ancvls
@@ -31,7 +34,8 @@ import { BaseRequestOptions } from '@angular/http';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    OffersComponent
+    OffersComponent,
+    MyFilterOffersPipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ import { BaseRequestOptions } from '@angular/http';
     ProfileService,
     RoutingService,
     ToastService,
+    OffersService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,

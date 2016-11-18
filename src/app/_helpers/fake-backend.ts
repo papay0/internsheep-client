@@ -12,6 +12,7 @@ export let fakeBackendProvider = {
             let testUser = Data.testUser
             let testProfile = Data.testProfile;
             let testStarredOffers = Data.testStarredOffers;
+            let testOffers = Data.testOffers;
             
             // wrap in timeout to simulate server api call
             setTimeout(() => {
@@ -48,11 +49,25 @@ export let fakeBackendProvider = {
                     }
                 }
 
-                // stared offers api end point
+                // starred offers api end point
                 if (connection.request.url.endsWith('/api/starredOffers') && connection.request.method === RequestMethod.Get) {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 200, body: { offers: testStarredOffers } })
+                        ));
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                        ));
+                    }
+                }
+
+                // Offers api end point
+                if (connection.request.url.endsWith('/api/offers') && connection.request.method === RequestMethod.Get) {
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { offers: testOffers } })
                         ));
                     } else {
                         // return 401 not authorised if token is null or invalid
