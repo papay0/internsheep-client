@@ -25,8 +25,8 @@ export let Data = {
                     description: 'Blablabla'
                 }
             ],
-    testProfile: { name: 'Franky', familyName: 'Vincent' },
-    testUser: { email: 'a', password: 'z' },
+    testProfile: [{id: 0, name: 'Franky', familyName: 'Vincent', type:0 , email:'a'}, {id: 1, name: 'Airbus', familyName: 'Company', type:1 , email:'airbus'}],
+    testUser: [{ email: 'a', password: 'z' }, { email: 'airbus', password: 'airbus' }],
     testOffers: [
                 {
                     id: 1,

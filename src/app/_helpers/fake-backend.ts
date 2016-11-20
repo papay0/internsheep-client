@@ -9,7 +9,7 @@ export let fakeBackendProvider = {
     useFactory: (backend, options) => {
         // configure fake backend
         backend.connections.subscribe((connection: MockConnection) => {
-            let testUser = Data.testUser
+            let testUser = Data.testUser;
             let testProfile = Data.testProfile;
             let testStarredOffers = Data.testStarredOffers;
             let testOffers = Data.testOffers;
@@ -22,14 +22,37 @@ export let fakeBackendProvider = {
                     // get parameters from post request
                     let params = JSON.parse(connection.request.getBody());
                     // check user credentials and return fake jwt token if valid
-                    if (params.email === testUser.email && params.password === testUser.password) {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token' } })
-                        ));
-                    } else {
+
+                    let connectionCheck: boolean = false;
+                    for (let j = 0; j < testUser.length; j++) {
+
+                        if (params.email === testUser[j].email && params.password === testUser[j].password) {
+
+                            //Call to users here; lets us check if user is company or student
+                            let profile = null;
+                            for (let i = 0; i < testProfile.length; i++) {
+                                if (testProfile[i].email===testUser[j].email){
+                                    profile = testProfile[i];
+                                    //console.log("Profile id" + profile.id);
+                                }
+                            } 
+                            connectionCheck = true;
+                            connection.mockRespond(new Response(
+                                //console.log("profile found: " + profile.id);
+                                new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : profile } })
+
+
+
+                                ));
+                        } 
+
+                    }
+
+
+                    if(!connectionCheck) {
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 200 })
-                        ));
+                            ));
                     }
                 }
 
@@ -39,13 +62,13 @@ export let fakeBackendProvider = {
                     // in a real application
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { profile: testProfile } })
-                        ));
+                            new ResponseOptions({ status: 200, body: { profile: testProfile[0] } })
+                            ));
                     } else {
                         // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 401 })
-                        ));
+                            ));
                     }
                 }
 
@@ -54,12 +77,12 @@ export let fakeBackendProvider = {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 200, body: { offers: testStarredOffers } })
-                        ));
+                            ));
                     } else {
                         // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 401 })
-                        ));
+                            ));
                     }
                 }
 
@@ -68,20 +91,20 @@ export let fakeBackendProvider = {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 200, body: { offers: testOffers } })
-                        ));
+                            ));
                     } else {
                         // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 401 })
-                        ));
+                            ));
                     }
                 }
 
             }, 500);
 
-        });
+});
 
-        return new Http(backend, options);
-    },
-    deps: [MockBackend, BaseRequestOptions]
+return new Http(backend, options);
+},
+deps: [MockBackend, BaseRequestOptions]
 };
