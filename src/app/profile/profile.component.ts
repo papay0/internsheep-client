@@ -1,8 +1,6 @@
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
 import { ToastService } from '../_services/toast.service';
-import { UserService } from '../_services/user.service';
-
 
 import { User } from '../_model/User';
 
@@ -61,13 +59,5 @@ export class ProfileComponent implements OnInit {
     console.log(offer);
   }
 
-  isLoggedStudent(): boolean{
-    return this.userService.isLoggedStudent();
-  }
-
-  isLoggedCompany(): boolean{
-    return this.userService.isLoggedCompany();
-  }
-
-  constructor(private profileService: ProfileService, private toastService: ToastService, private viewContainerRef: ViewContainerRef, private userService: UserService) { }
+  constructor(private profileService: ProfileService, private toastService: ToastService, private viewContainerRef: ViewContainerRef) { }
 }
