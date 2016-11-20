@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { StarredOffersComponent } from './starred-offers/starred-offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,7 +22,7 @@ import { OffersService } from './_services/offers.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
-import { MockBackend, MockConnection } from '@angular/http/testing';
+import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
@@ -34,6 +36,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
+    ProfileInfoComponent,
+    StarredOffersComponent,
     OffersComponent,
     MyFilterOffersPipe
   ],
