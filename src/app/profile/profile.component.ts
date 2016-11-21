@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,16 +10,5 @@ import { UserService } from '../_services/user.service';
   `]
 })
 
-export class ProfileComponent { 
+export class ProfileComponent { }
 
-  isLoggedStudent(): boolean{
-    return this.userService.isLoggedStudent();
-  }
-
-  isLoggedCompany(): boolean{
-    return this.userService.isLoggedCompany();
-  }
-
-  constructor(private userService: UserService) {}
-
-}
