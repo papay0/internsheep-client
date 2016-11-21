@@ -59,10 +59,8 @@ export class UserService {
 
   isLoggedStudent() {
     let result: boolean = false;
-    if (this.isLoggedIn()) {  
-      if (this.isStudent()){
+    if (this.isLoggedIn() && this.isStudent()) {  
         result = true;
-      }
     }
 
     return result;
@@ -70,10 +68,8 @@ export class UserService {
 
   isLoggedCompany() {
     let result: boolean = false;
-    if (this.isLoggedIn()) {  
-      if (this.isCompany()){
+    if (this.isLoggedIn() && this.isCompany()) {  
         result = true;
-      }
     }
 
     return result;
