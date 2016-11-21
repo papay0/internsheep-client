@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
   md-card {
     margin: 20px;
   }
+  #layout-profile {
+    display: flex; 
+    flex-flow:row wrap;
+  }
+
   `]
 })
 export class ProfileComponent { }

@@ -11,8 +11,7 @@ export class LoggedInGuard implements CanActivate {
     if (this.user.isLoggedIn()) {
         return true;
     }
-
-    this.routingService.setLandingPage('/'+route.url.join(''));
+    this.routingService.setLandingPage('/'+route.url.join('/'));
 
     this.router.navigate(['/login']);
     return false;
