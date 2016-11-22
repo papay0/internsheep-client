@@ -5,4 +5,9 @@
 body {
   margin: 0;
   background-color: #fafafa;
+  height: 100%;
+}
+
+html {
+  height: 100%;
 }

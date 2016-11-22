@@ -1,0 +1,13 @@
+<md-card>
+    <input type="file"
+       ngFileSelect
+       id="input-file-id-angular2"
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       class="inputfile">
+       <label for="input-file-id-angular2" md-raised-button color="primary">Choose Files</label>
+</md-card>
+<md-card *ngIf="progress !== 0">
+    <md-progress-bar mode="determinate" value="{{progress}}"></md-progress-bar>
+    {{progress}}
+</md-card>

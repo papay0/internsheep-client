@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { MaterialModule } from '@angular/material';
 
+import { Ng2UploaderModule } from 'ng2-uploader';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { StarredOffersComponent } from './starred-offers/starred-offers.component';
 import { OffersComponent } from './offers/offers.component';
+import { FilesManagerComponent } from './files-manager/files-manager.component';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { UserService } from './_services/user.service';
@@ -39,6 +43,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ProfileInfoComponent,
     StarredOffersComponent,
     OffersComponent,
+    FilesManagerComponent,
     MyFilterOffersPipe
   ],
   imports: [
@@ -46,7 +51,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    Ng2UploaderModule
   ],
   providers: [
     UserService,
