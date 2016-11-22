@@ -19,3 +19,13 @@ $app-theme: md-light-theme($app-primary, $app-accent);
 // that you are using.
 @include angular-material-theme($app-theme);
 
+body {
+  margin: 0;
+  background-color: #fafafa;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
