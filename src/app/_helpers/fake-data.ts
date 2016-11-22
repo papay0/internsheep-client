@@ -77,4 +77,14 @@ export let Data = {
                     description: 'Azure? Easy!'
                 }
             ],
+        testCVs: [
+            {
+                id: 1,
+                title: 'iOS'
+            },
+            {
+                id: 2,
+                title: 'FullStack'
+            }
+        ]
 };
