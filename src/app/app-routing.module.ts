@@ -7,7 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/student/profile', pathMatch: 'full' },
+  { path: '', component: ProfileComponent, canActivate: [LoggedInGuard], pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
   { path: 'student/profile',  component: ProfileComponent, canActivate: [LoggedInGuard] },
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
