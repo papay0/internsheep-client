@@ -1,3 +1,15 @@
+.full_height {
+  height: 100%;
+}
+
+.custom_width {
+  width: 200px;
+}
+
+.buttonSidenav {
+  width: 100%;
+}
+
 .app-content {
   padding: 20px;
 }
