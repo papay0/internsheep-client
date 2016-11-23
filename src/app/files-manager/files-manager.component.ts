@@ -1,5 +1,6 @@
-import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
+import { ToastService } from '../_services/toast.service';
 
 
 @Component({
@@ -27,6 +28,20 @@ export class FilesManagerComponent implements OnInit {
   private options: Object;
   progress: number = 0;
   private response: any = {};
+
+  editState = {
+    label: 'Update',
+    editionMode: true,
+    inputDisabled: false,
+    color: 'primary'
+  };
+  readState = {
+    label: 'Edit',
+    editionMode: false,
+    inputDisabled: true,
+    color: 'accent'
+  };
+  stateButtonFileManager = this.readState;
 
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
@@ -57,5 +72,15 @@ export class FilesManagerComponent implements OnInit {
     });
   }
 
-  constructor(private profileService: ProfileService) { }
+  editButtonClick(CV): void {
+    console.log(CV);
+    if (!this.stateButtonFileManager.editionMode) {
+      this.stateButtonFileManager = this.editState;
+    } else {
+      this.stateButtonFileManager = this.readState;
+      this.toastService.displayToast('Updated!');
+    }
+  }
+
+  constructor(private profileService: ProfileService, private toastService: ToastService) { }
 }

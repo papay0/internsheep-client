@@ -1,16 +1,16 @@
-<md-card>
+<md-card *ngIf="CVs.length !== 0">
     <md-card-title>My CVs</md-card-title>
     <md-list *ngFor="let CV of CVs">
         <md-list-item>
-            <h3 md-line> {{CV.title}} </h3>
+            <h3 md-line> <md-input value="{{CV.title}}" [disabled]="stateButtonFileManager.inputDisabled"></md-input> </h3>
             <p md-line>
                 <span> BLABLABLA</span>
                 <span> -- blablabla </span>
             </p>
         </md-list-item>
         <md-card-actions layout="row" layout-align="end center">
-            <button md-raised-button color="accent" style="float: right">
-                EDIT
+            <button md-raised-button color="{{stateButtonFileManager.color}}" style="float: right" (click)="editButtonClick(CV)">
+                {{stateButtonFileManager.label}}
             </button>
         </md-card-actions>
     </md-list>
