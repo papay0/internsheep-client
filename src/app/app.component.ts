@@ -24,4 +24,10 @@ export class AppComponent {
   isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
   }
+  goProfile(): void {
+    this.router.navigate(['student/profile']);
+  }
+  goOffers(): void {
+    this.router.navigate(['offers']);
+  }
 }
