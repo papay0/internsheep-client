@@ -11,7 +11,13 @@ import { Component } from '@angular/core';
     display: flex; 
     flex-flow:row wrap;
   }
-
+  .flexbox-container {
+    display: flex;
+  }
+  .flexbox-container > div {
+    width: 50%;
+    padding: 10px;
+  }
   `]
 })
 export class ProfileComponent { }

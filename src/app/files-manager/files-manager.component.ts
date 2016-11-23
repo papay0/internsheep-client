@@ -57,7 +57,5 @@ export class FilesManagerComponent implements OnInit {
     });
   }
 
-  constructor(private profileService: ProfileService) { 
-
-  }
+  constructor(private profileService: ProfileService) { }
 }
