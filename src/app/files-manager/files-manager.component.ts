@@ -42,11 +42,16 @@ export class FilesManagerComponent implements OnInit {
     color: 'accent'
   };
   stateButtonFileManager = this.readState;
+  states = {};
 
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
       this.CVs = result;
+      for (let CV of this.CVs) {
+        this.states[CV.id] = this.readState;
+      }
     });
+
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.options = {
       url: '/api/upload',
@@ -73,11 +78,11 @@ export class FilesManagerComponent implements OnInit {
   }
 
   editButtonClick(CV): void {
-    console.log(CV);
-    if (!this.stateButtonFileManager.editionMode) {
-      this.stateButtonFileManager = this.editState;
+    let id = CV.id;
+    if (!this.states[id].editionMode) {
+      this.states[id] = this.editState;
     } else {
-      this.stateButtonFileManager = this.readState;
+      this.states[id] = this.readState;
       this.toastService.displayToast('Updated!');
     }
   }
