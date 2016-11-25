@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
 import { ToastService } from '../_services/toast.service';
+import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
 
 
 @Component({
@@ -70,10 +71,13 @@ export class FilesManagerComponent implements OnInit {
     };
   }
 
-  handleUpload(data: any): void {
+  handleUpload(data: UploadedFile): void {
     this.zone.run(() => {
       this.response = data;
       this.progress = data.progress.percent;
+      if (data.done) {
+        this.toastService.displayToast('Upload successful!');
+      }
     });
   }
 

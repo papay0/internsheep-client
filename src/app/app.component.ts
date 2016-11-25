@@ -12,7 +12,7 @@ import { UserService } from './_services/user.service';
 export class AppComponent {
   constructor(private userService: UserService, private router: Router) { }
   goHome(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
   goLogin(): void {
     this.router.navigate(['login']);
