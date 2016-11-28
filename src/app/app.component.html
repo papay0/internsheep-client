@@ -7,7 +7,7 @@
         <button md-button color="accent" (click)="goOffers()" class="buttonSidenav">OFFERS</button>
     </md-sidenav>
     <div flex layout="column">
-        <md-toolbar color="primary">
+        <md-toolbar color="primary" >
             <span class="app-toolbar-filler"></span>
             <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
             <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>

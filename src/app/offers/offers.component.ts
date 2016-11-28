@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
 
 
@@ -14,7 +14,7 @@ import { OffersService } from '../_services/offers.service';
 export class OffersComponent implements OnInit {
   selectedIndex: number = 0;
   searchLabel = ['company name', 'job title', 'description'];
-  search = "";
+  search = '';
   offers = [];
 
   ngOnInit() {
