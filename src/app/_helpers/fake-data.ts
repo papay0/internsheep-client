@@ -4,29 +4,29 @@ export let Data = {
                     id: 1,
                     company: 'Google',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Google search'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 2,
+                    company: 'Gemalto',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Sim card'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 3,
+                    company: 'Cap G',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Full-Stack'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 4,
+                    company: 'Apple',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: '<3'
                 }
             ],
     testProfile: { name: 'Franky', familyName: 'Vincent' },
-    testUser: { email: 'a', password: 'z' },
+    testUser: { email: '', password: '' },
     testOffers: [
                 {
                     id: 1,
@@ -38,7 +38,7 @@ export let Data = {
                     id: 2,
                     company: 'Apple',
                     title: 'iOS Development',
-                    description: 'Aweomse job, you will never find something better...'
+                    description: 'Awesome job, you will never find something better...'
                 },
                 {
                     id: 3,
@@ -77,4 +77,14 @@ export let Data = {
                     description: 'Azure? Easy!'
                 }
             ],
+        testCVs: [
+            {
+                id: 1,
+                title: 'iOS'
+            },
+            {
+                id: 2,
+                title: 'FullStack'
+            }
+        ]
 };

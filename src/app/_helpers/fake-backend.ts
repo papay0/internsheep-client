@@ -9,14 +9,14 @@ export let fakeBackendProvider = {
     useFactory: (backend, options) => {
         // configure fake backend
         backend.connections.subscribe((connection: MockConnection) => {
-            let testUser = Data.testUser
+            let testUser = Data.testUser;
             let testProfile = Data.testProfile;
             let testStarredOffers = Data.testStarredOffers;
             let testOffers = Data.testOffers;
-            
+            let testCVs = Data.testCVs;
+
             // wrap in timeout to simulate server api call
             setTimeout(() => {
-
                 // fake authenticate api end point
                 if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
                     // get parameters from post request
@@ -75,6 +75,23 @@ export let fakeBackendProvider = {
                             new ResponseOptions({ status: 401 })
                         ));
                     }
+                }
+
+                if (connection.request.url.endsWith('/api/CVs') && connection.request.method === RequestMethod.Get) {
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { CVs: testCVs } })
+                        ));
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                        ));
+                    }
+                }
+
+                if (connection.request.url.endsWith('/api/upload') && connection.request.method === RequestMethod.Post) {
+                    console.log('J upload');
                 }
 
             }, 500);
