@@ -14,6 +14,8 @@ import { StarredOffersComponent } from './starred-offers/starred-offers.componen
 import { OffersComponent } from './offers/offers.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
+import { CompanyOffersComponent } from './company-offers/company-offers.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
@@ -41,7 +43,9 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     StarredOffersComponent,
     OffersComponent,
     MyFilterOffersPipe,
-    ProfileCompanyComponent
+    ProfileCompanyComponent,
+    CompanyOffersComponent,
+    CompanyInfoComponent
   ],
   imports: [
     BrowserModule,

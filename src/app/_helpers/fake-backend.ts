@@ -100,6 +100,36 @@ export let fakeBackendProvider = {
                     }
                 }
 
+                if (connection.request.url.indexOf('/api/offers/') != -1 && connection.request.method === RequestMethod.Get) {
+                          
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+
+                        let regex = new RegExp("\/api\/offers\/([^\/]+)$");
+                        let cmpny = regex.exec(connection.request.url)[1];
+                        let offers = [];
+
+                        for (let i =0; i < testOffers.length; i++){
+                            
+                            if (testOffers[i].company.toLowerCase().indexOf(cmpny.toLowerCase()) != -1){
+                                offers.push(testOffers[i]);
+                                console.log(testOffers[i]);
+                            }
+                        }
+                        //var offers_list = JSON.stringify(offers);
+
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { offers: offers } })
+                            ));
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                            ));
+                    }
+                }
+
+                console.log(connection.request.url);
+
             }, 500);
 
 });

@@ -75,5 +75,13 @@ export class UserService {
     return result;
   }
 
+  getFamilyName(){
+    var ret = "";
+    if (this.isLoggedIn){
+      ret = this.userProfile.familyName;
+    }
+    return ret;
+  }
+
 
 }

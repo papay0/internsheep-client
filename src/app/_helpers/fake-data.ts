@@ -25,7 +25,7 @@ export let Data = {
                     description: 'Blablabla'
                 }
             ],
-    testProfile: [{id: 0, name: 'Franky', familyName: 'Vincent', type:0 , email:'a'}, {id: 1, name: 'Airbus', familyName: 'Company', type:1 , email:'airbus'}],
+    testProfile: [{id: 0, name: 'Franky', familyName: 'Vincent', type:0 , email:'a'}, {id: 1, name: 'Airbus', familyName: 'airbus', type:1 , email:'airbus'}],
     testUser: [{ email: 'a', password: 'z' }, { email: 'airbus', password: 'airbus' }],
     testOffers: [
                 {
@@ -75,6 +75,18 @@ export let Data = {
                     company: 'Slack',
                     title: 'Software Engineer IV',
                     description: 'Azure? Easy!'
+                },
+                {
+                    id: 9,
+                    company: 'airbus',
+                    title: 'Software Engineer in space',
+                    description: 'I believe I can flyyyyyyyyyyyyyyy'
+                },
+                {
+                    id: 10,
+                    company: 'airbus',
+                    title: 'Software Engineer in space',
+                    description: 'I believe I can flyyyyyyyyyyyyyyy II the return'
                 }
             ],
 };

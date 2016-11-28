@@ -1,18 +1,16 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { ToastService } from '../_services/toast.service';
-import { CompanyOffersComponent } from '../company-offers/company-offers.component'
-import { CompanyInfoComponent } from '../company-info/company-info.component';
 
 @Component({
-  selector: 'app-profile-company',
-  templateUrl: 'profile-company.component.html',
+  selector: 'app-company-info',
+  templateUrl: 'company-info.component.html',
   styles: [`
   md-card {
     margin: 20px;
   }
   `]
 })
-export class ProfileCompanyComponent {
+export class CompanyInfoComponent {
 
   editState = {
     label: 'Update',
