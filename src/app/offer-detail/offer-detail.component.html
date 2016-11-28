@@ -1,0 +1,21 @@
+<md-card *ngIf="isLoaded()">
+        <md-card-title>{{offer.title}}</md-card-title>
+        <md-card-subtitle>Company: {{offer.company}}</md-card-subtitle>
+</md-card>
+<div class="offer-container" *ngIf="isLoaded()">
+    <md-card class="offer-info-text">
+        <!-- Speak about the picture
+        <img md-card-image src="{{offer.picture}}">
+        -->
+        <md-card-content>
+            Location: {{offer.location}} <br>
+            {{offer.long_description}}
+        </md-card-content>
+    </md-card>
+    <md-card class="offer-info-specs">
+        <md-card-content>
+            Duration: {{offer.duration}}<br>
+            Start: {{getStart()}}
+        </md-card-content>
+    </md-card>
+</div>

@@ -14,6 +14,7 @@ export let fakeBackendProvider = {
             let testStarredOffers = Data.testStarredOffers;
             let testOffers = Data.testOffers;
             let testCVs = Data.testCVs;
+            let testDetails = Data.testDetails;
 
             // wrap in timeout to simulate server api call
             setTimeout(() => {
@@ -150,6 +151,38 @@ export let fakeBackendProvider = {
 
                 if (connection.request.url.endsWith('/api/upload') && connection.request.method === RequestMethod.Post) {
                     console.log('J upload');
+                }
+
+                if (connection.request.url.indexOf('/api/offerDetails/') != -1 && connection.request.method === RequestMethod.Get) {
+                          
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+
+                        let regex = new RegExp("\/api\/offerDetails\/([^\/]+)$");
+                        let offerId = regex.exec(connection.request.url)[1];
+                        let offer = null;
+
+                        console.log(offerId);
+
+                        for (let i =0; i < testDetails.length; i++){
+                           
+                            if (testDetails[i].id == Number(offerId[0])){
+                                offer = testDetails[i];
+                                
+                            }
+                            console.log(offer);
+                        }
+                        //var offers_list = JSON.stringify(offers);
+
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { details: offer } })
+                            ));
+
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                            ));
+                    }
                 }
 
 

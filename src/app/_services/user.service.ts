@@ -8,7 +8,7 @@ import { User } from "../_model/User";
 export class UserService {
   private loggedIn = false;
   public token: string;
-  private userProfile: User;
+  private userProfile: User = {id: -1, name: "", familyName: "", type: -1, email: ""};
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('auth_token');

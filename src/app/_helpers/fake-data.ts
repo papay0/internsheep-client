@@ -98,5 +98,29 @@ export let Data = {
                 id: 2,
                 title: 'FullStack'
             }
+        ],
+        testDetails: [
+            {
+                    id: 1,
+                    company: 'Google',
+                    title: 'Software Engineer',
+                    description: 'Search all your life',
+                    long_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    location: 'Silicon Valley, US',
+                    picture: 'http://www.apetipa.com/images/comptines/Pingouins/02.jpg',
+                    duration: 6,
+                    start: 2
+            },
+            {
+                    id: 2,
+                    company: 'Apple',
+                    title: 'iOS Development',
+                    description: 'Aweomse job, you will never find something better...',
+                    long_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    location: 'Silicon Valley Bis, US',
+                    picture: 'http://www.apetipa.com/images/comptines/Pingouins/02.jpg',
+                    duration: 12,
+                    start: 2
+            }
         ]
 };

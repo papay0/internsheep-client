@@ -33,5 +33,8 @@
         <md-card-content>
             <p>{{offer.description}}</p>
         </md-card-content>
+        <md-card-actions>
+            <button md-button (click)="viewOffer(offer.id)">VIEW</button>
+        </md-card-actions>
     </md-card>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,5 +23,10 @@ export class OffersComponent implements OnInit {
       this.offers = result;
     });
   }
-  constructor(private offersService: OffersService) { }
+
+  viewOffer(offer: number) {
+    this.router.navigate(['/offer', offer]);
+  }
+
+  constructor(private offersService: OffersService, private router: Router) { }
 }
