@@ -3,8 +3,8 @@
         <md-toolbar color="primary">
             <button md-button (click)="goHome()" >INTERNSHEEP</button>
         </md-toolbar>
-        <button md-button color="accent" class="buttonSidenav">PROFILE</button>
-        <button md-button color="accent" class="buttonSidenav">OFFERS</button>
+        <button md-button color="accent" (click)="goProfile()" class="buttonSidenav">PROFILE</button>
+        <button md-button color="accent" (click)="goOffers()" class="buttonSidenav">OFFERS</button>
     </md-sidenav>
     <div flex layout="column">
         <md-toolbar color="primary">

@@ -8,8 +8,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
+  { path: 'home',  component: HomeComponent, canActivate: [LoggedInGuard] },
   { path: 'student/profile',  component: ProfileComponent, canActivate: [LoggedInGuard] },
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
   { path: '**', redirectTo: '/' }
