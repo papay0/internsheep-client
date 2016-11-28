@@ -89,4 +89,14 @@ export let Data = {
                     description: 'I believe I can flyyyyyyyyyyyyyyy II the return'
                 }
             ],
+        testCVs: [
+            {
+                id: 1,
+                title: 'iOS'
+            },
+            {
+                id: 2,
+                title: 'FullStack'
+            }
+        ]
 };

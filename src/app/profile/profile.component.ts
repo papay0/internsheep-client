@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
   md-card {
     margin: 20px;
   }
+  #layout-profile {
+    display: flex; 
+    flex-flow:row wrap;
+  }
+  .flexbox-container {
+    display: flex;
+  }
+  .flexbox-container > div {
+    width: 50%;
+    padding: 10px;
+  }
   `]
 })
 
