@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('auth_token');
-    console.log("reinit");
+    this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
   }
 
   login(email, password) {
@@ -34,6 +34,7 @@ export class UserService {
         this.userProfile = userProfile;
         localStorage.setItem('auth_token', token);
         localStorage.setItem('auth_identity', email);
+        localStorage.setItem('user_profile', JSON.stringify(userProfile);
         return true;
       } else {
         return false;
@@ -59,14 +60,10 @@ export class UserService {
   }
 
   isLoggedStudent() {
-    console.log("boop"+this.isLoggedIn() && this.isStudent());
-
     return this.isLoggedIn() && this.isStudent();
   }
 
   isLoggedCompany() {
-    console.log("poob"+this.isLoggedIn() && this.isCompany());
-
     return this.isLoggedIn() && this.isCompany();
   }
 
