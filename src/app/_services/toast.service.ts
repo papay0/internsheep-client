@@ -1,14 +1,13 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 @Injectable()
 export class ToastService {
-    constructor(
-        private snackBar: MdSnackBar
-    ) { }
+    autoHide: number = 0;
 
-    show(message: string, viewContainerRef: ViewContainerRef): void {
-        let config = new MdSnackBarConfig(viewContainerRef);
+    show(message: string): void {
+        let config = new MdSnackBarConfig();
+        // let config = new MdSnackBarConfig(viewContainerRef);
         this.snackBar.open(message, 'DISMISS', config);
     }
 
@@ -19,4 +18,7 @@ export class ToastService {
         setTimeout(() => { x.className = x.className.replace('show', ''); }, ms);
     }
 
+    constructor(
+        private snackBar: MdSnackBar
+    ) {}
 }
