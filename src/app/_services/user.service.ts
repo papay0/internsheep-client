@@ -12,6 +12,7 @@ export class UserService {
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('auth_token');
+    console.log("reinit");
   }
 
   login(email, password) {
@@ -58,21 +59,15 @@ export class UserService {
   }
 
   isLoggedStudent() {
-    let result: boolean = false;
-    if (this.isLoggedIn() && this.isStudent()) {  
-        result = true;
-    }
+    console.log("boop"+this.isLoggedIn() && this.isStudent());
 
-    return result;
+    return this.isLoggedIn() && this.isStudent();
   }
 
   isLoggedCompany() {
-    let result: boolean = false;
-    if (this.isLoggedIn() && this.isCompany()) {  
-        result = true;
-    }
+    console.log("poob"+this.isLoggedIn() && this.isCompany());
 
-    return result;
+    return this.isLoggedIn() && this.isCompany();
   }
 
   getFamilyName(){

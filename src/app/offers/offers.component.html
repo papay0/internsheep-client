@@ -26,7 +26,6 @@
 <div *ngFor="let offer of (offers | myfilterOffers: searchQuery.value: selectedIndex)">
     <md-card>
         <md-card-header>
-            <img md-card-avatar src="http://img.radio-canada.ca/2015/09/01/635x357/150901_p75q3_logo-google_sn635.jpg">
             <md-card-title>{{offer.company}}</md-card-title>
             <md-card-subtitle>{{offer.title}}</md-card-subtitle>
         </md-card-header>

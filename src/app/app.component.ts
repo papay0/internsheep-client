@@ -12,7 +12,7 @@ import { UserService } from './_services/user.service';
 export class AppComponent {
   constructor(private userService: UserService, private router: Router) { }
   goHome(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
   goLogin(): void {
     this.router.navigate(['login']);
@@ -31,6 +31,16 @@ export class AppComponent {
 
   isCompany(): boolean {
     return this.userService.isLoggedCompany();
+  }
+
+  goProfile(): void {
+    this.router.navigate(['student/profile']);
+  }
+  goCompanyProfile(): void {
+    this.router.navigate(['company/profile']);
+  }
+  goOffers(): void {
+    this.router.navigate(['offers']);
   }
 
 }

@@ -10,8 +10,9 @@ import { ProfileCompanyComponent } from './profile_company/profile-company.compo
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
+  { path: 'home',  component: HomeComponent, canActivate: [LoggedInGuard] },
   { path: 'student/profile',  component: ProfileComponent, canActivate: [LoggedInGuard] },
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
   { path: 'company/profile',  component: ProfileCompanyComponent, canActivate: [LoggedInGuard] },

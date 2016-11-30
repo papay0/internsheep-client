@@ -3,12 +3,12 @@
         <md-toolbar color="primary">
             <button md-button (click)="goHome()" >INTERNSHEEP</button>
         </md-toolbar>
-        <button md-button color="accent" class="buttonSidenav" *ngIf="isStudent()">PROFILE</button>
-        <button md-button color="accent" class="buttonSidenav" *ngIf="isCompany()">PROFILE</button>
-        <button md-button color="accent" class="buttonSidenav" *ngIf="isStudent()">OFFERS</button>
+        <button md-button color="accent" (click)="goProfile()" class="buttonSidenav" *ngIf="isStudent()">PROFILE</button>
+        <button md-button color="accent" (click)="goOffers()" class="buttonSidenav" *ngIf="isStudent()">OFFERS</button>
+        <button md-button color="accent" (click)="goCompanyProfile()" class="buttonSidenav" *ngIf="isCompany()">PROFILE</button>
     </md-sidenav>
     <div flex layout="column">
-        <md-toolbar color="primary">
+        <md-toolbar color="primary" >
             <span class="app-toolbar-filler"></span>
             <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
             <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>

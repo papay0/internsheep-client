@@ -4,25 +4,25 @@ export let Data = {
                     id: 1,
                     company: 'Google',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Google search'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 2,
+                    company: 'Gemalto',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Sim card'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 3,
+                    company: 'Cap G',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: 'Full-Stack'
                 },
                 {
-                    id: 1,
-                    company: 'Google',
+                    id: 4,
+                    company: 'Apple',
                     title: 'Software Engineer',
-                    description: 'Blablabla'
+                    description: '<3'
                 }
             ],
     testProfile: [{id: 0, name: 'Franky', familyName: 'Vincent', type:0 , email:'a'}, {id: 1, name: 'Airbus', familyName: 'airbus', type:1 , email:'airbus'}],
@@ -38,7 +38,7 @@ export let Data = {
                     id: 2,
                     company: 'Apple',
                     title: 'iOS Development',
-                    description: 'Aweomse job, you will never find something better...'
+                    description: 'Awesome job, you will never find something better...'
                 },
                 {
                     id: 3,
