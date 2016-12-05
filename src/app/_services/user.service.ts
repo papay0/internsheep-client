@@ -34,7 +34,7 @@ export class UserService {
         this.userProfile = userProfile;
         localStorage.setItem('auth_token', token);
         localStorage.setItem('auth_identity', email);
-        localStorage.setItem('user_profile', JSON.stringify(userProfile);
+        localStorage.setItem('user_profile', JSON.stringify(userProfile));
         return true;
       } else {
         return false;

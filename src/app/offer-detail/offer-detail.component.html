@@ -1,37 +1,34 @@
-<div class="offer-container" *ngIf="isLoaded()">
-    <md-card class="offer-info-text">
-        <md-card-title>{{offer.title}}</md-card-title>
-        <md-card-subtitle>Company: {{offer.company}}</md-card-subtitle>
-    
-        <!-- Speak about the picture
-        <img md-card-image src="{{offer.picture}}">
-        -->
-        <md-card-content>
-            {{offer.long_description}}
-        </md-card-content>
-    </md-card>
-    <div>
-        <md-card class="offer-info-specs">
-            <md-card-header>
-                <md-card-title>
-                    Internship details
-                </md-card-title>
-            </md-card-header>
-            <md-card-content>
+<md-card>
+    <md-card-header>
+        <md-card-title><a [routerLink]="['/offer',offer.id]">{{offer.title}}</a></md-card-title>
+        <md-card-subtitle>{{offer.company}}</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+        <div *ngIf="!showDetails">
+            <p>{{offer.description}}</p>
+            <button md-button color="accent" (click)="showDetails=true">Show more</button>
+        </div>
+        <div *ngIf="showDetails">
+            <h1>Details</h1>
+            <p>
                 Location: {{offer.location}} <br>
                 Duration: {{offer.duration}}<br>
                 Start: {{getStart()}}
-            </md-card-content>
-        </md-card>
-        <md-card class="offer-info-specs">
-            <md-card-header>
-                <md-card-title>
-                    Company details
-                </md-card-title>
-            </md-card-header>
-            <md-card-content>
-                LOLOLOLOLOLOL
-        </md-card-content>
-        </md-card>
-    </div>
-</div>
+            </p>
+
+            <h1>Company</h1>
+            <p>
+                LOLOLOLOLOLOLOL
+            </p>
+
+            <h1>Description</h1>
+            <p>
+                {{offer.long_description}}
+            </p>
+        </div>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>APPLY</button>
+    </md-card-actions>
+</md-card>
+

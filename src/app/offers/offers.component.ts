@@ -24,9 +24,5 @@ export class OffersComponent implements OnInit {
     });
   }
 
-  viewOffer(offer: number) {
-    this.router.navigate(['/offer', offer]);
-  }
-
   constructor(private offersService: OffersService, private router: Router) { }
 }

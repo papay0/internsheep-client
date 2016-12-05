@@ -12,31 +12,14 @@ import 'rxjs/add/operator/switchMap';
 		md-card {
 			margin: 20px;
 		}
-		#layout-profile {
-			display: flex; 
-			flex-flow:row wrap;
-		}
-		.flexbox-container {
-			display: flex;
-		}
-		.flexbox-container > div {
-			width: 50%;
-			padding: 10px;
-		}
-		.offer-container{
-			display:flex;
-		}
-		.offer-info-specs {
-			flex: 1;
-		}
-		.offer-info-text {
-			flex: 3;
+		md-card-content {
+			padding-left: 10px;
 		}
 		`]
 })
 export class OfferDetailComponent {
 
-	offer : Offer;
+	@Input() offer : Offer;
 	months = ["January",
             "February",
             "March",
@@ -49,16 +32,50 @@ export class OfferDetailComponent {
             "October",
             "November",
             "December",];
+    _showDetails: boolean = false;
+    _loaded: boolean = false;
 
-	@Input()
+
+
 	ngOnInit(): void {
-		this.route.params
-		.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
-		.subscribe(details => {console.log("coucou, "+ details);this.offer = details});
+		console.log("blha1: " + JSON.stringify(this.offer))
+		if(!this.offer.id) // dedicated page
+			this.showDetails = true;
 	}
 
 	constructor(private offersService: OffersService, private route: ActivatedRoute) { 
 		this.offer = new Offer;
+	}
+
+	set showDetails(show: boolean) {
+		if(show) {
+			this._showDetails = true;
+			if(!this._loaded) {
+				console.log("blha2: " + JSON.stringify(this.offer))
+				if(this.offer.id)
+					this.getDetailsFromInput();
+				else
+					this.getDetailsFromUrl();
+				this._loaded = true;
+			}
+		}
+		else
+			this._showDetails = false;
+	}
+
+	get showDetails(): boolean {
+		return this._showDetails;
+	}
+
+	getDetailsFromInput(): void {
+		this.offersService.getOffersDetails(this.offer.id)
+		.subscribe(details => this.offer = details);
+	}
+
+	getDetailsFromUrl(): void {
+		this.route.params
+		.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
+		.subscribe(details => this.offer = details);
 	}
 
 	getStart(): string {
