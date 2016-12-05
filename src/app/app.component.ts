@@ -11,9 +11,6 @@ import { UserService } from './_services/user.service';
 })
 export class AppComponent {
   constructor(private userService: UserService, private router: Router) { }
-  goHome(): void {
-    this.router.navigate(['home']);
-  }
   goLogin(): void {
     this.router.navigate(['login']);
   }
@@ -23,11 +20,5 @@ export class AppComponent {
   }
   isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
-  }
-  goProfile(): void {
-    this.router.navigate(['student/profile']);
-  }
-  goOffers(): void {
-    this.router.navigate(['offers']);
   }
 }

@@ -1,13 +1,13 @@
 <md-toolbar color="primary">
-    <button md-button (click)="goHome()" >INTERNSHEEP</button>
+    <a md-button routerLink="/home">INTERNSHEEP</a>
     <span class="app-toolbar-filler"></span>
     <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
     <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>
 </md-toolbar>
 <md-sidenav-layout class="full_height">
     <md-sidenav #sidenav mode="side" opened="true" class="custom_width" layout="column">
-        <button md-button color="accent" (click)="goProfile()" class="buttonSidenav">PROFILE</button>
-        <button md-button color="accent" (click)="goOffers()" class="buttonSidenav">OFFERS</button>
+        <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav">PROFILE</a>
+        <a md-button color="accent" routerLink="/offers" class="buttonSidenav">OFFERS</a>
     </md-sidenav>
     <div flex layout="column">
         <div class="app-content">
