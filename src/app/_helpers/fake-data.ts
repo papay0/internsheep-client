@@ -99,7 +99,6 @@ export let Data = {
                 title: 'FullStack'
             }
         ],
-<<<<<<< HEAD
         testDetails: [
             {
                     id: 1,
