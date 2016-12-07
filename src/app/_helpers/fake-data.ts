@@ -86,5 +86,38 @@ export let Data = {
                 id: 2,
                 title: 'FullStack'
             }
+        ],
+        testMessages: [
+            {
+                id: 1,
+                senderId: 2,
+                date: 1,
+                content: 'Do you want an internship?',
+                entityName: 'Airbus'
+            }, {
+                id: 2,
+                senderId: 1,
+                date: 2,
+                content: 'Yes.',
+                entityName: 'Frank'
+            }, {
+                id: 3,
+                senderId: 2,
+                date: 3,
+                content: 'How much do you want?',
+                entityName: 'Airbus'
+            }, {
+                id: 4,
+                senderId: 1,
+                date: 4,
+                content: 'A lot.',
+                entityName: 'Frank'
+            }, {
+                id: 5,
+                senderId: 2,
+                date: 5,
+                content: 'Ok.',
+                entityName: 'Airbus'
+            }
         ]
 };

@@ -30,4 +30,7 @@ export class AppComponent {
   goOffers(): void {
     this.router.navigate(['offers']);
   }
+  goChat(): void {
+    this.router.navigate(['chat']);
+  }
 }
