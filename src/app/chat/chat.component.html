@@ -1,5 +1,5 @@
 <h1>Chat with Airbus</h1>
-<div *ngFor="let message of messages">
+<div *ngFor="let message of messages" >
     <md-card>
         <div *ngIf="message.senderId === userId" class="right">
             {{message.content}}
