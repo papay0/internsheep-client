@@ -15,6 +15,7 @@ export let fakeBackendProvider = {
             let testOffers = Data.testOffers;
             let testCVs = Data.testCVs;
             let testDetails = Data.testDetails;
+            let testMessates = Data.testMessages;
 
             // wrap in timeout to simulate server api call
             setTimeout(() => {
@@ -153,6 +154,7 @@ export let fakeBackendProvider = {
                     console.log('J upload');
                 }
 
+
                 if (connection.request.url.indexOf('/api/offerDetails/') != -1 && connection.request.method === RequestMethod.Get) {
                           
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
@@ -176,7 +178,14 @@ export let fakeBackendProvider = {
                         connection.mockRespond(new Response(
                             new ResponseOptions({ status: 200, body: { details: offer } })
                             ));
+                    }
+                }
 
+                if (connection.request.url.endsWith('/api/chat') && connection.request.method === RequestMethod.Get) {
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { messages: testMessates } })
+                        ));
                     } else {
                         // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(
@@ -185,6 +194,23 @@ export let fakeBackendProvider = {
                     }
                 }
 
+
+                if (connection.request.url.indexOf('/api/user/') !== -1 && connection.request.method === RequestMethod.Get) {
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                        // take it with req.params.id in the real backend
+                        let regex = new RegExp('\/api\/user\/([^\/]+)$');
+                        let userId = regex.exec(connection.request.url)[1];
+                        console.log('userId: ' + userId);
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { info: {name: 'Julien'} } })
+                        ));
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                        ));
+                    }
+                }
 
             }, 500);
 

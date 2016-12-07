@@ -15,6 +15,7 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { StarredOffersComponent } from './starred-offers/starred-offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
+import { ChatComponent } from './chat/chat.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
@@ -27,6 +28,7 @@ import { ProfileService } from './_services/profile.service';
 import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
 import { OffersService } from './_services/offers.service';
+import { ChatService } from './_services/chat.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
@@ -44,6 +46,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
+    ChatComponent,
     ProfileInfoComponent,
     StarredOffersComponent,
     OffersComponent,
@@ -66,6 +69,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     UserService,
     ProfileService,
     RoutingService,
+    ChatService,
     ToastService,
     OffersService,
     fakeBackendProvider,

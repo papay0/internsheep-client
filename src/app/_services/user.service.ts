@@ -75,5 +75,15 @@ export class UserService {
     return ret;
   }
 
+  getInfoById(userId): any { // TODO: Create an interface here for the return Type
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
 
+    return this.http
+      .get('/api/user/1', { headers })
+      .map(res => res.json())
+      .map((res) => res.info );
+  }
 }
