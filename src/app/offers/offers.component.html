@@ -24,13 +24,5 @@
 </md-card>
 
 <div *ngFor="let offer of (offers | myfilterOffers: searchQuery.value: selectedIndex)">
-    <md-card>
-        <md-card-header>
-            <md-card-title>{{offer.company}}</md-card-title>
-            <md-card-subtitle>{{offer.title}}</md-card-subtitle>
-        </md-card-header>
-        <md-card-content>
-            <p>{{offer.description}}</p>
-        </md-card-content>
-    </md-card>
+    <app-offer-detail [id]="offer.id" [offer]="offer"></app-offer-detail>
 </div>

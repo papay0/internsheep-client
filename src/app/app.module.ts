@@ -17,6 +17,10 @@ import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ProfileCompanyComponent } from './profile_company/profile-company.component';
+import { CompanyOffersComponent } from './company-offers/company-offers.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
+import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
@@ -43,8 +47,12 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ProfileInfoComponent,
     StarredOffersComponent,
     OffersComponent,
+    MyFilterOffersPipe,
     FilesManagerComponent,
-    MyFilterOffersPipe
+    ProfileCompanyComponent,
+    CompanyOffersComponent,
+    CompanyInfoComponent,
+    OfferDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,5 +23,6 @@ export class OffersComponent implements OnInit {
       this.offers = result;
     });
   }
-  constructor(private offersService: OffersService) { }
+
+  constructor(private offersService: OffersService, private router: Router) { }
 }

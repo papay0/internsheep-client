@@ -21,4 +21,12 @@ export class AppComponent {
   isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
   }
+
+  isStudent(): boolean {
+    return this.userService.isLoggedStudent();
+  }
+
+  isCompany(): boolean {
+    return this.userService.isLoggedCompany();
+  }
 }

@@ -6,7 +6,8 @@
 </md-toolbar>
 <md-sidenav-layout class="full_height">
     <md-sidenav #sidenav mode="side" opened="true" class="custom_width" layout="column">
-        <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav">PROFILE</a>
+        <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav"  *ngIf="isStudent()">PROFILE</a>
+        <a md-button color="accent" routerLInk="/company/profile" class="buttonSidenav" *ngIf="isCompany()">PROFILE</a>
         <a md-button color="accent" routerLink="/offers" class="buttonSidenav">OFFERS</a>
     </md-sidenav>
     <div flex layout="column">
