@@ -32,13 +32,12 @@ export class OfferDetailComponent {
             "October",
             "November",
             "December",];
-    _showDetails: boolean = false;
-    _loaded: boolean = false;
+    private _showDetails: boolean = false;
+    private _loaded: boolean = false;
 
 
 
 	ngOnInit(): void {
-		console.log("blha1: " + JSON.stringify(this.offer))
 		if(!this.offer.id) // dedicated page
 			this.showDetails = true;
 	}
@@ -48,19 +47,14 @@ export class OfferDetailComponent {
 	}
 
 	set showDetails(show: boolean) {
-		if(show) {
-			this._showDetails = true;
-			if(!this._loaded) {
-				console.log("blha2: " + JSON.stringify(this.offer))
-				if(this.offer.id)
-					this.getDetailsFromInput();
-				else
-					this.getDetailsFromUrl();
-				this._loaded = true;
-			}
+		this._showDetails = show;
+		if(show && !this._loaded) {
+			if(this.offer.id)
+				this.getDetailsFromInput();
+			else
+				this.getDetailsFromUrl();
+			this._loaded = true;
 		}
-		else
-			this._showDetails = false;
 	}
 
 	get showDetails(): boolean {
@@ -69,13 +63,13 @@ export class OfferDetailComponent {
 
 	getDetailsFromInput(): void {
 		this.offersService.getOffersDetails(this.offer.id)
-		.subscribe(details => this.offer = details);
+		.subscribe(details => this.offer = details || this.offer);
 	}
 
 	getDetailsFromUrl(): void {
 		this.route.params
 		.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
-		.subscribe(details => this.offer = details);
+		.subscribe(details => this.offer = details || this.offer);
 	}
 
 	getStart(): string {

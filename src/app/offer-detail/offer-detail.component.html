@@ -6,7 +6,6 @@
     <md-card-content>
         <div *ngIf="!showDetails">
             <p>{{offer.description}}</p>
-            <button md-button color="accent" (click)="showDetails=true">Show more</button>
         </div>
         <div *ngIf="showDetails">
             <h1>Details</h1>
@@ -28,6 +27,9 @@
         </div>
     </md-card-content>
     <md-card-actions>
+    	<!--<button md-button *ngIf="showDetails" (click)="showDetails=false">HIDE</button>
+    	<button md-button *ngIf="!showDetails" (click)="showDetails=true">MORE</button>-->
+    	<button md-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
         <button md-button>APPLY</button>
     </md-card-actions>
 </md-card>
