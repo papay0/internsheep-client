@@ -6,6 +6,7 @@ import { LoginComponent }  from './login/login.component';
 import { OffersComponent } from './offers/offers.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
   { path: 'offer/:id', component: OfferDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'chat',  component: ChatComponent, canActivate: [LoggedInGuard] },
+  { path: 'notifications',  component: NotificationsComponent, canActivate: [LoggedInGuard] },
   { path: '**', redirectTo: '/' }
 ];
 

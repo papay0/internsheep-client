@@ -22,6 +22,7 @@ import { ProfileCompanyComponent } from './profile_company/profile-company.compo
 import { CompanyOffersComponent } from './company-offers/company-offers.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
@@ -55,7 +56,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ProfileCompanyComponent,
     CompanyOffersComponent,
     CompanyInfoComponent,
-    OfferDetailComponent
+    OfferDetailComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

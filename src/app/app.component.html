@@ -1,6 +1,10 @@
 <md-toolbar color="primary">
     <a md-button routerLink="/home">INTERNSHEEP</a>
     <span class="app-toolbar-filler"></span>
+    <button md-icon-button (click)="goNotification()" *ngIf="isLoggedIn()">
+        <md-icon>notifications</md-icon>
+        <div>13</div>
+    </button>  
     <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
     <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>
 </md-toolbar>
