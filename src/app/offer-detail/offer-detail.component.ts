@@ -8,14 +8,14 @@ import 'rxjs/add/operator/switchMap';
 @Component({
 	selector: 'app-offer-detail',
 	templateUrl: 'offer-detail.component.html',
-	  styles: [`
-		md-card {
-			margin: 20px;
-		}
-		md-card-content {
-			padding-left: 10px;
-		}
-		`]
+	styles: [`
+	md-card {
+		margin: 20px;
+	}
+	md-card-content {
+		padding-left: 10px;
+	}
+	`]
 })
 export class OfferDetailComponent {
 
