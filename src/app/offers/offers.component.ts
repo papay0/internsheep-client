@@ -1,5 +1,6 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { OffersService } from '../_services/offers.service';
 export class OffersComponent implements OnInit {
   selectedIndex: number = 0;
   searchLabel = ['company name', 'job title', 'description'];
-  search = "";
+  search = '';
   offers = [];
 
   ngOnInit() {
@@ -22,5 +23,6 @@ export class OffersComponent implements OnInit {
       this.offers = result;
     });
   }
-  constructor(private offersService: OffersService) { }
+
+  constructor(private offersService: OffersService, private router: Router) { }
 }

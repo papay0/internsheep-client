@@ -1,3 +1,24 @@
+.full_height {
+  height: 100%;
+}
+
+.custom_width {
+  width: 200px;
+  background: #bdbdbd;
+}
+
+.buttonSidenav {
+  width: 100%;
+  color: #000000;
+  background-color: #9b9b9b;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonSidenav:hover, .buttonSidenav:active {
+  background-color: #b9b9b9;
+}
+
 .app-content {
   padding: 20px;
 }

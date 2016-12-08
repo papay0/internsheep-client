@@ -2,7 +2,6 @@
   <md-card-title>Starred offers</md-card-title>
   <md-list *ngFor="let offer of starredOffers">
       <md-list-item (click)="menuClick(offer)">
-        <img md-list-avatar src="http://papailhau.fr/img/me.jpg">
         <h3 md-line> {{offer.company}} </h3>
         <p md-line>
           <span> {{offer.title}} </span>

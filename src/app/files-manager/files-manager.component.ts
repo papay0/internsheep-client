@@ -1,5 +1,7 @@
-import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
+import { ToastService } from '../_services/toast.service';
+import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
 
 
 @Component({
@@ -28,10 +30,29 @@ export class FilesManagerComponent implements OnInit {
   progress: number = 0;
   private response: any = {};
 
+  editState = {
+    label: 'Update',
+    editionMode: true,
+    inputDisabled: false,
+    color: 'primary'
+  };
+  readState = {
+    label: 'Edit',
+    editionMode: false,
+    inputDisabled: true,
+    color: 'accent'
+  };
+  stateButtonFileManager = this.readState;
+  states = {};
+
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
       this.CVs = result;
+      for (let CV of this.CVs) {
+        this.states[CV.id] = this.readState;
+      }
     });
+
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.options = {
       url: '/api/upload',
@@ -50,14 +71,25 @@ export class FilesManagerComponent implements OnInit {
     };
   }
 
-  handleUpload(data: any): void {
+  handleUpload(data: UploadedFile): void {
     this.zone.run(() => {
       this.response = data;
       this.progress = data.progress.percent;
+      if (data.done) {
+        this.toastService.displayToast('Upload successful!');
+      }
     });
   }
 
-  constructor(private profileService: ProfileService) { 
-
+  editButtonClick(CV): void {
+    let id = CV.id;
+    if (!this.states[id].editionMode) {
+      this.states[id] = this.editState;
+    } else {
+      this.states[id] = this.readState;
+      this.toastService.displayToast('Updated!');
+    }
   }
+
+  constructor(private profileService: ProfileService, private toastService: ToastService) { }
 }

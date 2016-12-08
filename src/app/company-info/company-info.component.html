@@ -1,0 +1,22 @@
+<md-card>
+  <md-card-header>
+    <img md-card-avatar src="http://logocurio.us/wp-content/uploads/2014/01/Airbus-Logo.png">
+    <md-card-title>Airbus</md-card-title>
+  </md-card-header>
+  <form>
+    <table style="width: 100%" cellspacing="0">
+      <tr>
+        <td>
+          <md-input placeholder="Company name" style="width: 100%" value="Airbus" disabled></md-input>
+        </td>
+      </tr>
+    </table>
+    <md-input placeholder="Email" value="airbus@etud.insa-toulouse.fr" style="width: 100%" disabled></md-input>
+    <md-input placeholder="Phone Number" #phoneNumber id="phoneNumber" value="+33512345678" [disabled]="stateFormProfile.inputDisabled"></md-input>
+    <md-card-actions layout="row" layout-align="end center">
+      <button md-raised-button color="{{stateFormProfile.color}}" style="float: right" (click)="editButtonClick()">
+          {{stateFormProfile.label}}
+        </button>
+    </md-card-actions>
+  </form>
+</md-card>
