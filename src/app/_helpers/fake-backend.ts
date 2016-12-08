@@ -194,6 +194,19 @@ export let fakeBackendProvider = {
                     }
                 }
 
+                if (connection.request.url.endsWith('/api/notificationsCount') && connection.request.method === RequestMethod.Get) {
+                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: { notificationsCount: {count: 42} } })
+                        ));
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 401 })
+                            ));
+                    }
+                }
+
 
                 if (connection.request.url.indexOf('/api/user/') !== -1 && connection.request.method === RequestMethod.Get) {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {

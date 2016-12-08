@@ -25,6 +25,7 @@ import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
 import { UserService } from './_services/user.service';
+import { NotificationsService } from './_services/notifications.service';
 import { ProfileService } from './_services/profile.service';
 import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
@@ -74,6 +75,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ChatService,
     ToastService,
     OffersService,
+    NotificationsService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
