@@ -1,7 +1,9 @@
 <md-card>
     <form role="form" (submit)="onSubmit($event, email.value, password.value)">
         <md-input placeholder="Login" #email id="email" style="width: 100%"></md-input>
-        <md-input placeholder="Password" #password id="password" style="width: 100%" type="password"></md-input>
+        <md-input placeholder="Password" #password id="password" style="width: 100%" type="password">
+            <md-hint *ngIf="loginError" [ngStyle]="{'color': 'red'}" align="start">{{loginErrorMessage}}</md-hint>
+        </md-input>
         <md-slide-toggle color="primary">
             Remember me
         </md-slide-toggle>

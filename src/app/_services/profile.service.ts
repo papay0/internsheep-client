@@ -40,4 +40,5 @@ export class ProfileService {
       .map(res => res.json())
       .map(res => res.offers );
   }
+
 }

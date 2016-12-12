@@ -76,7 +76,11 @@ export class FilesManagerComponent implements OnInit {
       this.response = data;
       this.progress = data.progress.percent;
       if (data.done) {
+        console.log(data.originalName);
         this.toastService.displayToast('Upload successful!');
+        let id = 42;
+        this.CVs.push({id: id, title: data.originalName });
+        this.states[id] = this.readState;
       }
     });
   }
