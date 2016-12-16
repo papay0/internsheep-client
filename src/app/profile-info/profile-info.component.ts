@@ -32,7 +32,7 @@ export class ProfileInfoComponent {
       this.stateFormProfile = this.editState;
     } else {
       this.stateFormProfile = this.readState;
-      this.toastService.displayToast('Updated!');
+      this.toastService.show('Updated!');
     }
   }
 

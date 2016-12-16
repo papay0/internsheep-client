@@ -91,7 +91,7 @@ export class FilesManagerComponent implements OnInit {
       this.states[id] = this.editState;
     } else {
       this.states[id] = this.readState;
-      this.toastService.displayToast('Updated!');
+      this.toastService.show('coucou');
     }
   }
 
