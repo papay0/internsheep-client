@@ -30,7 +30,7 @@
     	<!--<button md-button *ngIf="showDetails" (click)="showDetails=false">HIDE</button>
     	<button md-button *ngIf="!showDetails" (click)="showDetails=true">MORE</button>-->
     	<button md-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
-        <button md-button>APPLY</button>
+        <button md-button (click)="openDialog()" >APPLY</button>
     </md-card-actions>
 </md-card>
 

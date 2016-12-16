@@ -1,14 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
 import { Offer } from '../_model/Offer';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { ApplyOfferDialogComponent } from '../apply-offer/apply-offer.component'
 
 @Component({
 	selector: 'app-offer-detail',
 	templateUrl: 'offer-detail.component.html',
-	  styles: [`
+	styles: [`
 		md-card {
 			margin: 20px;
 		}
@@ -19,37 +21,37 @@ import 'rxjs/add/operator/switchMap';
 })
 export class OfferDetailComponent {
 
-	@Input() offer : Offer;
+	@Input() offer: Offer;
 	months = ["January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",];
-    private _showDetails: boolean = false;
-    private _loaded: boolean = false;
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",];
+	private _showDetails: boolean = false;
+	private _loaded: boolean = false;
 
-
+	dialogRef: MdDialogRef<ApplyOfferDialogComponent>;
 
 	ngOnInit(): void {
-		if(!this.offer.id) // dedicated page
+		if (!this.offer.id) // dedicated page
 			this.showDetails = true;
 	}
 
-	constructor(private offersService: OffersService, private route: ActivatedRoute) { 
+	constructor(private offersService: OffersService, private route: ActivatedRoute, public dialog: MdDialog) {
 		this.offer = new Offer;
 	}
 
 	set showDetails(show: boolean) {
 		this._showDetails = show;
-		if(show && !this._loaded) {
-			if(this.offer.id)
+		if (show && !this._loaded) {
+			if (this.offer.id)
 				this.getDetailsFromInput();
 			else
 				this.getDetailsFromUrl();
@@ -63,13 +65,13 @@ export class OfferDetailComponent {
 
 	getDetailsFromInput(): void {
 		this.offersService.getOffersDetails(this.offer.id)
-		.subscribe(details => this.offer = details || this.offer);
+			.subscribe(details => this.offer = details || this.offer);
 	}
 
 	getDetailsFromUrl(): void {
 		this.route.params
-		.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
-		.subscribe(details => this.offer = details || this.offer);
+			.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
+			.subscribe(details => this.offer = details || this.offer);
 	}
 
 	getStart(): string {
@@ -79,5 +81,16 @@ export class OfferDetailComponent {
 	isLoaded(): boolean {
 		return (!!this.offer);
 	}
+
+	openDialog() {
+    this.dialogRef = this.dialog.open(ApplyOfferDialogComponent, {
+      disableClose: false
+    });
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log('result: ' + result);
+      this.dialogRef = null;
+    });
+  }
 
 }

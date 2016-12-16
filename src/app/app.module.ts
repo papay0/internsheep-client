@@ -37,6 +37,8 @@ import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
 
+import { ApplyOfferDialogComponent } from './apply-offer/apply-offer.component'
+
 // http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial#auth-guard-ts
 // https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.d63ancvls
 
@@ -55,7 +57,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ProfileCompanyComponent,
     CompanyOffersComponent,
     CompanyInfoComponent,
-    OfferDetailComponent
+    OfferDetailComponent,
+    ApplyOfferDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     BaseRequestOptions,
     LoggedInGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ApplyOfferDialogComponent]
 })
 export class AppModule { }
