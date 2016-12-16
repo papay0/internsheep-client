@@ -1,25 +1,31 @@
 <h1>Chat with Airbus</h1>
 <div *ngFor="let message of messages" >
     <md-card>
-        <div *ngIf="message.senderId === userId" class="right">
-            {{message.content}}
+        <div *ngIf="message.senderId === userId">
+            <div Markdown>
+                ##### Me
+                {{message.content}}
+            </div>
         </div>
         <div *ngIf="message.senderId !== userId">
-            {{message.entityName}}: {{message.content}}
+            <div Markdown>
+                ##### {{message.entityName}}
+                {{message.content}}
+            </div>
         </div>
     </md-card>
 </div>
 <md-card>
     <form>
-   <md-input placeholder="Your message"
-          value=""
-          style="width: 100%"
-          #message>
-    </md-input>
-    <md-card-actions layout="row" layout-align="end center">
-        <button md-raised-button color="primary" style="float: right" (click)="sendButtonClick(message.value); message.value=''">
-          SEND
-        </button>
-    </md-card-actions>
+        <md-textarea placeholder="Your message"
+            value=""
+            style="width: 100%"
+            #message>
+        </md-textarea>
+        <md-card-actions layout="row" layout-align="end center">
+            <button md-raised-button color="primary" style="float: right" (click)="sendButtonClick(message.value); message.value=''">
+            SEND
+            </button>
+        </md-card-actions>
     </form>
 </md-card>

@@ -37,7 +37,9 @@ import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
 
-import { ApplyOfferDialogComponent } from './apply-offer/apply-offer.component'
+import { ApplyOfferDialogComponent } from './apply-offer/apply-offer.component';
+
+import { MarkdownModule } from 'angular2-markdown';
 
 // http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial#auth-guard-ts
 // https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.d63ancvls
@@ -66,7 +68,8 @@ import { ApplyOfferDialogComponent } from './apply-offer/apply-offer.component'
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
-    Ng2UploaderModule
+    Ng2UploaderModule,
+    MarkdownModule
   ],
   providers: [
     UserService,

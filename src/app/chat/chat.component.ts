@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ChatService } from '../_services/chat.service';
 import { UserService } from '../_services/user.service';
 
+import {MarkdownModule} from 'angular2-markdown';
+
 @Component({
   selector: 'app-chat',
   templateUrl: 'chat.component.html',
@@ -19,7 +21,7 @@ import { UserService } from '../_services/user.service';
 
     .right
     {
-        float: right;
+        text-align: right;
         margin-right: 50px;
     }
   `]
@@ -40,6 +42,7 @@ export class ChatComponent implements OnInit {
 
   sendButtonClick(message: String): void {
     if (message) {
+      message = message.replace(/(?:\r\n|\r|\n)/g, '\n\n');
       let messageObject = {id: -1,
                   senderId: 1,
                   date: 5,
