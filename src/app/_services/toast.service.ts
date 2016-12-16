@@ -7,8 +7,8 @@ export class ToastService {
 
     show(message: string): void {
         let config = new MdSnackBarConfig();
-        // let config = new MdSnackBarConfig(viewContainerRef);
-        this.snackBar.open(message, 'DISMISS', config);
+        config.duration = 2 * 1000;
+        this.snackBar.open(message, 'OK', config);
     }
 
     displayToast(message: string, ms: number = 3000) {
