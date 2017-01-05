@@ -1,0 +1,7 @@
+<md-card>
+    <md-card-title>Pending conventions</md-card-title>
+</md-card>
+
+<div *ngFor="let convention of conventions">
+    <app-pending-conventions-detail [id]="convention.id" [convention]="convention" ></app-pending-conventions-detail>
+</div>
