@@ -16,6 +16,8 @@ import { StarredOffersComponent } from './starred-offers/starred-offers.componen
 import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { ChatComponent } from './chat/chat.component';
+import { PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
+import { PendingConventionsDetailComponent } from './pending-conventions-detail/pending-conventions-detail.component'
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
@@ -55,7 +57,9 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ProfileCompanyComponent,
     CompanyOffersComponent,
     CompanyInfoComponent,
-    OfferDetailComponent
+    OfferDetailComponent,
+    PendingConventionsComponent,
+    PendingConventionsDetailComponent
   ],
   imports: [
     BrowserModule,
