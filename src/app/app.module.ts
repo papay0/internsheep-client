@@ -31,11 +31,12 @@ import { OffersService } from './_services/offers.service';
 import { ChatService } from './_services/chat.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
-import { fakeBackendProvider } from './_helpers/fake-backend';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
+
+import { HttpClient } from './_services/http.client';
 
 // http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial#auth-guard-ts
 // https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.d63ancvls
@@ -72,10 +73,10 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ChatService,
     ToastService,
     OffersService,
-    fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
-    LoggedInGuard
+    LoggedInGuard,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

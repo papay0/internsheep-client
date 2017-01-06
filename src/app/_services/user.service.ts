@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 
+import { HttpClient } from './http.client';
+
 import { User } from "../_model/User";
 
 @Injectable()
@@ -10,9 +12,9 @@ export class UserService {
   public token: string;
   private userProfile: User = {id: -1, name: "", familyName: "", type: -1, email: ""};
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.loggedIn = !!localStorage.getItem('auth_token');
-    this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
+    //this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
   }
 
   login(email, password) {
@@ -22,19 +24,19 @@ export class UserService {
     return this.http
     .post(
       '/api/authenticate',
-      JSON.stringify({ email, password }),
+      JSON.stringify({ login: email, password }),
       { headers }
       )
     .map((res) => {
-      let token = res.json() && res.json().token;
-      let userProfile = res.json() && res.json().profile;
+      let token = res.json() && res.json().access_token;
+      //let userProfile = res.json() && res.json().profile;
       if (token) {
         this.token = token;
         this.loggedIn = true;
-        this.userProfile = userProfile;
+        //this.userProfile = userProfile;
         localStorage.setItem('auth_token', token);
         localStorage.setItem('auth_identity', email);
-        localStorage.setItem('user_profile', JSON.stringify(userProfile));
+        //localStorage.setItem('user_profile', JSON.stringify(userProfile));
         return true;
       } else {
         return false;
