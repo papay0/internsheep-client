@@ -132,8 +132,6 @@ export let fakeBackendProvider = {
                     }
                 }
 
-                console.log(connection.request.url);
-
                 if (connection.request.url.endsWith('/api/CVs') && connection.request.method === RequestMethod.Get) {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(

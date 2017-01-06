@@ -1,0 +1,31 @@
+<md-card>
+  <md-card-header>
+    <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
+    <md-card-title>Arthur Papailhau</md-card-title>
+    <md-card-subtitle>Sigfox</md-card-subtitle>
+  </md-card-header>
+  <form>
+    <table style="width: 100%" cellspacing="0">
+      <tr>
+        <td>
+          <md-input placeholder="First name" style="width: 100%" value="Arthur" disabled></md-input>
+        </td>
+        <td>
+          <md-input placeholder="Last Name" style="width: 100%" value="Papailhau" disabled></md-input>
+        </td>
+      </tr>
+    </table>
+    <md-input placeholder="Email" value="papailha@etud.insa-toulouse.fr" style="width: 100%" disabled></md-input>
+    <md-input placeholder="Phone Number" #phoneNumber id="phoneNumber" value="+33678675645" disabled></md-input>
+    <md-input placeholder="Company" #phoneNumber id="company" value="Sigfox" disabled></md-input>
+    <md-input placeholder="Salary" #phoneNumber id="salary" value="800€" disabled></md-input>
+    <md-card-actions layout="row" layout-align="end center">
+      <button md-raised-button color="primary" style="float: right" (click)="refuseButtonClick()">
+          REFUSE
+        </button>
+      <button md-raised-button color="primary" style="float: right" (click)="acceptButtonClick()">
+        ACCEPT
+        </button>
+    </md-card-actions>
+  </form>
+</md-card>
