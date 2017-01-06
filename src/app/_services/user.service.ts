@@ -23,9 +23,8 @@ export class UserService {
     .post(
       '/api/authenticate',
       JSON.stringify({ email, password }),
-      { headers }
-      )
-    .map((res) => {
+      {headers})
+      .map((res) => {
       let token = res.json() && res.json().token;
       let userProfile = res.json() && res.json().profile;
       if (token) {
