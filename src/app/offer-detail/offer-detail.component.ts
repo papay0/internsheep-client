@@ -11,29 +11,29 @@ import { ProfileService } from '../_services/profile.service';
 	selector: 'app-offer-detail',
 	templateUrl: 'offer-detail.component.html',
 	styles: [`
-md-card {
-margin: 20px;
-}
-md-card-content {
-padding-left: 10px;
-}
-`]
+		md-card {
+		margin: 20px;
+		}
+		md-card-content {
+		padding-left: 10px;
+		}
+	`]
 })
 export class OfferDetailComponent {
 
 	@Input() offer: Offer;
 	months = ['January',
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            'December',];
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		'December',];
 
 	private _showDetails: boolean = false;
 	private _loaded: boolean = false;
@@ -70,18 +70,12 @@ export class OfferDetailComponent {
 
 	set showApply(show: boolean) {
 		this._showApply = show;
-		if (show && this._applied) {
-			this._applied = false;
-		} else {
-			if (show) {
-				this.toastService.show('Application successfully sent!');
-			} else { // click on APPLY
-				console.log('APPLY clicked');
-				this.profileService.loadCVs().subscribe((result) => {
-					this.documents = JSON.parse(JSON.stringify(result));
-					console.log(result);
-				});
-			}
+		if (show) {
+			this.toastService.show('Application successfully sent!');
+		} else { // click on APPLY
+			this.profileService.loadCVs().subscribe((result) => {
+				this.documents = JSON.parse(JSON.stringify(result));
+			});
 		}
 	}
 
