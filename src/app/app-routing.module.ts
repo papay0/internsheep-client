@@ -9,6 +9,7 @@ import { ChatComponent } from './chat/chat.component';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import {PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
   { path: 'offer/:id', component: OfferDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'chat',  component: ChatComponent, canActivate: [LoggedInGuard] },
+  { path: 'pending-conventions', component: PendingConventionsComponent, canActivate: [LoggedInGuard]},
   { path: '**', redirectTo: '/' }
 ];
 
