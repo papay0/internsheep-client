@@ -1,7 +1,24 @@
 <md-card>
-    <md-card-title>Pending conventions</md-card-title>
+    <md-card-title>{{stateLabel[selectedIndex]}}</md-card-title>
+    <md-tab-group [(selectedIndex)]="selectedIndex">
+        <md-tab>
+            <template md-tab-label>
+                {{stateLabel[0]}}
+            </template>
+        </md-tab>
+        <md-tab>
+            <template md-tab-label>
+                {{stateLabel[1]}}
+            </template>
+        </md-tab>
+        <md-tab>
+            <template md-tab-label>
+                {{stateLabel[2]}}
+            </template>
+        </md-tab>
+    </md-tab-group>
 </md-card>
 
 <div *ngFor="let convention of conventions">
-    <app-pending-conventions-detail [id]="convention.id" [convention]="convention" ></app-pending-conventions-detail>
+    <app-pending-conventions-detail [id]="convention.id" [convention]="convention"></app-pending-conventions-detail>
 </div>

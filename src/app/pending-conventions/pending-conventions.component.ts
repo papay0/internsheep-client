@@ -20,7 +20,9 @@ export class PendingConventionsComponent implements OnInit {
     convention5 = {id: 1, description: 'Blablabla', name: 'Arthur Papailhau', company: 'Sigfox'};
     conventions = [this.convention1, this.convention2, this.convention3, this.convention4, this.convention5];
 
-
+    _conventionState = 'Pending conventions';
+    selectedIndex: number = 0;
+    stateLabel = ['Pending conventions', 'Accepted conventions', 'Refused conventions'];
 
   ngOnInit() {
   }
