@@ -1,0 +1,14 @@
+<md-card *ngIf="appliedOffers.length !== 0">
+  <md-card-title>Applied offers</md-card-title>
+  <md-list *ngFor="let offer of appliedOffers">
+      <md-list-item (click)="menuClick(offer)">
+        <h3 md-line> {{offer.company}} </h3>
+        <button md-button routerLink="/chat">CHAT</button>
+        <button md-button >CONVENTION</button>
+        <p md-line>
+          <span> {{offer.title}} </span>
+          <span> -- {{offer.description}} </span>
+        </p>
+      </md-list-item>
+  </md-list>
+</md-card>

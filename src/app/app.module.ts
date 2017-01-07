@@ -20,6 +20,7 @@ import { PendingConventionsComponent } from './pending-conventions/pending-conve
 import { PendingConventionsDetailComponent, PendingConventionsDialogComponent } from './pending-conventions-detail/pending-conventions-detail.component';
 import { CompanyApplicationsComponent } from './company-applications/company-applications.component';
 import { CompanyApplicationComponent } from './company-application/company-application.component';
+import { AppliedOffersComponent } from './applied-offers/applied-offers.component';
 // import { PendingConventionsDialogComponent } from './_dialog/pending-conventions-dialog.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -65,7 +66,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     PendingConventionsDetailComponent,
     PendingConventionsDialogComponent,
     CompanyApplicationsComponent,
-    CompanyApplicationComponent
+    CompanyApplicationComponent,
+    AppliedOffersComponent
   ],
   imports: [
     BrowserModule,
