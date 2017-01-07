@@ -1,3 +1,3 @@
 <h1> Welcome to Internsheep, your internship manager! </h1>
-<button md-raised-button color="accent" (click)="goOffers()">OFFERS</button>
-<button md-raised-button color="accent" (click)="goProfile()">PROFILE</button>
+<app-profile *ngIf="isLoggedStudent()"></app-profile>
+<app-profile-company *ngIf="isLoggedCompany()"></app-profile-company>

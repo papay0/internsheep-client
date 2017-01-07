@@ -3,7 +3,6 @@ import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class ProfileService {
-  constructor(private http: Http) {}
 
   getProfile() {
     let headers = new Headers();
@@ -17,6 +16,17 @@ export class ProfileService {
       .map((res) => res.profile );
   }
 
+  loadCVs() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http
+      .get('/api/CVs', { headers })
+      .map(res => res.json())
+      .map(res => res.CVs);
+  }
+
   loadStarredOffers() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -28,4 +38,5 @@ export class ProfileService {
       .map(res => res.json())
       .map(res => res.offers );
   }
+  constructor(private http: Http) {}
 }

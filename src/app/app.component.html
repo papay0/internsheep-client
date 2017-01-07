@@ -1,0 +1,21 @@
+<md-toolbar color="primary">
+    <a md-button routerLink="/home">INTERNSHEEP</a>
+    <span class="app-toolbar-filler"></span>
+    <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
+    <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>
+</md-toolbar>
+<md-sidenav-layout class="full_height">
+    <md-sidenav #sidenav mode="side" opened="true" class="custom_width" layout="column">
+        <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav"  *ngIf="isStudent()">PROFILE</a>
+        <a md-button color="accent" routerLInk="/company/profile" class="buttonSidenav" *ngIf="isCompany()">PROFILE</a>
+        <a md-button color="accent" routerLink="/offers" class="buttonSidenav">OFFERS</a>
+        <a md-button color="accent" routerLink="/chat" class="buttonSidenav">CHAT TEST</a>
+        <a md-button color="accent" routerLink="/pending-conventions" class="buttonSidenav">PENDING CONVENTIONS</a>
+    </md-sidenav>
+    <div flex layout="column">
+        <div class="app-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div id="snackbar"></div>
+</md-sidenav-layout>
