@@ -20,7 +20,6 @@ export class StarredOffersComponent implements OnInit {
   }
 
   menuClick(offer): void {
-    console.log(offer);
   }
 
   constructor(private profileService: ProfileService) { }
