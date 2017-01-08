@@ -3,218 +3,187 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { Data } from './fake-data';
 
+
+
+const requestsHandlers = [
+    {
+        method: RequestMethod.Post,
+        path: '/api/authenticate',
+        auth: false,
+        cb: (url, headers, body) => {
+            // get params from post request
+            let params = JSON.parse(body);
+
+            // check user credentials and return fake jwt token if valid
+            for (let j = 0; j < Data.testUser.length; j++) {
+                if (params.email === Data.testUser[j].email && params.password === Data.testUser[j].password) {
+                    // Call to users here; lets us check if user is company or student
+                    let profile = null;
+                    for (let i = 0; i < Data.testProfile.length; i++) {
+                        if (Data.testProfile[i].email === Data.testUser[j].email) {
+                            profile = Data.testProfile[i];
+                            //console.log("Profile id" + profile.id);
+                        }
+                    }
+                    return new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : profile } });
+                }
+            }
+            return new ResponseOptions({ status: 200 });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/profile',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[0] } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/starredOffers',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { offers: Data.testStarredOffers } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/offers',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { offers: Data.testOffers } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/offers\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/offers\/([^\/]+)$/;
+            let cmpny = regex.exec(url)[1];
+            let offers = [];
+
+            for (let i = 0; i < Data.testOffers.length; i++) {
+                if (Data.testOffers[i].company.toLowerCase().indexOf(cmpny.toLowerCase()) != -1){
+                    offers.push(Data.testOffers[i]);
+                    console.log(Data.testOffers[i]);
+                }
+            }
+            //var offers_list = JSON.stringify(offers);
+
+            return new ResponseOptions({ status: 200, body: { offers: offers } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/CVs',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { CVs: Data.testCVs } });
+        }
+    },
+
+    {
+        method: RequestMethod.Post,
+        path: '/api/upload',
+        auth: true,
+        cb: (url, headers, body) => {
+            console.log('J upload');
+            return new ResponseOptions({ status: 200 });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/offerDetails\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/offerDetails\/([^\/]+)$/;
+            let offerId = regex.exec(url)[1];
+            let offer = null;
+
+            console.log(offerId);
+
+            for (let i = 0; i < Data.testDetails.length; i++) {
+                if (Data.testDetails[i].id == Number(offerId[0])) {
+                    offer = Data.testDetails[i];
+                }
+                console.log(offer);
+            }
+            //var offers_list = JSON.stringify(offers);
+
+            return new ResponseOptions({ status: 200, body: { details: offer } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/chat',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { messages: Data.testMessages } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/user\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/user\/([^\/]+)$/;
+            let userId = regex.exec(url)[1];
+            console.log('userId: ' + userId);
+            return new ResponseOptions({ status: 200, body: { info: {name: 'Julien'} } });
+        }
+    }
+];
+
+
+
+
 export let fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
     provide: Http,
     useFactory: (backend, options) => {
         // configure fake backend
         backend.connections.subscribe((connection: MockConnection) => {
-            let testUser = Data.testUser;
-            let testProfile = Data.testProfile;
-            let testStarredOffers = Data.testStarredOffers;
-            let testOffers = Data.testOffers;
-            let testCVs = Data.testCVs;
-            let testDetails = Data.testDetails;
-            let testMessates = Data.testMessages;
-
             // wrap in timeout to simulate server api call
             setTimeout(() => {
-                // fake authenticate api end point
-                if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
-                    // get parameters from post request
-                    let params = JSON.parse(connection.request.getBody());
-                    // check user credentials and return fake jwt token if valid
-
-                    let connectionCheck: boolean = false;
-                    for (let j = 0; j < testUser.length; j++) {
-
-                        if (params.email === testUser[j].email && params.password === testUser[j].password) {
-
-                            //Call to users here; lets us check if user is company or student
-                            let profile = null;
-                            for (let i = 0; i < testProfile.length; i++) {
-                                if (testProfile[i].email===testUser[j].email){
-                                    profile = testProfile[i];
-                                    //console.log("Profile id" + profile.id);
-                                }
-                            } 
-                            connectionCheck = true;
-                            connection.mockRespond(new Response(
-                                //console.log("profile found: " + profile.id);
-                                new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : profile } })
-
-
-
+                
+                for (let i = 0; i < requestsHandlers.length; i++) {
+                    let handler = requestsHandlers[i];
+                    if (connection.request.method === handler.method) {
+                        let goodMatch;
+                        if (typeof(handler.path) === 'string') {
+                            goodMatch = connection.request.url.endsWith(handler.path);
+                        } else {
+                            goodMatch = connection.request.url.match(handler.path);
+                        }
+                        if (goodMatch) {
+                            if (!handler.auth || connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                                let response = handler.cb(connection.request.url, connection.request.headers, connection.request.getBody());
+                                connection.mockRespond(new Response(
+                                    response
                                 ));
-                        } 
-
-                    }
-
-
-                    if(!connectionCheck) {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200 })
-                            ));
-                    }
-                }
-
-                // fake users api end point
-                if (connection.request.url.endsWith('/api/profile') && connection.request.method === RequestMethod.Get) {
-                    // check for fake auth token in header and return test users if valid, this security is implemented server side
-                    // in a real application
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { profile: testProfile[0] } })
-                            ));
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                            ));
-                    }
-                }
-
-                // starred offers api end point
-                if (connection.request.url.endsWith('/api/starredOffers') && connection.request.method === RequestMethod.Get) {
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { offers: testStarredOffers } })
-                            ));
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                            ));
-                    }
-                }
-
-                // Offers api end point
-                if (connection.request.url.endsWith('/api/offers') && connection.request.method === RequestMethod.Get) {
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { offers: testOffers } })
-                            ));
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                            ));
-                    }
-                }
-
-
-                if (connection.request.url.indexOf('/api/offers/') != -1 && connection.request.method === RequestMethod.Get) {
-                          
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-
-                        let regex = new RegExp("\/api\/offers\/([^\/]+)$");
-                        let cmpny = regex.exec(connection.request.url)[1];
-                        let offers = [];
-
-                        for (let i =0; i < testOffers.length; i++){
-                            
-                            if (testOffers[i].company.toLowerCase().indexOf(cmpny.toLowerCase()) != -1){
-                                offers.push(testOffers[i]);
-                                console.log(testOffers[i]);
+                            } else {
+                                // return 401 unauthorized
+                                connection.mockRespond(new Response(
+                                    new ResponseOptions({ status: 401 })
+                                ));
                             }
                         }
-                        //var offers_list = JSON.stringify(offers);
-
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { offers: offers } })
-                            ));
-
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                            ));
-                    }
-                }
-
-                if (connection.request.url.endsWith('/api/CVs') && connection.request.method === RequestMethod.Get) {
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { CVs: testCVs } })
-                        ));
-
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-
-
-                        ));
-                    }
-                }
-
-                if (connection.request.url.endsWith('/api/upload') && connection.request.method === RequestMethod.Post) {
-                    console.log('J upload');
-                }
-
-
-                if (connection.request.url.indexOf('/api/offerDetails/') != -1 && connection.request.method === RequestMethod.Get) {
-                          
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-
-                        let regex = new RegExp("\/api\/offerDetails\/([^\/]+)$");
-                        let offerId = regex.exec(connection.request.url)[1];
-                        let offer = null;
-
-                        console.log(offerId);
-
-                        for (let i =0; i < testDetails.length; i++){
-                           
-                            if (testDetails[i].id == Number(offerId[0])){
-                                offer = testDetails[i];
-                                
-                            }
-                            console.log(offer);
-                        }
-                        //var offers_list = JSON.stringify(offers);
-
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { details: offer } })
-                            ));
-                    }
-                }
-
-                if (connection.request.url.endsWith('/api/chat') && connection.request.method === RequestMethod.Get) {
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { messages: testMessates } })
-                        ));
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                            ));
-                    }
-                }
-
-
-                if (connection.request.url.indexOf('/api/user/') !== -1 && connection.request.method === RequestMethod.Get) {
-                    if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        // take it with req.params.id in the real backend
-                        let regex = new RegExp('\/api\/user\/([^\/]+)$');
-                        let userId = regex.exec(connection.request.url)[1];
-                        console.log('userId: ' + userId);
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { info: {name: 'Julien'} } })
-                        ));
-                    } else {
-                        // return 401 not authorised if token is null or invalid
-                        connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 401 })
-                        ));
                     }
                 }
 
             }, 500);
-
-});
-
-return new Http(backend, options);
-},
-deps: [MockBackend, BaseRequestOptions]
+        });
+        return new Http(backend, options);
+    },
+    deps: [MockBackend, BaseRequestOptions]
 };
