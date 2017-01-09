@@ -13,22 +13,19 @@ const requestsHandlers = [
         cb: (url, headers, body) => {
             // get params from post request
             let params = JSON.parse(body);
+            let user = null;
 
-            // check user credentials and return fake jwt token if valid
-            for (let j = 0; j < Data.testUser.length; j++) {
-                if (params.email === Data.testUser[j].email && params.password === Data.testUser[j].password) {
-                    // Call to users here; lets us check if user is company or student
-                    let profile = null;
-                    for (let i = 0; i < Data.testProfile.length; i++) {
-                        if (Data.testProfile[i].email === Data.testUser[j].email) {
-                            profile = Data.testProfile[i];
-                            //console.log("Profile id" + profile.id);
-                        }
-                    }
-                    return new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : profile } });
-                }
+            if (params.email === 'a' && params.password === 'z') {
+                user = Data.testProfile[0];
             }
-            return new ResponseOptions({ status: 200 });
+            if (params.email === 'airbus' && params.password === 'airbus') {
+                user = Data.testProfile[1];
+            }
+            if (user) {
+                return new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : user } });
+            } else {
+                return new ResponseOptions({ status: 200 });
+            }
         }
     },
 
@@ -38,6 +35,15 @@ const requestsHandlers = [
         auth: true,
         cb: (url, headers, body) => {
             return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[0] } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/profile-company',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[1] } });
         }
     },
 
