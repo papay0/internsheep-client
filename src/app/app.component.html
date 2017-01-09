@@ -4,7 +4,7 @@
     <button md-raised-button color="accent" (click)="goLogin()" *ngIf="!isLoggedIn()">LOG IN</button>
     <button md-raised-button color="accent" (click)="logout()" *ngIf="isLoggedIn()">LOG OUT</button>
 </md-toolbar>
-<md-sidenav-layout class="full_height">
+<md-sidenav-layout class="flex-grow">
     <md-sidenav #sidenav mode="side" opened="true" class="custom_width" layout="column">
         <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav"  *ngIf="isStudent()">PROFILE</a>
         <a md-button color="accent" routerLInk="/company/profile" class="buttonSidenav" *ngIf="isCompany()">PROFILE</a>

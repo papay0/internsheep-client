@@ -1,5 +1,11 @@
-.full_height {
+:host {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .custom_width {
