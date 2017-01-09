@@ -6,16 +6,16 @@
 </md-toolbar>
 <md-sidenav-layout class="flex-grow">
     <md-sidenav #sidenav mode="side" opened="true" class="custom_width" layout="column">
-        <a md-button color="accent" routerLink="/student/profile" class="buttonSidenav"  *ngIf="isStudent()">PROFILE</a>
-        <a md-button color="accent" routerLInk="/company/profile" class="buttonSidenav" *ngIf="isCompany()">PROFILE</a>
-        <a md-button color="accent" routerLink="/offers" class="buttonSidenav">OFFERS</a>
-        <a md-button color="accent" routerLink="/chat" class="buttonSidenav">CHAT TEST</a>
-        <a md-button color="accent" routerLink="/pending-conventions" class="buttonSidenav">PENDING CONVENTIONS</a>
+        <md-nav-list *ngIf="isLoggedIn()">
+            <a md-list-item routerLink="/student/profile" *ngIf="isStudent()"><div class="buttonSidenav">PROFILE</div></a>
+            <a md-list-item routerLInk="/company/profile" *ngIf="isCompany()"><div class="buttonSidenav">PROFILE</div></a>
+            <a md-list-item routerLink="/offers"><div class="buttonSidenav">OFFERS</div></a>
+            <a md-list-item routerLink="/chat"><div class="buttonSidenav">CHAT TEST</div></a>
+            <a md-list-item routerLink="/pending-conventions"><div class="buttonSidenav">PENDING CONVENTIONS</div></a>
+        </md-nav-list>
     </md-sidenav>
-    <div flex layout="column">
-        <div class="app-content">
-            <router-outlet></router-outlet>
-        </div>
+    <div class="app-content">
+        <router-outlet></router-outlet>
     </div>
     <div id="snackbar"></div>
 </md-sidenav-layout>

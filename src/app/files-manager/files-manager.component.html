@@ -1,21 +1,16 @@
 <md-card *ngIf="CVs.length !== 0">
     <md-card-title>My CVs</md-card-title>
-    <md-list *ngFor="let CV of CVs">
-        <form>
-            <md-list-item>
-                <h3 md-line>
+    <md-list>
+        <md-list-item *ngFor="let CV of CVs">
+            <div md-line>
+                <h4 style="display: inline-block;">
                     <md-input value="{{CV.title}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
-                </h3>
-                <p md-line>
-                    <span> INSA 5A </span>
-                </p>
-            </md-list-item>
-            <md-card-actions layout="row" layout-align="end center">
-                <button md-raised-button color="{{states[CV.id].color}}" style="float: right" (click)="editButtonClick(CV)">
+                </h4>
+                <button md-button color="{{states[CV.id].color}}" (click)="editButtonClick(CV)">
                     {{states[CV.id].label}}
                 </button>
-            </md-card-actions>
-        </form>
+            </div>
+        </md-list-item>
     </md-list>
 </md-card>
 <md-card>
