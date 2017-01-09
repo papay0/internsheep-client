@@ -12,7 +12,10 @@ export class UserService {
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('auth_token');
-    this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
+    let up = JSON.parse(localStorage.getItem('user_profile'));
+    if (up) {
+      this.userProfile = up;
+    }
   }
 
   login(email, password) {

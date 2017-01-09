@@ -1,5 +1,6 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../_services/toast.service';
+import { ProfileService } from '../_services/profile.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -10,7 +11,7 @@ import { ToastService } from '../_services/toast.service';
   }
   `]
 })
-export class ProfileInfoComponent {
+export class ProfileInfoComponent implements OnInit {
 
   editState = {
     label: 'Update',
@@ -26,15 +27,24 @@ export class ProfileInfoComponent {
   };
 
   stateFormProfile = this.readState;
+  profile = {};
+
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe((result) => {
+      this.profile = result;
+      console.log(this.profile);
+    });
+  }
 
   editButtonClick(): void {
     if (!this.stateFormProfile.editionMode) {
       this.stateFormProfile = this.editState;
     } else {
+      this.profileService.setProfile(this.profile);
       this.stateFormProfile = this.readState;
       this.toastService.show('Updated!');
     }
   }
 
-  constructor(private toastService: ToastService, private viewContainerRef: ViewContainerRef) { }
+  constructor(private toastService: ToastService, private profileService: ProfileService) { }
 }
