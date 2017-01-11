@@ -1,110 +1,117 @@
 export let Data = {
     testStarredOffers: [
-            {
-                id: 1,
-                company: 'Google',
-                title: 'Software Engineer',
-                description: 'Google search'
-            },
-            {
-                id: 2,
-                company: 'Gemalto',
-                title: 'Software Engineer',
-                description: 'Sim card'
-            },
-            {
-                id: 3,
-                company: 'Cap G',
-                title: 'Software Engineer',
-                description: 'Full-Stack'
-            },
-            {
-                id: 4,
-                company: 'Apple',
-                title: 'Software Engineer',
-                description: '<3'
-            }
-        ],
+        {
+            id: 1,
+            company: 'Google',
+            title: 'Software Engineer',
+            description: 'Google search'
+        },
+        {
+            id: 2,
+            company: 'Gemalto',
+            title: 'Software Engineer',
+            description: 'Sim card'
+        },
+        {
+            id: 3,
+            company: 'Cap G',
+            title: 'Software Engineer',
+            description: 'Full-Stack'
+        },
+        {
+            id: 4,
+            company: 'Apple',
+            title: 'Software Engineer',
+            description: '<3'
+        }
+    ],
     testProfile: [
-            {
-                id: 0,
-                name: 'Francky',
-                familyName: 'Vincent',
-                type: 0 ,
-                email: 'vincent@etud.insa-toulouse.fr',
-                phone: '+33612345678'
-            },
-            {
-                id: 1,
-                name: 'Airbus',
-                familyName: 'airbus',
-                type: 1 ,
-                email: 'airbus',
-                phone: '+33512345678'
-            }
-        ],
+        {
+            id: 0,
+            name: 'Francky',
+            familyName: 'Vincent',
+            type: 0 ,
+            email: 'vincent@etud.insa-toulouse.fr',
+            phone: '+33612345678'
+        },
+        {
+            id: 1,
+            name: 'Airbus',
+            familyName: 'airbus',
+            type: 1 ,
+            email: 'airbus',
+            phone: '+33512345678'
+        }
+    ],
     testOffers: [
-            {
-                id: 1,
-                company: 'Google',
-                title: 'Software Engineer',
-                description: 'Search all your life'
-            },
-            {
-                id: 2,
-                company: 'Apple',
-                title: 'iOS Development',
-                description: 'Awesome job, you will never find something better...'
-            },
-            {
-                id: 3,
-                company: 'Facebook',
-                title: 'Privacy officer',
-                description: 'Do you want to know everything about everyone?'
-            },
-            {
-                id: 4,
-                company: 'Microsoft',
-                title: 'Software Engineer IV',
-                description: 'Azure? Easy!'
-            },
-            {
-                id: 5,
-                company: 'Amazon',
-                title: 'Software Engineer',
-                description: 'Search all your life'
-            },
-            {
-                id: 6,
-                company: 'Airbnb',
-                title: 'iOS Development',
-                description: 'Aweomse job, you will never find something better...'
-            },
-            {
-                id: 7,
-                company: 'Dropbox',
-                title: 'Privacy officer',
-                description: 'Do you want to know everything about everyone?'
-            },
-            {
-                id: 8,
-                company: 'Slack',
-                title: 'Software Engineer IV',
-                description: 'Azure? Easy!'
-            },
-            {
-                id: 9,
-                company: 'airbus',
-                title: 'Software Engineer in space',
-                description: 'I believe I can flyyyyyyyyyyyyyyy'
-            },
-            {
-                id: 10,
-                company: 'airbus',
-                title: 'Software Engineer in space',
-                description: 'I believe I can flyyyyyyyyyyyyyyy II the return'
-            }
-        ],
+        {
+            id: 1,
+            company: 'Google',
+            title: 'Software Engineer',
+            description: 'Search all your life'
+        },
+        {
+            id: 2,
+            company: 'Apple',
+            title: 'iOS Development',
+            description: 'Awesome job, you will never find something better...'
+        },
+        {
+            id: 3,
+            company: 'Facebook',
+            title: 'Privacy officer',
+            description: 'Do you want to know everything about everyone?'
+        },
+        {
+            id: 4,
+            company: 'Microsoft',
+            title: 'Software Engineer IV',
+            description: 'Azure? Easy!'
+        },
+        {
+            id: 5,
+            company: 'Amazon',
+            title: 'Software Engineer',
+            description: 'Search all your life'
+        },
+        {
+            id: 6,
+            company: 'Airbnb',
+            title: 'iOS Development',
+            description: 'Aweomse job, you will never find something better...'
+        },
+        {
+            id: 7,
+            company: 'Dropbox',
+            title: 'Privacy officer',
+            description: 'Do you want to know everything about everyone?'
+        },
+        {
+            id: 8,
+            company: 'Slack',
+            title: 'Software Engineer IV',
+            description: 'Azure? Easy!'
+        },
+        {
+            id: 9,
+            company: 'airbus',
+            title: 'Software Engineer in space',
+            description: 'I believe I can flyyyyyyyyyyyyyyy'
+        },
+        {
+            id: 10,
+            company: 'airbus',
+            title: 'Software Engineer in space',
+            description: 'I believe I can flyyyyyyyyyyyyyyy II the return'
+        }
+    ],
+    testApplications: [
+        {id: 0, description: 'Blablabla', firstName: 'Arthur', lastName: 'Papailhau', company: 'Sigfox', salary: '600€', state: 'pending' },
+        {id: 1, description: 'Blablabla', firstName: 'Francky', lastName: 'Vincent', company: 'Sigfox', salary: '700€', state: 'pending' },
+        {id: 2, description: 'Blablabla', firstName: 'Frodon', lastName: 'Saquet', company: 'Sigfox', salary: '800€', state: 'pending' },
+        {id: 3, description: 'Blablabla', firstName: 'Daniel', lastName: 'Fulkerson', company: 'Sigfox', salary: '900€', state: 'pending' },
+        {id: 4, description: 'Blablabla', firstName: 'Jhon', lastName: 'Doe', company: 'Sigfox', salary: '1000€', state: 'pending' }
+    ],
     testCVs: [
         {
             id: 1,

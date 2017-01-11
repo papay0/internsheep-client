@@ -147,6 +147,26 @@ const requestsHandlers = [
             console.log('userId: ' + userId);
             return new ResponseOptions({ status: 200, body: { info: {name: 'Julien'} } });
         }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/applications',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/application\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/application\/([^\/]+)$/;
+            let appId = regex.exec(url)[1];
+            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+        }
     }
 ];
 
