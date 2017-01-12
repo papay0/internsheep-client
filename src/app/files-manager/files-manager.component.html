@@ -1,11 +1,11 @@
 <md-card *ngIf="CVs.length !== 0">
-    <md-card-title>My CVs</md-card-title>
+    <md-card-title>My Files</md-card-title>
     <md-list>
         <md-list-item *ngFor="let CV of CVs">
+            <h4 md-line>
+                <md-input value="{{CV.title}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
+            </h4>
             <div md-line>
-                <h4 style="display: inline-block;">
-                    <md-input value="{{CV.title}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
-                </h4>
                 <button md-button color="{{states[CV.id].color}}" (click)="editButtonClick(CV)">
                     {{states[CV.id].label}}
                 </button>
@@ -13,6 +13,7 @@
                     SHOW
                 </button>
             </div>
+            <div md-line></div>
         </md-list-item>
     </md-list>
 </md-card>
