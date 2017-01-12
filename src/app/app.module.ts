@@ -36,6 +36,7 @@ import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
 import { OffersService } from './_services/offers.service';
 import { ChatService } from './_services/chat.service';
+import { FilesService } from './_services/files.service';
 import { ApplicationService } from './_services/application.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
@@ -88,6 +89,7 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     ChatService,
     ToastService,
     OffersService,
+    FilesService,
     ApplicationService,
     fakeBackendProvider,
     MockBackend,

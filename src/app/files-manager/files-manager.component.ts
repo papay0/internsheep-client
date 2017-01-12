@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
 import { ToastService } from '../_services/toast.service';
+import { FilesService } from '../_services/files.service';
 import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
 
 
@@ -24,6 +25,8 @@ import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
 })
 export class FilesManagerComponent implements OnInit {
   CVs = [];
+
+  window: Window;
 
   private zone: NgZone;
   private options: Object;
@@ -95,5 +98,12 @@ export class FilesManagerComponent implements OnInit {
     }
   }
 
-  constructor(private profileService: ProfileService, private toastService: ToastService) { }
+  showButtonClick(CV): void {
+    let userId = 1;
+    let documentName = 'resume1';
+    let url = this.filesService.getUrlDocument(userId, documentName);
+    this.window.open(url);
+  }
+
+  constructor(private profileService: ProfileService, private toastService: ToastService, private filesService: FilesService) { }
 }
