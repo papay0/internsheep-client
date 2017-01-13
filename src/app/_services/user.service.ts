@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { HttpClient } from './http.client';
 
@@ -10,33 +10,53 @@ import { User } from "../_model/User";
 export class UserService {
   private loggedIn = false;
   public token: string;
-  private userProfile: User = {id: -1, name: "", familyName: "", type: -1, email: ""};
+  private userProfile$: BehaviorSubject<User> = new BehaviorSubject({id: -1, name: "", familyName: "", type: -1, email: ""});
 
   constructor(private http: HttpClient) {
     this.loggedIn = !!localStorage.getItem('auth_token');
-    //this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
+    if (localStorage.getItem('user_profile')){
+      this.userProfile$.next(JSON.parse(localStorage.getItem('user_profile')));
+    }
+
   }
 
   login(email, password) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+   
 
     return this.http
     .post(
-      '/api/authenticate',
+      '/api/token',
       JSON.stringify({ login: email, password }),
       { headers }
       )
     .map((res) => {
       let token = res.json() && res.json().access_token;
-      //let userProfile = res.json() && res.json().profile;
+      console.log("lol1");
+      //
       if (token) {
         this.token = token;
         this.loggedIn = true;
-        //this.userProfile = userProfile;
+        console.log("lol4");
+
+        this.http
+        .get(
+          '/api/user/'+email+'/profile', (headers)
+        )
+        .map((res) => res.json())
+        .subscribe((res) => {
+          console.log("lol3");
+          console.log("res: "+res);
+          console.log("userprofile: "+ JSON.stringify(res));
+          this.userProfile$.next(res);
+          localStorage.setItem('user_profile', JSON.stringify(res));
+        });
+
+        console.log("lol2");
         localStorage.setItem('auth_token', token);
         localStorage.setItem('auth_identity', email);
-        //localStorage.setItem('user_profile', JSON.stringify(userProfile));
+        
         return true;
       } else {
         return false;
@@ -54,11 +74,11 @@ export class UserService {
   }
 
   isStudent() {
-    return (this.userProfile.type==0);
+    return (this.userProfile$.value.type==0);
   }
 
   isCompany() {
-    return (this.userProfile.type==1);
+    return (this.userProfile$.value.type==1);
   }
 
   isLoggedStudent() {
@@ -72,9 +92,13 @@ export class UserService {
   getFamilyName(){
     var ret = "";
     if (this.isLoggedIn){
-      ret = this.userProfile.familyName;
+      ret = this.userProfile$.value.familyName;
     }
     return ret;
+  }
+
+  getUserProfile(){
+    return this.userProfile$;
   }
 
   getInfoById(userId): any { // TODO: Create an interface here for the return Type
@@ -84,8 +108,7 @@ export class UserService {
     headers.append('Authorization', `Bearer ${authToken}`);
 
     return this.http
-      .get('/api/user/1', { headers })
-      .map(res => res.json())
-      .map((res) => res.info );
+      .get('/api/user/'+userId+'/profile/', { headers })
+      .map(res => res.json());
   }
 }
