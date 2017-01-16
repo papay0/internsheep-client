@@ -79,7 +79,7 @@ import { HttpClient } from './_services/http.client';
     ChatService,
     ToastService,
     OffersService,
-    MockBackend,
+    //MockBackend,
     BaseRequestOptions,
     LoggedInGuard,
     HttpClient

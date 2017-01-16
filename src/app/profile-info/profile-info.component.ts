@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { ToastService } from '../_services/toast.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -11,6 +12,8 @@ import { ToastService } from '../_services/toast.service';
   `]
 })
 export class ProfileInfoComponent {
+
+  private userprofile$;
 
   editState = {
     label: 'Update',
@@ -36,5 +39,8 @@ export class ProfileInfoComponent {
     }
   }
 
-  constructor(private toastService: ToastService, private viewContainerRef: ViewContainerRef) { }
+  constructor(private toastService: ToastService, private viewContainerRef: ViewContainerRef, private userservice: UserService) {
+    this.userprofile$ = userservice.getUserProfile();
+    console.log(this.userprofile$.value);
+   }
 }
