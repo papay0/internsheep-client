@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApplicationService } from '../_services/application.service';
+import { UserService } from '../_services/user.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
@@ -31,6 +32,12 @@ export class PendingConventionsDetailComponent {
         .getApplicationDetails(this.convention.student, this.convention.company, this.convention.offer)
         .subscribe((result) => {
             this.dialogRef.componentInstance.details = result;
+            this.userService.getProfile(this.convention.student).subscribe((result2) => {
+                this.dialogRef.componentInstance.details.student = result2;
+            });
+            this.userService.getProfile(this.convention.company).subscribe((result2) => {
+                this.dialogRef.componentInstance.details.company = result2;
+            });
         });
 
         this.dialogRef.afterClosed().subscribe(result => {
@@ -39,7 +46,7 @@ export class PendingConventionsDetailComponent {
         });
     }
 
-    constructor(public dialog: MdDialog, private applicationService: ApplicationService) {
+    constructor(public dialog: MdDialog, private applicationService: ApplicationService, private userService: UserService) {
     }
 }
 
@@ -49,7 +56,7 @@ export class PendingConventionsDetailComponent {
 })
 export class PendingConventionsDialogComponent {
 
-    details = {};
+    details = { student: {}, company: {} };
 
     refuseButtonClick() {
         console.log('resuse clicked');

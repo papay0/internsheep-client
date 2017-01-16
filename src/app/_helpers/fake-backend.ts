@@ -161,10 +161,11 @@ const requestsHandlers = [
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let student = regex.exec(url)[1];
-            let company = regex.exec(url)[2];
-            let offer = regex.exec(url)[3];
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            let student = regexRes[1];
+            let company = regexRes[2];
+            let offer = regexRes[3];
             let application = null;
             Data.testApplications.forEach((value, index) => {
                 if (value.student === student && value.company === company && value.offer === offer) {
@@ -180,9 +181,9 @@ const requestsHandlers = [
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let appId = regex.exec(url)[1];
-            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            return new ResponseOptions({ status: 200 });
         }
     },
 
@@ -191,9 +192,9 @@ const requestsHandlers = [
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let appId = regex.exec(url)[1];
-            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            return new ResponseOptions({ status: 200 });
         }
     },
 
