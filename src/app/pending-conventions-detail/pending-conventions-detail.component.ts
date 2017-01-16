@@ -22,7 +22,7 @@ export class PendingConventionsDetailComponent {
     @Input() convention;
     dialogRef: MdDialogRef<PendingConventionsDialogComponent>;
 
-    openDialog() {
+    openDialog() {/*
         this.dialogRef = this.dialog.open(PendingConventionsDialogComponent, {
             disableClose: false
         });
@@ -37,9 +37,11 @@ export class PendingConventionsDetailComponent {
             console.log('result: ' + result);
             this.dialogRef = null;
         });
+        */
     }
 
     constructor(public dialog: MdDialog, private applicationService: ApplicationService) {
+        console.log("Pending Cons");
     }
 }
 

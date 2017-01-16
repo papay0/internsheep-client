@@ -46,9 +46,8 @@ export class ApplicationService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('/api/applications', { headers })
-            .map(res => res.json())
-            .map((res) => res.applications );
+            .get('http://localhost:8173/applications/ggomez', { headers })
+            .map((res) => {console.log("OKLM"); return res.json();});
     }
 
     getApplicationsByStudent(student: string) {
