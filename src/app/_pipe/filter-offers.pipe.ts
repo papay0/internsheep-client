@@ -7,6 +7,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MyFilterOffersPipe implements PipeTransform {
     transform(items: any[], search: string, typeOfSearch ): any {
+        if(items == null){
+            return [];
+        }
         if (typeOfSearch === 0) {
             return items
         .filter(item => item.company.toLowerCase().indexOf(search.toLowerCase()) !== -1);

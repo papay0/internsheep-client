@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'student/profile',  component: ProfileComponent, canActivate: [LoggedInGuard] },
   { path: 'company/profile',  component: ProfileCompanyComponent, canActivate: [LoggedInGuard] },
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
-  { path: 'offer/:id', component: OfferDetailComponent, canActivate: [LoggedInGuard]},
+  { path: 'offer/:company_id/:id', component: OfferDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'chat',  component: ChatComponent, canActivate: [LoggedInGuard] },
   { path: 'pending-conventions', component: PendingConventionsComponent, canActivate: [LoggedInGuard]},
   { path: '**', redirectTo: '/' }

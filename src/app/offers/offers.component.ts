@@ -16,11 +16,11 @@ export class OffersComponent implements OnInit {
   selectedIndex: number = 0;
   searchLabel = ['company name', 'job title', 'description'];
   search = '';
-  offers = [];
+  offers$ = [];
 
   ngOnInit() {
     this.offersService.loadOffers().subscribe((result) => {
-      this.offers = result;
+      this.offers$ = result;
     });
   }
 

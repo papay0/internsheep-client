@@ -5,7 +5,7 @@ export class Offer {
     description: string;
     long_description: string;
     location: string;
-    picture: string;
     duration: number;
     start: number;
+    company_id: number;
 }

@@ -44,13 +44,15 @@ export class OfferDetailComponent {
 
 	ngOnInit(): void {
 		if (!this.offer.id) {
+			
 			this.showDetails = true;
 			this.showApply = true;
 		}
+		
 	}
 
 	constructor(private offersService: OffersService, private route: ActivatedRoute, private toastService: ToastService, private profileService: ProfileService) {
-		this.offer = new Offer;
+		//this.offer = new Offer;
 	}
 
 	set showDetails(show: boolean) {
@@ -84,14 +86,19 @@ export class OfferDetailComponent {
 	}
 
 	getDetailsFromInput(): void {
-		this.offersService.getOffersDetails(this.offer.id)
+		this.offersService.getOffersDetails(this.offer.id, this.offer.company_id)
 			.subscribe(details => this.offer = details || this.offer);
 	}
 
 	getDetailsFromUrl(): void {
+		
+		console.log(this.route.url);
+
 		this.route.params
-			.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id']))
-			.subscribe(details => this.offer = details || this.offer);
+			.map((params: Params) => {console.log("getDetailsFromUrl log: " + params['id'] + " | " + params['company_id']); return params})
+			.switchMap((params: Params) => this.offersService.getOffersDetails(+params['id'], +params['company_id']))
+			
+			.subscribe((details: Offer) => this.offer = details || this.offer);
 	}
 
 	getStart(): string {
