@@ -31,15 +31,6 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: '/api/profile-company',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[1] } });
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
         path: '/api/starredOffers',
         auth: true,
         cb: (url, headers, body) => {

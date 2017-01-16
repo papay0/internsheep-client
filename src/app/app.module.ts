@@ -31,7 +31,6 @@ import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
-import { ProfileCompanyService } from './_services/profile-company.service';
 import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
 import { OffersService } from './_services/offers.service';
@@ -84,7 +83,6 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
   providers: [
     UserService,
     ProfileService,
-    ProfileCompanyService,
     RoutingService,
     ChatService,
     ToastService,

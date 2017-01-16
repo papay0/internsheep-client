@@ -1,21 +1,25 @@
-import { Component, ViewContainerRef } from '@angular/core';
-import { ToastService } from '../_services/toast.service';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../_services/user.service';
+import { ApplicationService } from '../_services/application.service';
 
 @Component({
-  selector: 'app-company-applications',
-  templateUrl: 'company-applications.component.html',
-  styles: [`
+    selector: 'app-company-applications',
+    templateUrl: 'company-applications.component.html',
+    styles: [`
   md-card {
     margin: 20px;
   }
   `]
 })
-export class CompanyApplicationsComponent {
-    applications = [{id: 1, title: 'Airbus C++ Developer', description: 'blablabla', applicant: 'Juan Carlos'},
-    {id: 1, title: 'Airbus C++ Developer', description: 'blablabla', applicant: 'Juan Carlos'},
-    {id: 1, title: 'Airbus C++ Developer', description: 'blablabla', applicant: 'Juan Carlos'},
-    {id: 1, title: 'Airbus C++ Developer', description: 'blablabla', applicant: 'Juan Carlos'},
-    {id: 1, title: 'Airbus C++ Developer', description: 'blablabla', applicant: 'Juan Carlos'}];
+export class CompanyApplicationsComponent implements OnInit {
+    applications = [];
 
-  constructor(private toastService: ToastService, private viewContainerRef: ViewContainerRef) {}
+    ngOnInit() {
+        this.applicationService.getApplicationsByCompany(this.userService.getLogin())
+        .subscribe((result) => {
+            this.applications = result;
+        });
+    }
+
+    constructor(private userService: UserService, private applicationService: ApplicationService) { }
 }
