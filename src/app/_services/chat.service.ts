@@ -14,7 +14,7 @@ export class ChatService {
         return this.http
             .get(`/api/applications/${student}/${company}/${offer}/chat`, { headers })
             .map(res => res.json())
-            .map((res) => res.application );
+            .map((res) => res.messages );
     }
 
     newMessage(student: string, company: string, offer: string, message) {
@@ -26,7 +26,7 @@ export class ChatService {
         return this.http
             .post(`/api/applications/${student}/${company}/${offer}/chat/new`, { headers })
             .map(res => res.json())
-            .map((res) => res.application );
+            .map((res) => res.message );
     }
 
 }

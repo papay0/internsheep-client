@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../_services/toast.service';
-import { ProfileCompanyService } from '../_services/profile-company.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-company-info',
@@ -27,10 +27,10 @@ export class CompanyInfoComponent implements OnInit {
   };
 
   stateFormProfile = this.readState;
-  profile = {};
+  profile = { login: '' };
 
   ngOnInit(): void {
-    this.profileService.getProfile().subscribe((result) => {
+    this.userService.getProfile(this.userService.getLogin()).subscribe((result) => {
       this.profile = result;
     });
   }
@@ -39,11 +39,11 @@ export class CompanyInfoComponent implements OnInit {
     if (!this.stateFormProfile.editionMode) {
       this.stateFormProfile = this.editState;
     } else {
-      this.profileService.setProfile(this.profile).subscribe(() => {});
+      this.userService.setProfile(this.profile.login, this.profile).subscribe(() => {});
       this.stateFormProfile = this.readState;
       this.toastService.show('Updated!');
     }
   }
 
-  constructor(private toastService: ToastService, private profileService: ProfileCompanyService) { }
+  constructor(private toastService: ToastService, private userService: UserService) { }
 }
