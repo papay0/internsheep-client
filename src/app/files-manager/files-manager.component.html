@@ -4,12 +4,12 @@
         <md-list-item *ngFor="let CV of CVs">
             <div md-line>
                 <h4 style="display: inline-block;">
-                    <md-input value="{{CV.title}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
+                    <md-input value="{{CV.name}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
                 </h4>
                 <button md-button color="{{states[CV.id].color}}" (click)="editButtonClick(CV)">
                     {{states[CV.id].label}}
                 </button>
-                <button md-button color="primary" (click)="showButtonClick(CV)">
+                <button md-button color="primary" (click)="showButtonClick(CV.url)">
                     SHOW
                 </button>
             </div>

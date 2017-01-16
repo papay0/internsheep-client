@@ -18,9 +18,10 @@ export class AppliedOffersComponent implements OnInit {
     appliedOffers = [];
 
   ngOnInit() {
+    /*
     this.profileService.loadStarredOffers().subscribe((result) => {
       this.appliedOffers = result;
-    });
+    });*/
   }
 
     openDialog() {

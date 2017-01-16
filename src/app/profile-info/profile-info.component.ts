@@ -30,10 +30,11 @@ export class ProfileInfoComponent implements OnInit {
   profile = {};
 
   ngOnInit(): void {
+    /*
     this.profileService.getProfile().subscribe((result) => {
       this.profile = result;
       console.log(this.profile);
-    });
+    }); */
   }
 
   editButtonClick(): void {

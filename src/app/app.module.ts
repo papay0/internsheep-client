@@ -91,8 +91,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     OffersService,
     FilesService,
     ApplicationService,
-    fakeBackendProvider,
-    MockBackend,
+    // fakeBackendProvider,
+    // MockBackend,
     BaseRequestOptions,
     LoggedInGuard
   ],

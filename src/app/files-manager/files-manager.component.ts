@@ -50,8 +50,10 @@ export class FilesManagerComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
+      // console.log(result);
       this.CVs = result;
       for (let CV of this.CVs) {
+        //console.log(CV);
         this.states[CV.id] = this.readState;
       }
     });
@@ -94,15 +96,12 @@ export class FilesManagerComponent implements OnInit {
       this.states[id] = this.editState;
     } else {
       this.states[id] = this.readState;
-      this.toastService.show('coucou');
+      this.toastService.show('Edited!');
     }
   }
 
-  showButtonClick(CV): void {
-    let userId = 1;
-    let documentName = 'resume1';
-    let url = this.filesService.getUrlDocument(userId, documentName);
-    this.window.open(url);
+  showButtonClick(url): void {
+    window.open(url);
   }
 
   constructor(private profileService: ProfileService, private toastService: ToastService, private filesService: FilesService) { }
