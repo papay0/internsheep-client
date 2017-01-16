@@ -5,9 +5,9 @@ import { ChatService } from '../_services/chat.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: 'chat.component.html',
-  styles: [`
+    selector: 'app-chat',
+    templateUrl: 'chat.component.html',
+    styles: [`
   md-card {
     margin: 5px;
   }
@@ -25,42 +25,50 @@ import { UserService } from '../_services/user.service';
   `]
 })
 export class ChatComponent implements OnInit {
-  messages = [];
-  userId = 1;
-  arrayFakeMessageForCompany = ['I want you tonight', 'You are fired', 'Run!!',
-  'ET. Phone. Home', 'Houston, we have a problem', 'To infinity and beyond!',
-  'I will be back.', 'I see dead people', 'Bond, James Bond.'];
+    messages = [];
+    userId = '';
+    studentId = '';
+    companyId = '';
+    offerId = '';
+    arrayFakeMessageForCompany = ['I want you tonight', 'You are fired', 'Run!!',
+        'ET. Phone. Home', 'Houston, we have a problem', 'To infinity and beyond!',
+        'I will be back.', 'I see dead people', 'Bond, James Bond.'];
 
-  ngOnInit() {
-    this.chatService.loadOMessages()
-    .subscribe((result) => {
-      this.messages = result;
-    });
-  }
-
-  sendButtonClick(message: String): void {
-    if (message) {
-      let messageObject = {id: -1,
-                  senderId: 1,
-                  date: 5,
-                  content: message,
-                  entityName: 'Frank'};
-      this.messages.push(messageObject);
-      setTimeout(() => {
-        this.sendFakeMessageCompany();
-      }, 2000);
+    ngOnInit() {
+        this.userId = this.userService.getLogin();
+        this.chatService.getMessages(this.studentId, this.companyId, this.offerId)
+            .subscribe((result) => {
+                this.messages = result;
+            });
     }
-  }
 
-  sendFakeMessageCompany(): void {
-    let responseFromCompany = this.arrayFakeMessageForCompany[Math.floor(Math.random() * this.arrayFakeMessageForCompany.length)];
-    let messageObject = {id: -1,
-                  senderId: -1,
-                  date: 5,
-                  content: responseFromCompany,
-                  entityName: 'Airbus'};
-    this.messages.push(messageObject);
-  }
+    sendButtonClick(message: String): void {
+        if (message) {
+            let messageObject = {
+                sender: this.userId,
+                date: Date.now(),
+                message: message,
+                entityName: 'Frank'
+            };
+            this.messages.push(messageObject);
+            this.chatService.newMessage(this.studentId, this.companyId, this.offerId, messageObject)
+            .subscribe(() => {});
+            setTimeout(() => {
+                this.sendFakeMessageCompany();
+            }, 2000);
+        }
+    }
 
-  constructor(private chatService: ChatService, private userService: UserService, private router: Router) { }
+    sendFakeMessageCompany(): void {
+        let responseFromCompany = this.arrayFakeMessageForCompany[Math.floor(Math.random() * this.arrayFakeMessageForCompany.length)];
+        let messageObject = {
+            sender: this.companyId,
+            date: Date.now(),
+            content: responseFromCompany,
+            entityName: 'Airbus'
+        };
+        this.messages.push(messageObject);
+    }
+
+    constructor(private chatService: ChatService, private userService: UserService, private router: Router) { }
 }

@@ -28,18 +28,19 @@ export let Data = {
     testProfile: [
         {
             id: 0,
-            name: 'Francky',
-            familyName: 'Vincent',
+            login: 'vincent',
+            firstName: 'Francky',
+            lastName: 'Vincent',
             type: 0 ,
             email: 'vincent@etud.insa-toulouse.fr',
             phone: '+33612345678'
         },
         {
             id: 1,
+            login: 'airbus',
             name: 'Airbus',
-            familyName: 'airbus',
             type: 1 ,
-            email: 'airbus',
+            email: 'stage@airbus.com',
             phone: '+33512345678'
         }
     ],
@@ -106,11 +107,11 @@ export let Data = {
         }
     ],
     testApplications: [
-        {id: 0, description: 'Blablabla', firstName: 'Arthur', lastName: 'Papailhau', company: 'Sigfox', salary: '600€', state: 'pending' },
-        {id: 1, description: 'Blablabla', firstName: 'Francky', lastName: 'Vincent', company: 'Sigfox', salary: '700€', state: 'pending' },
-        {id: 2, description: 'Blablabla', firstName: 'Frodon', lastName: 'Saquet', company: 'Sigfox', salary: '800€', state: 'pending' },
-        {id: 3, description: 'Blablabla', firstName: 'Daniel', lastName: 'Fulkerson', company: 'Sigfox', salary: '900€', state: 'pending' },
-        {id: 4, description: 'Blablabla', firstName: 'Jhon', lastName: 'Doe', company: 'Sigfox', salary: '1000€', state: 'pending' }
+        {id: 0, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '600€', state: 'pending' },
+        {id: 1, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '700€', state: 'pending' },
+        {id: 2, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '800€', state: 'pending' },
+        {id: 3, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '900€', state: 'pending' },
+        {id: 4, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '1000€', state: 'pending' }
     ],
     testCVs: [
         {

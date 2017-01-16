@@ -39,7 +39,7 @@ export class CompanyInfoComponent implements OnInit {
     if (!this.stateFormProfile.editionMode) {
       this.stateFormProfile = this.editState;
     } else {
-      this.profileService.setProfile(this.profile);
+      this.profileService.setProfile(this.profile).subscribe(() => {});
       this.stateFormProfile = this.readState;
       this.toastService.show('Updated!');
     }

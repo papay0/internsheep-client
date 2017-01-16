@@ -4,32 +4,6 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class ProfileService {
 
-  getProfile() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let authToken = localStorage.getItem('auth_token');
-    headers.append('Authorization', `Bearer ${authToken}`);
-
-    return this.http
-      .get('/api/profile', { headers })
-      .map(res => res.json())
-      .map((res) => res.profile );
-  }
-
-  setProfile(profile) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let authToken = localStorage.getItem('auth_token');
-    headers.append('Authorization', `Bearer ${authToken}`);
-
-    return this.http
-      .put('/api/profile',
-        JSON.stringify(profile),
-        { headers })
-      .map(res => res.json())
-      .map((res) => res.profile );
-  }
-
   loadCVs() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

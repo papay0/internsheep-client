@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../_services/toast.service';
-import { ProfileService } from '../_services/profile.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -27,10 +27,10 @@ export class ProfileInfoComponent implements OnInit {
   };
 
   stateFormProfile = this.readState;
-  profile = {};
+  profile = { login: '' };
 
   ngOnInit(): void {
-    this.profileService.getProfile().subscribe((result) => {
+    this.userService.getProfile(this.userService.getLogin()).subscribe((result) => {
       this.profile = result;
       console.log(this.profile);
     });
@@ -40,11 +40,11 @@ export class ProfileInfoComponent implements OnInit {
     if (!this.stateFormProfile.editionMode) {
       this.stateFormProfile = this.editState;
     } else {
-      this.profileService.setProfile(this.profile);
+      this.userService.setProfile(this.profile.login, this.profile);
       this.stateFormProfile = this.readState;
       this.toastService.show('Updated!');
     }
   }
 
-  constructor(private toastService: ToastService, private profileService: ProfileService) { }
+  constructor(private toastService: ToastService, private userService: UserService) { }
 }
