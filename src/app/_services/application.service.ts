@@ -39,7 +39,7 @@ export class ApplicationService {
             .map((res) => res.application );
     }
 
-    getApplications() {
+    getApplicationsForOffice() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let authToken = localStorage.getItem('auth_token');
@@ -57,19 +57,19 @@ export class ApplicationService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('/api/applications', { headers })
+            .get(`/api/user/${student}/applications`, { headers })
             .map(res => res.json())
             .map((res) => res.applications );
     }
 
-    getApplicationsByOffer(offer: string) {
+    getApplicationsByOffer(company: string, offer: string) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let authToken = localStorage.getItem('auth_token');
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('/api/applications', { headers })
+            .get(`/api/offer/${company}/${offer}/applications`, { headers })
             .map(res => res.json())
             .map((res) => res.applications );
     }
@@ -81,7 +81,7 @@ export class ApplicationService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('/api/applications', { headers })
+    .get(`/api/company/${company}/applications`, { headers })
             .map(res => res.json())
             .map((res) => res.applications );
     }
