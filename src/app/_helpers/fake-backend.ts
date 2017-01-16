@@ -31,15 +31,6 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: '/api/profile',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[0] } });
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
         path: '/api/profile-company',
         auth: true,
         cb: (url, headers, body) => {
@@ -130,22 +121,29 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: '/api/chat',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { messages: Data.testMessages } });
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
         path: /\/api\/user\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
             let regex = /\/api\/user\/([^\/]+)$/;
-            let userId = regex.exec(url)[1];
-            console.log('userId: ' + userId);
-            return new ResponseOptions({ status: 200, body: { info: {name: 'Julien'} } });
+            let userLogin = regex.exec(url)[1];
+            let user = null;
+            Data.testProfile.forEach((value, index) => {
+                if (value.login === userLogin) {
+                    user = value;
+                }
+            });
+            return new ResponseOptions({ status: 200, body: { user: user } });
+        }
+    },
+
+    {
+        method: RequestMethod.Post,
+        path: /\/api\/user\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/user\/([^\/]+)$/;
+            let userLogin = regex.exec(url)[1];
+            return new ResponseOptions({ status: 200 });
         }
     },
 
@@ -160,12 +158,60 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: /\/api\/application\/([^\/]+)$/,
+        path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/application\/([^\/]+)$/;
+            let student = regex.exec(url)[1];
+            let company = regex.exec(url)[2];
+            let offer = regex.exec(url)[3];
+            let application = null;
+            Data.testApplications.forEach((value, index) => {
+                if (value.student === student && value.company === company && value.offer === offer) {
+                    application = value;
+                }
+            });
+            return new ResponseOptions({ status: 200, body: { application: application } });
+        }
+    },
+
+    {
+        method: RequestMethod.Post,
+        path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
             let regex = /\/api\/application\/([^\/]+)$/;
             let appId = regex.exec(url)[1];
             return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+        }
+    },
+
+    {
+        method: RequestMethod.Put,
+        path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            let regex = /\/api\/application\/([^\/]+)$/;
+            let appId = regex.exec(url)[1];
+            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)\/chat$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { messages: Data.testMessages } });
+        }
+    },
+
+    {
+        method: RequestMethod.Post,
+        path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)\/chat\/new$/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200 });
         }
     }
 ];

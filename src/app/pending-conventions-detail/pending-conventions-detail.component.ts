@@ -27,7 +27,9 @@ export class PendingConventionsDetailComponent {
             disableClose: false
         });
 
-        this.applicationService.getApplicationDetails(this.convention.id).subscribe((result) => {
+        this.applicationService
+        .getApplicationDetails(this.convention.student, this.convention.company, this.convention.offer)
+        .subscribe((result) => {
             this.dialogRef.componentInstance.details = result;
         });
 
