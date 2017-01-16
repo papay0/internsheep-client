@@ -1,7 +1,7 @@
-<md-card *ngIf="CVs.length !== 0">
+<md-card *ngIf="(cvs$ | async).length !== 0">
     <md-card-title>My Files</md-card-title>
     <md-list>
-        <md-list-item *ngFor="let CV of CVs">
+        <md-list-item *ngFor="let CV of (cvs$ | async)">
             <h4 md-line>
                 <md-input value="{{CV.name}}" style="width: 100%" disabled></md-input>
             </h4>

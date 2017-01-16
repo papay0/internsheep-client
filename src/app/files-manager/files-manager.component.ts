@@ -3,7 +3,7 @@ import { ProfileService } from '../_services/profile.service';
 import { ToastService } from '../_services/toast.service';
 import { FilesService } from '../_services/files.service';
 import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-files-manager',
@@ -25,6 +25,7 @@ import { UploadedFile } from 'ng2-uploader/src/services/ng2-uploader';
 })
 export class FilesManagerComponent implements OnInit {
   CVs = [];
+  cvs$ = new BehaviorSubject([]);
 
   window: Window;
 
@@ -32,21 +33,6 @@ export class FilesManagerComponent implements OnInit {
   private options: Object;
   progress: number = 0;
   private response: any = {};
-
-  editState = {
-    label: 'Update',
-    editionMode: true,
-    inputDisabled: false,
-    color: 'primary'
-  };
-  readState = {
-    label: 'Edit',
-    editionMode: false,
-    inputDisabled: true,
-    color: 'accent'
-  };
-  stateButtonFileManager = this.readState;
-  states = {};
 
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
@@ -71,6 +57,12 @@ export class FilesManagerComponent implements OnInit {
     };
   }
 
+  update() {
+    this.profileService.loadCVs().subscribe((res) => {
+      this.cvs$.next(res);
+    });
+  }
+
   handleUpload(data: UploadedFile): void {
     this.zone.run(() => {
       this.response = data;
@@ -78,35 +70,17 @@ export class FilesManagerComponent implements OnInit {
       if (data.done) {
         console.log(data.originalName);
         this.toastService.show('Upload successful!');
-        this.profileService.loadCVs().subscribe((result) => {
-          this.CVs = result;
-        });
-        // let id = 42;
-        // this.CVs.push({id: id, title: data.originalName });
-        // this.states[id] = this.readState;
+        this.update();
       }
     });
   }
 
   deleteButtonClick(url): void {
-    console.log('delete');
-    this.profileService.deleteCV(url);
     this.profileService.deleteCV(url).subscribe((result) => {
-      this.profileService.loadCVs().subscribe((_result) => { // I am so sorry for this code quality... #pasltemps!
-          this.CVs = _result;
-      });
+      this.update();
     });
   }
 
-  editButtonClick(CV): void {
-    let id = CV.id;
-    if (!this.states[id].editionMode) {
-      this.states[id] = this.editState;
-    } else {
-      this.states[id] = this.readState;
-      this.toastService.show('Edited!');
-    }
-  }
 
   showButtonClick(url): void {
     window.open(url);
