@@ -140,15 +140,6 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: '/api/applications',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
@@ -204,6 +195,42 @@ const requestsHandlers = [
         auth: true,
         cb: (url, headers, body) => {
             return new ResponseOptions({ status: 200 });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/applications/internship_office',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/user\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/offer\/([^\/]+)\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/company\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
         }
     }
 ];
