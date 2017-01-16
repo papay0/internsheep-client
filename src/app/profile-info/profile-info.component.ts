@@ -30,7 +30,7 @@ export class ProfileInfoComponent implements OnInit {
   profile = { login: '' };
 
   ngOnInit(): void {
-    /*
+/*
     this.userService.getProfile(this.userService.getLogin()).subscribe((result) => {
       this.profile = result;
       console.log(this.profile);
