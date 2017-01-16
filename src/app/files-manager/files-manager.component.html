@@ -3,11 +3,11 @@
     <md-list>
         <md-list-item *ngFor="let CV of CVs">
             <h4 md-line>
-                <md-input value="{{CV.name}}" style="width: 100%" [disabled]="states[CV.id].inputDisabled"></md-input>
+                <md-input value="{{CV.name}}" style="width: 100%" disabled></md-input>
             </h4>
             <div md-line>
-                <button md-button color="{{states[CV.id].color}}" (click)="editButtonClick(CV)">
-                    {{states[CV.id].label}}
+                <button md-button color="accent" (click)="deleteButtonClick(CV.url)">
+                    DELETE
                 </button>
                 <button md-button color="primary" (click)="showButtonClick(CV.url)">
                     SHOW
@@ -21,7 +21,7 @@
     <input type="file" ngFileSelect id="input-file-id-angular2" [options]="options" (onUpload)="handleUpload($event)" class="inputfile">
     <label for="input-file-id-angular2" md-raised-button color="primary">Choose Files</label>
 </md-card>
-<md-card *ngIf="progress !== 0">
+<md-card *ngIf="progress !== 0 && progress !== 100">
     <md-progress-bar mode="determinate" value="{{progress}}"></md-progress-bar>
     {{progress}}
 </md-card>

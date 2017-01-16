@@ -50,17 +50,12 @@ export class FilesManagerComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.loadCVs().subscribe((result) => {
-      // console.log(result);
       this.CVs = result;
-      for (let CV of this.CVs) {
-        //console.log(CV);
-        this.states[CV.id] = this.readState;
-      }
     });
 
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.options = {
-      url: '/api/upload',
+      url: 'http://localhost:3000/api/user/papa/files/greg_is_useless',
       filterExtensions: true,
       allowedExtensions: ['image/png', 'image/jpg', 'pdf'],
       calculateSpeed: true,
@@ -82,11 +77,24 @@ export class FilesManagerComponent implements OnInit {
       this.progress = data.progress.percent;
       if (data.done) {
         console.log(data.originalName);
-        this.toastService.displayToast('Upload successful!');
-        let id = 42;
-        this.CVs.push({id: id, title: data.originalName });
-        this.states[id] = this.readState;
+        this.toastService.show('Upload successful!');
+        this.profileService.loadCVs().subscribe((result) => {
+          this.CVs = result;
+        });
+        // let id = 42;
+        // this.CVs.push({id: id, title: data.originalName });
+        // this.states[id] = this.readState;
       }
+    });
+  }
+
+  deleteButtonClick(url): void {
+    console.log('delete');
+    this.profileService.deleteCV(url);
+    this.profileService.deleteCV(url).subscribe((result) => {
+      this.profileService.loadCVs().subscribe((_result) => { // I am so sorry for this code quality... #pasltemps!
+          this.CVs = _result;
+      });
     });
   }
 

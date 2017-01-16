@@ -15,6 +15,15 @@ export class ProfileService {
       .map(res => {return res.json();});
   }
 
+  deleteCV(url) {
+    console.log('deleteCVs');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.delete(url, { headers });
+  }
+
   loadStarredOffers() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
