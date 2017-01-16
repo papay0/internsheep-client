@@ -46,7 +46,7 @@ export class ApplicationService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('http://localhost:8173/applications/ggomez', { headers })
+            .get('http://localhost:8173/applications/internship_office', { headers })
             .map((res) => {console.log("OKLM"); return res.json();});
     }
 
