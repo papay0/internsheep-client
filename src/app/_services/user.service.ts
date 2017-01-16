@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Headers } from '@angular/http';
 
 import { HttpClient } from './http.client';
 
-import { User } from "../_model/User";
+import { User } from '../_model/User';
 
 @Injectable()
 export class UserService {
   private loggedIn = false;
   public token: string;
-  private userProfile: User = {id: -1, name: "", familyName: "", type: -1, email: ""};
+  private userProfile: User = {id: -1, name: '', familyName: '', type: -1, email: ''};
 
   constructor(private http: HttpClient) {
     this.loggedIn = !!localStorage.getItem('auth_token');
-    //this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
+    // this.userProfile = JSON.parse(localStorage.getItem('user_profile'));
   }
 
   login(email, password) {
@@ -23,20 +22,20 @@ export class UserService {
 
     return this.http
     .post(
-      '/api/authenticate',
+      '/api/token',
       JSON.stringify({ login: email, password }),
       { headers }
-      )
+    )
     .map((res) => {
       let token = res.json() && res.json().access_token;
-      //let userProfile = res.json() && res.json().profile;
+      // let userProfile = res.json() && res.json().profile;
       if (token) {
         this.token = token;
         this.loggedIn = true;
-        //this.userProfile = userProfile;
+        // this.userProfile = userProfile;
         localStorage.setItem('auth_token', token);
         localStorage.setItem('auth_identity', email);
-        //localStorage.setItem('user_profile', JSON.stringify(userProfile));
+        // localStorage.setItem('user_profile', JSON.stringify(userProfile));
         return true;
       } else {
         return false;
@@ -54,11 +53,11 @@ export class UserService {
   }
 
   isStudent() {
-    return (this.userProfile.type==0);
+    return (this.userProfile.type === 0);
   }
 
   isCompany() {
-    return (this.userProfile.type==1);
+    return (this.userProfile.type === 1);
   }
 
   isLoggedStudent() {
@@ -69,9 +68,9 @@ export class UserService {
     return this.isLoggedIn() && this.isCompany();
   }
 
-  getFamilyName(){
-    var ret = "";
-    if (this.isLoggedIn){
+  getFamilyName() {
+    let ret = '';
+    if (this.isLoggedIn) {
       ret = this.userProfile.familyName;
     }
     return ret;
@@ -84,8 +83,8 @@ export class UserService {
     headers.append('Authorization', `Bearer ${authToken}`);
 
     return this.http
-      .get('/api/user/1', { headers })
-      .map(res => res.json())
-      .map((res) => res.info );
+    .get('/api/user/1', { headers })
+    .map(res => res.json())
+    .map((res) => res.info );
   }
 }
