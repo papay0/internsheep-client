@@ -11,7 +11,7 @@
             <a md-list-item routerLInk="/company/profile" *ngIf="isCompany()"><div class="buttonSidenav">PROFILE</div></a>
             <a md-list-item routerLink="/offers"><div class="buttonSidenav">OFFERS</div></a>
             <a md-list-item routerLink="/chat"><div class="buttonSidenav">CHAT TEST</div></a>
-            <a md-list-item routerLink="/pending-conventions"><div class="buttonSidenav">PENDING CONVENTIONS</div></a>
+            <a md-list-item routerLink="/pending-conventions" *ngIf="isStaff()"><div class="buttonSidenav">PENDING CONVENTIONS</div></a>
         </md-nav-list>
     </md-sidenav>
     <div class="app-content">

@@ -51,12 +51,16 @@ export class UserService {
         return this.loggedIn;
     }
 
-    isStudent() {
+    private isStudent() {
         return (this.userProfile.type === 0);
     }
 
-    isCompany() {
+    private isCompany() {
         return (this.userProfile.type === 1);
+    }
+
+    private isStaff() {
+        return (this.userProfile.type === 2);
     }
 
     isLoggedStudent() {
@@ -65,6 +69,10 @@ export class UserService {
 
     isLoggedCompany() {
         return this.isLoggedIn() && this.isCompany();
+    }
+
+    isLoggedStaff() {
+        return this.isLoggedIn() && this.isStaff();
     }
 
     getLogin() {

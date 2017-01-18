@@ -21,6 +21,9 @@ const requestsHandlers = [
             if (params.email === 'airbus' && params.password === 'airbus') {
                 user = Data.testProfile[1];
             }
+            if (params.email === 'staff' && params.password === 'staff') {
+                user = Data.testProfile[2];
+            }
             if (user) {
                 return new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : user } });
             } else {

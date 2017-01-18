@@ -42,6 +42,14 @@ export let Data = {
             type: 1 ,
             email: 'stage@airbus.com',
             phone: '+33512345678'
+        },
+        {
+            id: 2,
+            login: 'staff',
+            firstName: 'Ginette',
+            lastName: 'Staff',
+            type: 2,
+            email: 'staff@insa-toulouse.fr',
         }
     ],
     testOffers: [

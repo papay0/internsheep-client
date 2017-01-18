@@ -4,7 +4,7 @@
       <md-list-item (click)="menuClick(offer)">
         <h3 md-line> {{offer.company}} </h3>
         <button md-button routerLink="/chat">CHAT</button>
-        <button md-button (click)="openDialog()">CONVENTION</button>
+        <button md-button (click)="openDialog(offer)">CONVENTION</button>
         <p md-line>
           <span> {{offer.title}} </span>
           <span> -- {{offer.description}} </span>

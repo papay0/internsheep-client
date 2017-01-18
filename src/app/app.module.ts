@@ -17,10 +17,11 @@ import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { ChatComponent } from './chat/chat.component';
 import { PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
-import { PendingConventionsDetailComponent, PendingConventionsDialogComponent } from './pending-conventions-detail/pending-conventions-detail.component';
+import { PendingConventionsDetailComponent } from './pending-conventions-detail/pending-conventions-detail.component';
 import { CompanyApplicationsComponent } from './company-applications/company-applications.component';
 import { CompanyApplicationComponent } from './company-application/company-application.component';
-import { AppliedOffersComponent, StudentConventionDialogComponent } from './applied-offers/applied-offers.component';
+import { AppliedOffersComponent } from './applied-offers/applied-offers.component';
+import { ConventionDialogComponent } from './convention-dialog/convention-dialog.component';
 // import { PendingConventionsDialogComponent } from './_dialog/pending-conventions-dialog.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -66,11 +67,10 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     OfferDetailComponent,
     PendingConventionsComponent,
     PendingConventionsDetailComponent,
-    PendingConventionsDialogComponent,
     CompanyApplicationsComponent,
     CompanyApplicationComponent,
     AppliedOffersComponent,
-    StudentConventionDialogComponent
+    ConventionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +95,6 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     LoggedInGuard
   ],
   bootstrap: [AppComponent],
-  entryComponents: [PendingConventionsDialogComponent, StudentConventionDialogComponent]
+  entryComponents: [ConventionDialogComponent]
 })
 export class AppModule { }

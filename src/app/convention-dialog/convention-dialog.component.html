@@ -1,0 +1,34 @@
+<md-card>
+  <md-card-header>
+    <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
+    <md-card-title>{{convention.student.firstName}} {{convention.student.lastName}}</md-card-title>
+    <md-card-subtitle>{{convention.company}}</md-card-subtitle>
+  </md-card-header>
+  <form>
+    <table style="width: 100%" cellspacing="0">
+      <tr>
+        <td>
+          <md-input name="firstName" placeholder="First name" style="width: 100%" [(ngModel)]="convention.student.firstName" disabled></md-input>
+        </td>
+        <td>
+          <md-input name="lastName" placeholder="Last Name" style="width: 100%" [(ngModel)]="convention.student.lastName" disabled></md-input>
+        </td>
+      </tr>
+    </table>
+    <md-input name="email" placeholder="Email" [(ngModel)]="convention.student.email" style="width: 100%" disabled></md-input>
+    
+    <md-input name="company" placeholder="Company" #phoneNumber id="company" [(ngModel)]="convention.company.name" disabled></md-input>
+    <md-input name="salary" placeholder="Salary" #phoneNumber id="salary" [(ngModel)]="convention.salary" disabled></md-input>
+    <md-card-actions layout="row" layout-align="end center">
+      <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="refuseButtonClick()">
+          REFUSE
+      </button>
+      <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="acceptButtonClick()">
+        ACCEPT
+      </button>
+      <button md-raised-button color="primary" style="float: right" *ngIf="isStudent()" (click)="refuseButtonClick()">
+          GENERATE CONVENTION
+      </button>
+    </md-card-actions>
+  </form>
+</md-card>
