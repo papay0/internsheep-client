@@ -4,28 +4,35 @@ import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 
 @Component({
-	selector: 'app-home',
-	templateUrl: 'home.component.html'
+    selector: 'app-home',
+    templateUrl: 'home.component.html'
 })
 export class HomeComponent {
 
-	constructor(private userService: UserService, private router: Router) { }
-	goProfile(): void {
-		this.router.navigate(['student/profile']);
-	}
-	goCompanyProfile(): void {
-		this.router.navigate(['company/profile']);
-	}
-	goOffers(): void {
-		this.router.navigate(['offers']);
-	}
+    constructor(private userService: UserService, private router: Router) { }
 
-	isLoggedStudent(): boolean {
-		return this.userService.isLoggedStudent();
-	}
+    goProfile(): void {
+        this.router.navigate(['student/profile']);
+    }
 
-	isLoggedCompany(): boolean {
-		return this.userService.isLoggedCompany();
-	}
+    goCompanyProfile(): void {
+        this.router.navigate(['company/profile']);
+    }
+
+    goOffers(): void {
+        this.router.navigate(['offers']);
+    }
+
+    isLoggedStudent(): boolean {
+        return this.userService.isLoggedStudent();
+    }
+
+    isLoggedCompany(): boolean {
+        return this.userService.isLoggedCompany();
+    }
+
+    isLoggedStaff(): boolean {
+        return this.userService.isLoggedStaff();
+    }
 
 }
