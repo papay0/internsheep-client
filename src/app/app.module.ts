@@ -17,7 +17,10 @@ import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { ChatComponent } from './chat/chat.component';
 import { PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
-import { PendingConventionsDetailComponent, PendingConventionsDialogComponent } from './pending-conventions-detail/pending-conventions-detail.component';
+import {
+  PendingConventionsDetailComponent,
+  PendingConventionsDialogComponent
+} from './pending-conventions-detail/pending-conventions-detail.component';
 // import { PendingConventionsDialogComponent } from './_dialog/pending-conventions-dialog.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +28,7 @@ import { ProfileCompanyComponent } from './profile_company/profile-company.compo
 import { CompanyOffersComponent } from './company-offers/company-offers.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import { SingleOfferComponent } from './single-offer/single-offer.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
@@ -34,7 +38,7 @@ import { OffersService } from './_services/offers.service';
 import { ChatService } from './_services/chat.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
-import { MockBackend } from '@angular/http/testing';
+// import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
@@ -62,7 +66,8 @@ import { HttpClient } from './_services/http.client';
     OfferDetailComponent,
     PendingConventionsComponent,
     PendingConventionsDetailComponent,
-    PendingConventionsDialogComponent
+    PendingConventionsDialogComponent,
+    SingleOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,7 @@ import { HttpClient } from './_services/http.client';
     ChatService,
     ToastService,
     OffersService,
-    //MockBackend,
+    // MockBackend,
     BaseRequestOptions,
     LoggedInGuard,
     HttpClient

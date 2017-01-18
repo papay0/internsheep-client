@@ -1,44 +1,46 @@
 <md-card>
-    <md-card-header>
-        <md-card-title><a [routerLink]="['/offer',offer.company_id,offer.id]">{{offer.title}}</a></md-card-title>
-        <md-card-subtitle>{{offer.company}}</md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
-        <div *ngIf="!showDetails">
-            <p>{{offer.description}}</p>
-        </div>
-        <div *ngIf="showDetails">
-            <h1>Details</h1>
-            <p>
-                Location: {{offer.location}} <br>
-                Duration: {{offer.duration}}<br>
-                Start: {{getStart()}}
-            </p>
 
-            <h1>Company</h1>
-            <p>
-                LOLOLOLOLOLOLOL
-            </p>
+  <md-card-header>
+    <md-card-title><a [routerLink]="['/offer',offer.company_id,offer.id]">{{offer.title}}</a></md-card-title>
+    <md-card-subtitle>{{offer.company}}</md-card-subtitle>
+  </md-card-header>
+  
+  <md-card-content>
+    <div *ngIf="!showDetails">
+      <p>{{offer.description}}</p>
+    </div>
+    <div *ngIf="showDetails">
+      <h1>Details</h1>
+      <p>
+      Location: {{offer.location}} <br>
+      Duration: {{offer.duration}}<br>
+      Start: {{getStart()}}
+      </p>
 
-            <h1>Description</h1>
-            <p>
-                {{offer.long_description}}
-            </p>
-        </div>
-        <div *ngIf="!showApply">
-            <div *ngFor="let document of documents">
-                    <md-checkbox [checked]="document.checked"
-                                (change)="document.checked = $event.checked">
-                    {{document.title}}
-                    </md-checkbox>
-            </div>
-        </div>
-    </md-card-content>
-    <md-card-actions>
-    	<!--<button md-button *ngIf="showDetails" (click)="showDetails=false">HIDE</button>
-    	<button md-button *ngIf="!showDetails" (click)="showDetails=true">MORE</button>-->
-    	<button md-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
-        <button md-button (click)="showApply=!showApply">{{showApply? "APPLY":"CONFIRM"}}</button>
-    </md-card-actions>
+      <h1>Company</h1>
+      <p>
+      LOLOLOLOLOLOLOL
+      </p>
+
+      <h1>Description</h1>
+      <p>
+      {{offer.long_description}}
+      </p>
+    </div>
+    <div *ngIf="!showApply">
+      <div *ngFor="let document of documents">
+        <md-checkbox [checked]="document.checked"
+          (change)="document.checked = $event.checked">
+          {{document.title}}
+        </md-checkbox>
+      </div>
+    </div>
+  </md-card-content>
+
+  <md-card-actions>
+    <!--<button md-button *ngIf="showDetails" (click)="showDetails=false">HIDE</button>
+      <button md-button *ngIf="!showDetails" (click)="showDetails=true">MORE</button>-->
+      <button md-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
+      <button md-button (click)="showApply=!showApply">{{showApply? "APPLY":"CONFIRM"}}</button>
+  </md-card-actions>
 </md-card>
-

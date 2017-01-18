@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { ProfileCompanyComponent } from './profile_company/profile-company.component';
-import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import { SingleOfferComponent } from './single-offer/single-offer.component';
 import {PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'student/profile',  component: ProfileComponent, canActivate: [LoggedInGuard] },
   { path: 'company/profile',  component: ProfileCompanyComponent, canActivate: [LoggedInGuard] },
   { path: 'offers',  component: OffersComponent, canActivate: [LoggedInGuard] },
-  { path: 'offer/:company_id/:id', component: OfferDetailComponent, canActivate: [LoggedInGuard]},
+  { path: 'offer/:company_id/:offer_id', component: SingleOfferComponent, canActivate: [LoggedInGuard]},
   { path: 'chat',  component: ChatComponent, canActivate: [LoggedInGuard] },
   { path: 'pending-conventions', component: PendingConventionsComponent, canActivate: [LoggedInGuard]},
   { path: '**', redirectTo: '/' }

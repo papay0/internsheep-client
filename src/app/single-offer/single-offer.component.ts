@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
-import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
-  selector: 'single-offer',
+  selector: 'app-single-offer',
   templateUrl: './single-offer.component.html',
   styles: [`
-  md-card {
+    md-card {
     margin: 20px;
-  }
-  `]
+    }
+    `]
 })
 export class SingleOfferComponent implements OnInit {
 
-  private offer_ids : {offer_id: number, comp_id: number};
+  private offer$ = new BehaviorSubject(null);
 
-  constructor(private route: ActivatedRoute){}
+  constructor(private route: ActivatedRoute, private offerService: OffersService) {}
 
   ngOnInit() {
-    let ids = this.route.params;
-    console.log(ids);
-    this.offer_ids = this.route.params;
+    this.route.params.subscribe((params) => {
+      let offer_id = +params['offer_id'];
+      let comp_id = +params['company_id'];
+      this.offerService.getOfferDetails(offer_id, comp_id).subscribe((off) => {
+        this.offer$.next(off);
+      });
+    });
   }
 }
