@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ApplicationService } from '../_services/application.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
@@ -21,18 +22,26 @@ export class PendingConventionsDetailComponent {
     @Input() convention;
     dialogRef: MdDialogRef<PendingConventionsDialogComponent>;
 
-    openDialog() {
+    openDialog() {/*
         this.dialogRef = this.dialog.open(PendingConventionsDialogComponent, {
-        disableClose: false
+            disableClose: false
+        });
+
+        this.applicationService
+        .getApplicationDetails(this.convention.student, this.convention.company, this.convention.offer)
+        .subscribe((result) => {
+            this.dialogRef.componentInstance.details = result;
         });
 
         this.dialogRef.afterClosed().subscribe(result => {
-        console.log('result: ' + result);
-        this.dialogRef = null;
+            console.log('result: ' + result);
+            this.dialogRef = null;
         });
+        */
     }
 
-    constructor(public dialog: MdDialog) {
+    constructor(public dialog: MdDialog, private applicationService: ApplicationService) {
+        console.log("Pending Cons");
     }
 }
 
@@ -41,6 +50,8 @@ export class PendingConventionsDetailComponent {
   templateUrl: './pending-conventions-dialog.component.html'
 })
 export class PendingConventionsDialogComponent {
+
+    details = {};
 
     refuseButtonClick() {
         console.log('resuse clicked');
@@ -51,7 +62,8 @@ export class PendingConventionsDialogComponent {
         this.dialogRef.close(true);
     }
 
-  constructor(public dialogRef: MdDialogRef<PendingConventionsDialogComponent>) { }
+  constructor(public dialogRef: MdDialogRef<PendingConventionsDialogComponent>,
+              private applicationService: ApplicationService) { }
 }
 
 

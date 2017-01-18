@@ -14,13 +14,14 @@ export class StarredOffersComponent implements OnInit {
   starredOffers = [];
 
   ngOnInit() {
+    /*
     this.profileService.loadStarredOffers().subscribe((result) => {
       this.starredOffers = result;
     });
+    */
   }
 
   menuClick(offer): void {
-    console.log(offer);
   }
 
   constructor(private profileService: ProfileService) { }

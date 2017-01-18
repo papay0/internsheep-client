@@ -24,7 +24,7 @@ export class CompanyOffersComponent implements OnInit {
   offers = [];
 
   ngOnInit() {
-    let company = this.userService.getFamilyName();
+    let company = this.userService.getLogin();
     this.offersService.getCompanyOffers(company).subscribe((result) => {
       this.offers = result;
     });

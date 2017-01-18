@@ -1,24 +1,24 @@
 <md-card>
-    <md-card-title>{{stateLabel[selectedIndex]}}</md-card-title>
+    <md-card-title>{{stateFilters[selectedIndex].label}}</md-card-title>
     <md-tab-group [(selectedIndex)]="selectedIndex">
         <md-tab>
             <template md-tab-label>
-                {{stateLabel[0]}}
+                {{stateFilters[0].label}}
             </template>
         </md-tab>
         <md-tab>
             <template md-tab-label>
-                {{stateLabel[1]}}
+                {{stateFilters[1].label}}
             </template>
         </md-tab>
         <md-tab>
             <template md-tab-label>
-                {{stateLabel[2]}}
+                {{stateFilters[2].label}}
             </template>
         </md-tab>
     </md-tab-group>
 </md-card>
 
 <div *ngFor="let convention of conventions">
-    <app-pending-conventions-detail [id]="convention.id" [convention]="convention"></app-pending-conventions-detail>
+    <app-pending-conventions-detail [convention]="convention"></app-pending-conventions-detail>
 </div>

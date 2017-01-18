@@ -18,6 +18,9 @@ import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { ChatComponent } from './chat/chat.component';
 import { PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
 import { PendingConventionsDetailComponent, PendingConventionsDialogComponent } from './pending-conventions-detail/pending-conventions-detail.component';
+import { CompanyApplicationsComponent } from './company-applications/company-applications.component';
+import { CompanyApplicationComponent } from './company-application/company-application.component';
+import { AppliedOffersComponent, StudentConventionDialogComponent } from './applied-offers/applied-offers.component';
 // import { PendingConventionsDialogComponent } from './_dialog/pending-conventions-dialog.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,10 +31,13 @@ import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
+import { ProfileCompanyService } from './_services/profile-company.service';
 import { RoutingService } from './_services/routing.service';
 import { ToastService } from './_services/toast.service';
 import { OffersService } from './_services/offers.service';
 import { ChatService } from './_services/chat.service';
+import { FilesService } from './_services/files.service';
+import { ApplicationService } from './_services/application.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
 import { fakeBackendProvider } from './_helpers/fake-backend';
@@ -61,7 +67,11 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     OfferDetailComponent,
     PendingConventionsComponent,
     PendingConventionsDetailComponent,
-    PendingConventionsDialogComponent
+    PendingConventionsDialogComponent,
+    CompanyApplicationsComponent,
+    CompanyApplicationComponent,
+    AppliedOffersComponent,
+    StudentConventionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,16 +84,19 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
   providers: [
     UserService,
     ProfileService,
+    ProfileCompanyService,
     RoutingService,
     ChatService,
     ToastService,
     OffersService,
-    fakeBackendProvider,
-    MockBackend,
+    FilesService,
+    ApplicationService,
+    // fakeBackendProvider,
+    // MockBackend,
     BaseRequestOptions,
     LoggedInGuard
   ],
   bootstrap: [AppComponent],
-  entryComponents: [PendingConventionsDialogComponent]
+  entryComponents: [PendingConventionsDialogComponent, StudentConventionDialogComponent]
 })
 export class AppModule { }

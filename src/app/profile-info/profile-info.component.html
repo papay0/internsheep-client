@@ -1,22 +1,22 @@
-<md-card>
+<md-card *ngIf="profile.name">
   <md-card-header>
     <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
-    <md-card-title>Arthur</md-card-title>
-    <md-card-subtitle>Papailhau</md-card-subtitle>
+    <md-card-title>{{profile.name}}</md-card-title>
+    <md-card-subtitle>{{profile.familyName}}</md-card-subtitle>
   </md-card-header>
   <form>
     <table style="width: 100%" cellspacing="0">
       <tr>
         <td>
-          <md-input placeholder="First name" style="width: 100%" value="Arthur" disabled></md-input>
+          <md-input name="firstName" placeholder="First name" style="width: 100%" [(ngModel)]="profile.name" disabled></md-input>
         </td>
         <td>
-          <md-input placeholder="Last Name" style="width: 100%" value="Papailhau" disabled></md-input>
+          <md-input name="lastName" placeholder="Last Name" style="width: 100%" [(ngModel)]="profile.familyName" disabled></md-input>
         </td>
       </tr>
     </table>
-    <md-input placeholder="Email" value="papailha@etud.insa-toulouse.fr" style="width: 100%" disabled></md-input>
-    <md-input placeholder="Phone Number" #phoneNumber id="phoneNumber" value="+33678675645" [disabled]="stateFormProfile.inputDisabled"></md-input>
+    <md-input name="email" placeholder="Email" [(ngModel)]="profile.email" style="width: 100%" disabled></md-input>
+    <md-input name="phone" placeholder="Phone Number" #phoneNumber id="phoneNumber" [(ngModel)]="profile.phone" [disabled]="stateFormProfile.inputDisabled"></md-input>
     <md-card-actions layout="row" layout-align="end center">
       <button md-raised-button color="{{stateFormProfile.color}}" style="float: right" (click)="editButtonClick()">
           {{stateFormProfile.label}}
