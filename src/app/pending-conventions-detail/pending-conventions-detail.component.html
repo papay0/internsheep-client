@@ -4,7 +4,9 @@
         <md-card-subtitle>{{convention.company}}</md-card-subtitle>
     </md-card-header>
     <md-card-actions>
-        <button md-button (click)="openDialog()">SHOW</button>
+        <button md-raised-button (click)="openDialog()">SHOW</button>
+        <button md-raised-button color="primary">Accept</button>
+        <button md-raised-button color="accent">Refuse</button>
     </md-card-actions>
 </md-card>
 
