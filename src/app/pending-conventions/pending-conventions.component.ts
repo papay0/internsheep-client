@@ -16,12 +16,13 @@ import { Router } from '@angular/router';
 export class PendingConventionsComponent implements OnInit {
     conventions = [];
 
-    _conventionState = 'Pending conventions';
+    _conventionState = 'Pending applications';
     selectedIndex: number = 0;
     stateFilters = [
-        { label: 'Pending conventions', state: 'pending' },
-        { label: 'Accepted conventions', state: 'accepted' },
-        { label: 'Refused conventions', state: 'refused' }
+        { label: 'To-Check applications', state: 'wait_for_internship_office' },
+        { label: 'All applications', state: 'any' },
+        { label: 'Accepted applications', state: 'accepted' },
+        { label: 'Refused applications', state: 'refused' }
     ];
 
     ngOnInit(): void {
