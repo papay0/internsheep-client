@@ -17,10 +17,13 @@ import { OffersComponent } from './offers/offers.component';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { ChatComponent } from './chat/chat.component';
 import { PendingConventionsComponent } from './pending-conventions/pending-conventions.component';
-import { PendingConventionsDetailComponent, PendingConventionsDialogComponent } from './pending-conventions-detail/pending-conventions-detail.component';
 import { CompanyApplicationsComponent } from './company-applications/company-applications.component';
 import { CompanyApplicationComponent } from './company-application/company-application.component';
 import { AppliedOffersComponent, StudentConventionDialogComponent } from './applied-offers/applied-offers.component';
+import {
+  PendingConventionsDetailComponent,
+  PendingConventionsDialogComponent
+} from './pending-conventions-detail/pending-conventions-detail.component';
 // import { PendingConventionsDialogComponent } from './_dialog/pending-conventions-dialog.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +31,7 @@ import { ProfileCompanyComponent } from './profile_company/profile-company.compo
 import { CompanyOffersComponent } from './company-offers/company-offers.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import { SingleOfferComponent } from './single-offer/single-offer.component';
 
 import { UserService } from './_services/user.service';
 import { ProfileService } from './_services/profile.service';
@@ -40,11 +44,12 @@ import { FilesService } from './_services/files.service';
 import { ApplicationService } from './_services/application.service';
 
 import { LoggedInGuard } from './_guards/logged-in.guard';
-import { fakeBackendProvider } from './_helpers/fake-backend';
-import { MockBackend } from '@angular/http/testing';
+// import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
+
+import { HttpClient } from './_services/http.client';
 
 // http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial#auth-guard-ts
 // https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.d63ancvls
@@ -71,7 +76,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     CompanyApplicationsComponent,
     CompanyApplicationComponent,
     AppliedOffersComponent,
-    StudentConventionDialogComponent
+    StudentConventionDialogComponent,
+    SingleOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +100,8 @@ import { MyFilterOffersPipe } from './_pipe/filter-offers.pipe';
     // fakeBackendProvider,
     // MockBackend,
     BaseRequestOptions,
-    LoggedInGuard
+    LoggedInGuard,
+    HttpClient
   ],
   bootstrap: [AppComponent],
   entryComponents: [PendingConventionsDialogComponent, StudentConventionDialogComponent]

@@ -23,6 +23,6 @@
     </form>
 </md-card>
 
-<div *ngFor="let offer of (offers | myfilterOffers: searchQuery.value: selectedIndex)">
-    <app-offer-detail [id]="offer.id" [offer]="offer"></app-offer-detail>
+<div *ngFor="let offer of (offers$ | async | offersFilter: searchQuery.value: selectedIndex)">
+  <app-offer-detail [offer]="offer"></app-offer-detail>
 </div>

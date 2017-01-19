@@ -8,14 +8,14 @@ export class ToastService {
     show(message: string): void {
         let config = new MdSnackBarConfig();
         config.duration = 2 * 1000;
-        this.snackBar.open(message, 'OK', config);
+       // this.snackBar.open(message, 'OK', config);
     }
 
-    displayToast(message: string, ms: number = 3000) {
-        let x = document.getElementById('snackbar');
-        x.innerHTML = message;
-        x.className = 'show';
-        setTimeout(() => { x.className = x.className.replace('show', ''); }, ms);
+    displayToast(message: string) {
+      this.show(message);
+        let config = new MdSnackBarConfig();
+        config.duration = 2 * 1000;
+       // this.snackBar.open(message, 'OK', config);
     }
 
     constructor(

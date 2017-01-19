@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -13,16 +12,19 @@ import { Router } from '@angular/router';
   `]
 })
 export class OffersComponent implements OnInit {
+
   selectedIndex: number = 0;
   searchLabel = ['company name', 'job title', 'description'];
   search = '';
-  offers = [];
+  private offers$;
 
-  ngOnInit() {
-    this.offersService.loadOffers().subscribe((result) => {
-      this.offers = result;
-    });
+
+  constructor(private offersService: OffersService, private router: Router) {
+   this.offers$ = this.offersService.offers$;
   }
 
-  constructor(private offersService: OffersService, private router: Router) { }
+  ngOnInit() {
+    this.offersService.loadOffers();
+  }
+
 }

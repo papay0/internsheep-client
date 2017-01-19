@@ -13,6 +13,8 @@ import { UserService } from '../_services/user.service';
 })
 export class ProfileInfoComponent implements OnInit {
 
+  private userprofile$;
+
   editState = {
     label: 'Update',
     editionMode: true,
@@ -41,11 +43,15 @@ export class ProfileInfoComponent implements OnInit {
     if (!this.stateFormProfile.editionMode) {
       this.stateFormProfile = this.editState;
     } else {
-      this.userService.setProfile(this.profile.login, this.profile);
+      console.warn('/!\ profile-info ts setProfile not implemented');
+      //this.userService.setProfile(this.profile.login, this.profile);
       this.stateFormProfile = this.readState;
       this.toastService.show('Updated!');
     }
   }
 
-  constructor(private toastService: ToastService, private userService: UserService) { }
+  constructor(private toastService: ToastService, private userService: UserService) {
+    this.userprofile$ = userService.getProfile();
+    console.log(this.userprofile$.value);
+   }
 }
