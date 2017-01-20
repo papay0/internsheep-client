@@ -69,11 +69,15 @@ export class UserService {
     }
 
     isStudent() {
-        return (this.userProfile$.value.type === 0);
+        return (+this.userProfile$.value.type === 1);
     }
 
     isCompany() {
-        return (this.userProfile$.value.type === 1);
+        return (+this.userProfile$.value.type === 2);
+    }
+    
+    isInternshipOffice() {
+        return (+this.userProfile$.value.type === 3);
     }
 
     isLoggedStudent() {
@@ -83,9 +87,14 @@ export class UserService {
     isLoggedCompany() {
         return this.isLoggedIn() && this.isCompany();
     }
+    
+    isLoggedInternshipOffice() {
+        return this.isLoggedIn() && this.isInternshipOffice();
+    }
 
     getFamilyName() {
         let ret = '';
+        console.log("OK ma poule");
         if (this.isLoggedIn) {
             ret = this.userProfile$.value.lastName;
         }

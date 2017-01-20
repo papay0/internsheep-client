@@ -29,4 +29,8 @@ export class AppComponent {
   isCompany(): boolean {
     return this.userService.isLoggedCompany();
   }
+  
+  isInternshipOffice(): boolean {
+    return this.userService.isLoggedInternshipOffice();
+  }
 }

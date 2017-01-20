@@ -12,7 +12,7 @@ export class LoginComponent {
   loginError: boolean = false;
   loginErrorMessage: string = 'Invalide login or password!';
   onSubmit(event, email, password) {
-    console.log('[login] You submitted a value, email: ' + email + ', password: ' + password);
+    console.log('[login] You submitted a value, email: ' + email);
     event.preventDefault();
     this.userService.login(email, password).subscribe((result) => {
       if (result) {

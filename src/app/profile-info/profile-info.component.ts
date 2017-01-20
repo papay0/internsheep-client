@@ -29,14 +29,13 @@ export class ProfileInfoComponent implements OnInit {
   };
 
   stateFormProfile = this.readState;
-  profile = { login: '' };
+  profile:any /*USER ? */;
 
   ngOnInit(): void {
-/*
-    this.userService.getProfile(this.userService.getLogin()).subscribe((result) => {
+    this.userService.getProfile().subscribe((result) => {
       this.profile = result;
       console.log(this.profile);
-    }); */
+    });
   }
 
   editButtonClick(): void {

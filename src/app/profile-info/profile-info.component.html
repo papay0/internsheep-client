@@ -1,6 +1,6 @@
 <md-card *ngIf="profile.name">
   <md-card-header>
-    <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
+      <img md-card-avatar src="http://etud.insa-toulouse.fr/~ggomez/iky2/imgs/trouverImg.php?login={{(userprofile$ | async).login}}">
     <md-card-title>{{(userprofile$ | async).name}}</md-card-title>
     <md-card-subtitle>{{(userprofile$ | async).familyName}}</md-card-subtitle>
   </md-card-header>
