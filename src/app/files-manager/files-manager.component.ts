@@ -80,7 +80,7 @@ export class FilesManagerComponent implements OnInit {
       this.progress = data.progress.percent;
       if (data.done) {
         console.log(data.originalName);
-        this.toastService.displayToast('Upload successful!');
+        this.toastService.show('Upload successful!');
         let id = 42;
         this.CVs.push({id: id, title: data.originalName });
         this.states[id] = this.readState;
@@ -98,11 +98,12 @@ export class FilesManagerComponent implements OnInit {
     }
   }
 
+  removeButtonClicked(CV): void {
+     this.CVs.splice(0, 1);
+  }
+
   showButtonClick(CV): void {
-    let userId = 1;
-    let documentName = 'resume1';
-    let url = this.filesService.getUrlDocument(userId, documentName);
-    this.window.open(url);
+    window.open('http://etud.insa-toulouse.fr/~papailha/papailhau/file/Resume Arthur Papailhau.pdf');
   }
 
   constructor(private profileService: ProfileService, private toastService: ToastService, private filesService: FilesService) { }

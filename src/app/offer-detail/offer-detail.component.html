@@ -1,6 +1,6 @@
 <md-card>
     <md-card-header>
-        <md-card-title><a [routerLink]="['/offer',offer.id]">{{offer.title}}</a></md-card-title>
+        <md-card-title>{{offer.title}}</md-card-title>
         <md-card-subtitle>{{offer.company}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
@@ -11,15 +11,10 @@
             <h1>Details</h1>
             <p>
                 Location: {{offer.location}} <br>
-                Duration: {{offer.duration}}<br>
-                Start: {{getStart()}}
+                Duration: {{offer.duration}} months<br>
+                Start: June
             </p>
-
-            <h1>Company</h1>
-            <p>
-                LOLOLOLOLOLOLOL
-            </p>
-
+            
             <h1>Description</h1>
             <p>
                 {{offer.long_description}}

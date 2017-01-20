@@ -4,13 +4,13 @@
         <md-card-subtitle>{{application.title}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-        <p>BLABLABLA</p>
+        <p>Applied: {{application.appliedDate}}</p>
     </md-card-content>
     <md-card-actions>
         <button md-button (click)="showDocument=!showDocument">SEE DOCUMENTS</button>
         <button md-button routerLink="/chat">CHAT</button>
-        <button md-button (click)="showApply=!showApply">ACCEPT</button>
-        <button md-button (click)="showApply=!showApply">REFUSE</button>
+        <button md-button (click)="accepteButtonClicked()">ACCEPT</button>
+        <button md-button color="accent" (click)="refuseButtonClicked()">REFUSE</button>
     </md-card-actions>
 </md-card>
 <div *ngIf="showDocument">
@@ -19,7 +19,7 @@
             <md-list>
                 <h3>Documents</h3>
                 <md-list-item *ngFor="let document of documents">
-                    <a target="_blank" href="{{document.url}}">OPEN</a>
+                    <button md-button (click)="openButtonClicked(document.url)">OPEN</button>
                     <h3 md-line> {{document.applicant}}</h3>
                     <p md-line>
                         <span> {{document.title}} </span>

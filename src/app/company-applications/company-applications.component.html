@@ -1,6 +1,18 @@
 <h1 style="font-family:arial;">
-	Application you have received
+	Pending applications
 </h1>
-<div *ngFor="let application of applications">
+<div *ngFor="let application of pendingApplications">
+   <app-company-application [application]="application" (acceptFct)="acceptedButtonClick()" (refuseFct)="refusedButtonClicked()"></app-company-application>
+</div>
+<h1 style="font-family:arial;">
+	Accepted applications
+</h1>
+<div *ngFor="let application of acceptedApplications">
+   <app-company-application [application]="application"></app-company-application>
+</div>
+<h1 style="font-family:arial;">
+	Refused applications
+</h1>
+<div *ngFor="let application of refusedApplications">
    <app-company-application [application]="application"></app-company-application>
 </div>

@@ -40,7 +40,7 @@ export class OfferDetailComponent {
 	private _showApply: boolean = true;
 	private _applied: boolean = true;
 
-	private documents = [];
+	private documents = [{checked: false, title: 'iOS.pdf'}, {checked: false, title: 'New Grad.pdf'}];
 
 	ngOnInit(): void {
 		if (!this.offer.id) {
@@ -73,9 +73,9 @@ export class OfferDetailComponent {
 		if (show) {
 			this.toastService.show('Application successfully sent!');
 		} else { // click on APPLY
-			this.profileService.loadCVs().subscribe((result) => {
+			/*this.profileService.loadCVs().subscribe((result) => {
 				this.documents = JSON.parse(JSON.stringify(result));
-			});
+			});*/
 		}
 	}
 

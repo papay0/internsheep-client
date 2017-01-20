@@ -30,16 +30,15 @@ export class ChatComponent implements OnInit {
     student = { login: 'vincent' };
     company = { login: 'airbus', name: 'Airbus' };
     offer = { id: 'a' };
-    arrayFakeMessageForCompany = ['I want you tonight', 'You are fired', 'Run!!',
-        'ET. Phone. Home', 'Houston, we have a problem', 'To infinity and beyond!',
-        'I will be back.', 'I see dead people', 'Bond, James Bond.'];
+    indexMessage = 0;
+    arrayFakeMessageForCompany = ['Hi, I received your resume and I would like to set up a phone screen interview. When are you available for a 30 minutes call?',
+        'Alright, I have your number, I will Facetime you in 2 minutes.', 'I spoke to the manager and we decided to propose you the position, congrats!', 'You are welcome, see you soon!'];
 
     ngOnInit() {
         this.user.login = this.userService.getLogin();
-        this.chatService.getMessages(this.student.login, this.company.login, this.offer.id)
-            .subscribe((result) => {
-                this.messages = result;
-            });
+        /*this.chatService.getMessages(this.student.login, this.company.login, this.offer.id).subscribe((result) => {
+            this.messages = result;
+        });*/
     }
 
     sendButtonClick(message: String): void {
@@ -50,16 +49,19 @@ export class ChatComponent implements OnInit {
                 message: message
             };
             this.messages.push(messageObject);
-            this.chatService.newMessage(this.student.login, this.company.login, this.offer.id, messageObject)
-            .subscribe(() => {});
             setTimeout(() => {
                 this.sendFakeMessageCompany();
             }, 2000);
+            /*this.chatService.newMessage(this.student.login, this.company.login, this.offer.id, messageObject)
+            .subscribe(() => {});
+            setTimeout(() => {
+                this.sendFakeMessageCompany();
+            }, 2000);*/
         }
     }
 
     sendFakeMessageCompany(): void {
-        let responseFromCompany = this.arrayFakeMessageForCompany[Math.floor(Math.random() * this.arrayFakeMessageForCompany.length)];
+        let responseFromCompany = this.arrayFakeMessageForCompany[this.indexMessage];
         let messageObject = {
             sender: this.company.login,
             date: Date.now(),
@@ -67,6 +69,7 @@ export class ChatComponent implements OnInit {
             entityName: this.company.name
         };
         this.messages.push(messageObject);
+        this.indexMessage += 1;
     }
 
     constructor(private chatService: ChatService, private userService: UserService, private router: Router) { }

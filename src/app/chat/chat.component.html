@@ -1,25 +1,27 @@
-<h1>Chat with Airbus</h1>
-<div *ngFor="let message of messages" >
+<div style="width: 50%; margin: auto;">
+    <h1>Chat with Apple</h1>
+    <div *ngFor="let message of messages" >
+        <md-card>
+            <div *ngIf="message.sender === user.login" class="right">
+                {{message.message}}
+            </div>
+            <div *ngIf="message.sender !== user.login">
+                Apple: {{message.content}}
+            </div>
+        </md-card>
+    </div>
     <md-card>
-        <div *ngIf="message.sender === user.login" class="right">
-            {{message.content}}
-        </div>
-        <div *ngIf="message.sender !== user.login">
-            {{message.entityName}}: {{message.content}}
-        </div>
+        <form>
+    <md-input placeholder="Your message"
+            value=""
+            style="width: 100%"
+            #message>
+        </md-input>
+        <md-card-actions layout="row" layout-align="end center">
+            <button md-raised-button color="primary" style="float: right" (click)="sendButtonClick(message.value); message.value=''">
+            SEND
+            </button>
+        </md-card-actions>
+        </form>
     </md-card>
 </div>
-<md-card>
-    <form>
-   <md-input placeholder="Your message"
-          value=""
-          style="width: 100%"
-          #message>
-    </md-input>
-    <md-card-actions layout="row" layout-align="end center">
-        <button md-raised-button color="primary" style="float: right" (click)="sendButtonClick(message.value); message.value=''">
-          SEND
-        </button>
-    </md-card-actions>
-    </form>
-</md-card>

@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef, Input} from '@angular/core';
+import { Component, ViewContainerRef, Input, Output, EventEmitter} from '@angular/core';
 import { ToastService } from '../_services/toast.service';
 
 @Component({
@@ -13,11 +13,24 @@ import { ToastService } from '../_services/toast.service';
 export class CompanyApplicationComponent {
 
     @Input() application;
+    @Output() acceptFct: EventEmitter<any> = new EventEmitter();
+    @Output() refuseFct: EventEmitter<any> = new EventEmitter();
 
     documents = [
-        {id: 1, title: 'Resume_Airbus_Juan_Carlitos', url: 'https://www.u-paris2.fr/sites/default/files/pdf.pdf'},
-        {id: 2, title: 'Cover_Letter_Airbus_Juan_Carlitos', url: 'https://www.u-paris2.fr/sites/default/files/pdf.pdf'}
+        {id: 1, title: 'New Grad.pdf', url: 'http://etud.insa-toulouse.fr/~papailha/papailhau/file/Resume Arthur Papailhau.pdf'},
     ];
+
+    openButtonClicked(url) {
+      window.open(url);
+    }
+
+    accepteButtonClicked() {
+        this.acceptFct.emit([]);
+    }
+
+    refuseButtonClicked() {
+      this.refuseFct.emit([]);
+    }
 
     showDocument = false;
   constructor(private toastService: ToastService, private viewContainerRef: ViewContainerRef) {}
