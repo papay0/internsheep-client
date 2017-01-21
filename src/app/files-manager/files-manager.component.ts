@@ -35,13 +35,11 @@ export class FilesManagerComponent implements OnInit {
   private response: any = {};
 
   ngOnInit() {
-    this.profileService.loadCVs().subscribe((result) => {
-      this.CVs = result;
-    });
+    this.update();
 
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.options = {
-      url: 'http://localhost:3000/api/user/papa/files/greg_is_useless',
+      url: this.profileService.getUploadUrl(),
       filterExtensions: true,
       allowedExtensions: ['image/png', 'image/jpg', 'pdf'],
       calculateSpeed: true,
