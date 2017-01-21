@@ -13,7 +13,7 @@ import { ApplicationService } from '../_services/application.service';
 })
 export class CompanyApplicationsComponent implements OnInit {
     pendingApplications = [{applicant: 'JJ C', title: 'Watch Engineer', appliedDate: '10/08/2015'},
-        {applicant: 'Arthur Papailhau', title: 'iOS Development', appliedDate: '26/01/2017'}];
+        {applicant: 'Arthur Papailhau', title: 'Backend Software Engineer', appliedDate: '26/01/2017'}];
     acceptedApplications = [];
     refusedApplications = [];
 

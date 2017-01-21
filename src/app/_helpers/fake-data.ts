@@ -38,10 +38,10 @@ export let Data = {
         {
             id: 1,
             login: 'airbus',
-            name: 'Airbus',
+            name: 'Apple',
             type: 1 ,
-            email: 'stage@airbus.com',
-            phone: '+33512345678'
+            email: 'internsheep@apple.com',
+            phone: '408-996-1010'
         },
         {
             id: 2,
@@ -62,7 +62,7 @@ export let Data = {
         {
             id: 2,
             company: 'Apple',
-            title: 'iOS Development',
+            title: 'Backend Software Engineer',
             description: 'This job is a revolution!'
         },
         {
@@ -86,7 +86,7 @@ export let Data = {
         {
             id: 6,
             company: 'Airbnb',
-            title: 'iOS Development',
+            title: 'Backend Software Engineer',
             description: 'Aweomse job, you will never find something better...'
         },
         {
@@ -117,7 +117,7 @@ export let Data = {
     testApplications: [
         {id: 0, description: 'Software Engineer in Test #frama-c', student: 'vincent', company: 'Airbus', offer: 'a', salary: '600€', state: 'pending' },
         {id: 1, description: 'Open source Development', student: 'vincent', company: 'Logilab', offer: 'a', salary: '700€', state: 'pending' },
-        {id: 2, description: 'This job is a revolution!', student: 'vincent', company: 'Apple', offer: 'a', salary: '123700€', state: 'pending' }
+        {id: 2, description: 'This job is a revolution!', student: 'vincent', company: 'Apple', offer: 'a', salary: '800€', state: 'pending' }
     ],
     testCVs: [
         {
@@ -144,9 +144,9 @@ export let Data = {
         {
                 id: 2,
                 company: 'Apple',
-                title: 'iOS Development',
+                title: 'Backend Software Engineer',
                 description: 'Aweomse job, you will never find something better...',
-                long_description: 'Play a part in the next revolution in human-computer interaction. Contribute to a product that is redefining mobile computing. Create groundbreaking technology for large scale systems, spoken language, big data, and artificial intelligence. And work with the people who created the intelligent assistant that helps millions of people get things done — just by asking. Join the Siri UI team at Apple.',
+                long_description: 'Join the Apple News team at Apple and help us create a great user experience around news that delight millions of customers every day. As a backend engineer, you will be helping the team to build micro-services and improve the content ingestion pipeline.',
                 location: 'Silicon Valley, US',
                 picture: 'http://www.apetipa.com/images/comptines/Pingouins/02.jpg',
                 duration: 12,

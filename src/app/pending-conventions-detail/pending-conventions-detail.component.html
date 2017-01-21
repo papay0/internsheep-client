@@ -1,10 +1,35 @@
-<md-card>
-    <md-card-header>
-        <md-card-title>{{convention.student}}</md-card-title>
-        <md-card-subtitle>{{convention.company}}</md-card-subtitle>
-    </md-card-header>
-    <md-card-actions>
-        <button md-button (click)="openDialog()">SHOW</button>
-    </md-card-actions>
-</md-card>
-
+<div *ngIf="convention != undefined">
+    <md-card>
+        <md-card-header>
+            <md-card-title>{{convention.student}}</md-card-title>
+            <md-card-subtitle>{{convention.company}}</md-card-subtitle>
+        </md-card-header>
+        <md-card-actions>
+            <button md-button (click)="showDetailDocuments = !showDetailDocuments">SHOW</button>
+        </md-card-actions>
+    </md-card>
+    <div *ngIf="showDetailDocuments">
+        <md-card>
+            <md-card-header>
+                <md-card-title>Arthur Papailhau</md-card-title>
+                <md-card-subtitle>Apple</md-card-subtitle>
+            </md-card-header>
+            <md-card-content>
+                <md-list>
+                    <h3>Documents</h3>
+                    <md-list-item *ngFor="let document of documents">
+                        <button md-button (click)="openButtonClicked(document.url)">OPEN</button>
+                        <h3 md-line> {{document.applicant}}</h3>
+                        <p md-line>
+                            <span> {{document.title}} </span>
+                        </p>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+            <md-card-actions>
+                <button md-button (click)="acceptButtonCLicked()">ACCEPT</button>
+                <button md-button (click)="showApply=!showApply">REFUSE</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

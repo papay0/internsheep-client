@@ -19,6 +19,8 @@ export class ConventionDialogComponent implements OnInit {
         this.applicationService
         .getApplicationDetails(this.params.student, this.params.company, this.params.offer)
         .subscribe((result) => {
+            console.log(result);
+            console.log("ghjkl");
             this.convention = result;
             this.userService.getProfile(this.params.student).subscribe((result2) => {
                 this.convention.student = result2;

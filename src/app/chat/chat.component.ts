@@ -25,10 +25,11 @@ import { UserService } from '../_services/user.service';
   `]
 })
 export class ChatComponent implements OnInit {
-    messages = [];
+    messages = [
+    ];
     user = { login: '' };
     student = { login: 'vincent' };
-    company = { login: 'airbus', name: 'Airbus' };
+    company = { login: 'airbus', name: 'Apple' };
     offer = { id: 'a' };
     indexMessage = 0;
     arrayFakeMessageForCompany = ['Hi, I received your resume and I would like to set up a phone screen interview. When are you available for a 30 minutes call?',
@@ -50,7 +51,7 @@ export class ChatComponent implements OnInit {
             };
             this.messages.push(messageObject);
             setTimeout(() => {
-                this.sendFakeMessageCompany();
+                //this.sendFakeMessageCompany();
             }, 2000);
             /*this.chatService.newMessage(this.student.login, this.company.login, this.offer.id, messageObject)
             .subscribe(() => {});
@@ -58,6 +59,7 @@ export class ChatComponent implements OnInit {
                 this.sendFakeMessageCompany();
             }, 2000);*/
         }
+        console.log(this.messages);
     }
 
     sendFakeMessageCompany(): void {

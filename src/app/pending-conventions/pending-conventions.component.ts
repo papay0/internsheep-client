@@ -14,20 +14,25 @@ import { Router } from '@angular/router';
     `]
 })
 export class PendingConventionsComponent implements OnInit {
-    conventions = [];
+    conventions = [
+        {student: 'Arthur Papailhau', company: 'Apple', state: 'wait_for_internship_office'},
+        {student: 'Arthur Papailhau ✅', company: 'Apple', state: 'accepted'}
+    ];
 
-    _conventionState = 'Pending conventions';
+    _conventionState = 'Pending applications';
     selectedIndex: number = 0;
     stateFilters = [
-        { label: 'Pending conventions', state: 'pending' },
-        { label: 'Accepted conventions', state: 'accepted' },
-        { label: 'Refused conventions', state: 'refused' }
+        { label: 'To-Check applications', state: 'wait_for_internship_office' },
+        { label: 'Accepted applications', state: 'accepted' },
+        { label: 'Refused applications', state: 'refused' },
+        { label: 'All applications', state: 'any' }
     ];
 
     ngOnInit(): void {
-        this.applicationService.getApplicationsForOffice().subscribe((result) => {
+        /*this.applicationService.getApplications().subscribe((result) => {
+            console.log(result[0]);
             this.conventions = result;
-        });
+        });*/
     }
 
     constructor(private offersService: OffersService, private applicationService: ApplicationService, private router: Router) { }

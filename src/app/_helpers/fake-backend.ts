@@ -15,13 +15,13 @@ const requestsHandlers = [
             let params = JSON.parse(body);
             let user = null;
 
-            if (params.email === 'a' && params.password === 'z') {
+            if (params.email === 'papailha' && params.password === 'password') {
                 user = Data.testProfile[0];
             }
-            if (params.email === 'airbus' && params.password === 'airbus') {
+            if (params.email === 'apple' && params.password === 'appleapple') {
                 user = Data.testProfile[1];
             }
-            if (params.email === 'staff' && params.password === 'staff') {
+            if (params.email === 'stage_insa' && params.password === 'stage_insa') {
                 user = Data.testProfile[2];
             }
             if (user) {

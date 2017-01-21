@@ -1,0 +1,31 @@
+<md-card>
+  <md-card-header>
+    <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
+    <md-card-title>{{details.name}}</md-card-title>
+    <md-card-subtitle>{{details.company}}</md-card-subtitle>
+  </md-card-header>
+  <form>
+    <table style="width: 100%" cellspacing="0">
+      <tr>
+        <td>
+          <md-input name="firstName" placeholder="First name" style="width: 100%" [(ngModel)]="details.firstName" disabled></md-input>
+        </td>
+        <td>
+          <md-input name="lastName" placeholder="Last Name" style="width: 100%" [(ngModel)]="details.lastName" disabled></md-input>
+        </td>
+      </tr>
+    </table>
+    <md-input name="email" placeholder="Email" [(ngModel)]="details.email" style="width: 100%" disabled></md-input>
+    
+    <md-input name="company" placeholder="Company" #phoneNumber id="company" [(ngModel)]="details.company" disabled></md-input>
+    <md-input name="salary" placeholder="Salary" #phoneNumber id="salary" [(ngModel)]="details.salary" disabled></md-input>
+    <md-card-actions layout="row" layout-align="end center">
+      <button md-raised-button color="primary" style="float: right" (click)="refuseButtonClick()">
+          REFUSE
+        </button>
+      <button md-raised-button color="primary" style="float: right" (click)="acceptButtonClick()">
+        ACCEPT
+        </button>
+    </md-card-actions>
+  </form>
+</md-card>

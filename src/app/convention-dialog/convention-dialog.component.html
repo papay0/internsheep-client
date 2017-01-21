@@ -17,7 +17,7 @@
     </table>
     <md-input name="email" placeholder="Email" [(ngModel)]="convention.student.email" style="width: 100%" disabled></md-input>
     
-    <md-input name="company" placeholder="Company" #phoneNumber id="company" [(ngModel)]="convention.company.name" disabled></md-input>
+    <md-input name="company" placeholder="Company" #phoneNumber id="company" value="Apple" disabled></md-input>
     <md-input name="salary" placeholder="Salary" #phoneNumber id="salary" [(ngModel)]="convention.salary" disabled></md-input>
     <md-card-actions layout="row" layout-align="end center">
       <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="refuseButtonClick()">
@@ -26,8 +26,8 @@
       <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="acceptButtonClick()">
         ACCEPT
       </button>
-      <button md-raised-button color="primary" style="float: right" *ngIf="isStudent()" (click)="refuseButtonClick()">
-          GENERATE CONVENTION
+      <button md-raised-button color="primary" style="float: right" *ngIf="isStudent()" download (click)="refuseButtonClick()">
+          DOWNLOAD CONVENTION
       </button>
     </md-card-actions>
   </form>

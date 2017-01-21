@@ -30,7 +30,6 @@ export class AppliedOffersComponent implements OnInit {
         this.dialogRef = this.dialog.open(ConventionDialogComponent, {
         disableClose: false
         });
-        console.log('pute');
 
         this.dialogRef.componentInstance.params = {
             student: offer.student,
