@@ -4,8 +4,8 @@
       <md-list-item (click)="menuClick(offer)">
         <h3 md-line> {{offer.company}} </h3>
         <button md-button routerLink="/chat" *ngIf="offer.state!='refused'">CHAT</button>
-        <button md-button (click)="openDialog()" *ngIf="offer.state=='accepted'">CONVENTION</button>
-        <button md-button (click)="openDialog()" *ngIf="offer.state=='refused'" disabled>REFUSED</button>
+        <button md-button (click)="openDialog(offer)" *ngIf="offer.state=='accepted'">CONVENTION</button>
+        <button md-button (click)="openDialog(offer)" *ngIf="offer.state=='refused'" disabled>REFUSED</button>
         <p md-line>
           <span> {{offer.title}} </span>
           <!--<span> - {{offer.description}} </span>-->

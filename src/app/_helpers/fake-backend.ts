@@ -21,20 +21,14 @@ const requestsHandlers = [
             if (params.email === 'airbus' && params.password === 'airbus') {
                 user = Data.testProfile[1];
             }
+            if (params.email === 'staff' && params.password === 'staff') {
+                user = Data.testProfile[2];
+            }
             if (user) {
                 return new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token', profile : user } });
             } else {
                 return new ResponseOptions({ status: 200 });
             }
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
-        path: '/api/profile-company',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { profile: Data.testProfile[1] } });
         }
     },
 
@@ -149,22 +143,14 @@ const requestsHandlers = [
 
     {
         method: RequestMethod.Get,
-        path: '/api/applications',
-        auth: true,
-        cb: (url, headers, body) => {
-            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
-        }
-    },
-
-    {
-        method: RequestMethod.Get,
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let student = regex.exec(url)[1];
-            let company = regex.exec(url)[2];
-            let offer = regex.exec(url)[3];
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            let student = regexRes[1];
+            let company = regexRes[2];
+            let offer = regexRes[3];
             let application = null;
             Data.testApplications.forEach((value, index) => {
                 if (value.student === student && value.company === company && value.offer === offer) {
@@ -180,9 +166,9 @@ const requestsHandlers = [
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let appId = regex.exec(url)[1];
-            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            return new ResponseOptions({ status: 200 });
         }
     },
 
@@ -191,9 +177,9 @@ const requestsHandlers = [
         path: /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/,
         auth: true,
         cb: (url, headers, body) => {
-            let regex = /\/api\/application\/([^\/]+)$/;
-            let appId = regex.exec(url)[1];
-            return new ResponseOptions({ status: 200, body: { application: Data.testApplications[appId] } });
+            let regex = /\/api\/applications\/([^\/]+)\/([^\/]+)\/([^\/]+)$/;
+            let regexRes = regex.exec(url);
+            return new ResponseOptions({ status: 200 });
         }
     },
 
@@ -212,6 +198,42 @@ const requestsHandlers = [
         auth: true,
         cb: (url, headers, body) => {
             return new ResponseOptions({ status: 200 });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: '/api/applications/internship_office',
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/user\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/offer\/([^\/]+)\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
+        }
+    },
+
+    {
+        method: RequestMethod.Get,
+        path: /\/api\/company\/([^\/]+)\/applications/,
+        auth: true,
+        cb: (url, headers, body) => {
+            return new ResponseOptions({ status: 200, body: { applications: Data.testApplications } });
         }
     }
 ];

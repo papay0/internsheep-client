@@ -1,10 +1,10 @@
 <h1>Chat with Airbus</h1>
 <div *ngFor="let message of messages" >
     <md-card>
-        <div *ngIf="message.sender === userId" class="right">
+        <div *ngIf="message.sender === user.login" class="right">
             {{message.content}}
         </div>
-        <div *ngIf="message.sender !== userId">
+        <div *ngIf="message.sender !== user.login">
             {{message.entityName}}: {{message.content}}
         </div>
     </md-card>

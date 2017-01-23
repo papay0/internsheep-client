@@ -72,7 +72,7 @@ export class UserService {
     isCompany() {
         return (+this.userProfile$.value.type === 2);
     }
-    
+
     isInternshipOffice() {
         return (+this.userProfile$.value.type === 3);
     }
@@ -84,7 +84,7 @@ export class UserService {
     isLoggedCompany() {
         return this.isLoggedIn() && this.isCompany();
     }
-    
+
     isLoggedInternshipOffice() {
         return this.isLoggedIn() && this.isInternshipOffice();
     }
