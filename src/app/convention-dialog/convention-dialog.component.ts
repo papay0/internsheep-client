@@ -8,7 +8,29 @@ import {MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-convention-dialog',
-  templateUrl: './convention-dialog.component.html'
+  templateUrl: './convention-dialog.component.html',
+  styles: [`
+    .formGroup {
+        margin-left: 15px;
+        margin-bottom: 30px;
+    }
+    .formElement {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .formElement md-input, .formElement md-textarea, .formElement md-select {
+        flex-grow: 1;
+        margin: 0 5px;
+    }
+    .formElement md-radio-button, .formElement md-select {
+        margin: 10px;
+    }
+    .formElement .small {
+        width: 120px;
+        flex-grow: 0;
+    }
+  `]
 })
 export class ConventionDialogComponent implements OnInit {
 
@@ -44,6 +66,12 @@ export class ConventionDialogComponent implements OnInit {
     acceptButtonClick() {
         console.log('accept clicked');
         this.dialogRef.close(true);
+    }
+
+    getDomains() {
+        return [
+            'SSII'
+        ];
     }
 
   constructor(public dialogRef: MdDialogRef<ConventionDialogComponent>,
