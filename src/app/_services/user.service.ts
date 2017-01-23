@@ -29,13 +29,10 @@ export class UserService {
             )
             .map((res) => {
                 let token = res.json() && res.json().access_token;
-                console.log('lol1');
                 //
                 if (token) {
                     this.token = token;
                     this.loggedIn = true;
-                    console.log('lol4');
-
                     this.http
                         .get(
                         '/api/user/' + email + '/profile', (headers)
