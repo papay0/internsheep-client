@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OffersService } from '../_services/offers.service';
+import { ApplicationService } from '../_services/application.service';
 import { Offer } from '../_model/Offer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -37,18 +38,20 @@ export class OfferDetailComponent implements OnInit {
   ];
 
   private _showDetails: boolean = false;
-  private _showApply: boolean = true;
+  private _showDocs: boolean = false;
 
   private documents = [];
 
   ngOnInit(): void {
       this.showDetails = false;
-      this.showApply = true;
+      this._showDocs = false;
+    this.profileService.reloadAppliedOffers();
   }
 
   constructor(
     private offersService: OffersService,
     private toastService: ToastService,
+    private applicationService: ApplicationService,
     private profileService: ProfileService) {
   }
 
@@ -61,19 +64,34 @@ export class OfferDetailComponent implements OnInit {
     return this._showDetails;
   }
 
-  set showApply(show: boolean) {
-    this._showApply = show;
-    if (show) {
-      this.toastService.show('Application successfully sent!');
+  handleApply() {
+    if (this._showDocs) {
+        console.log("Sending application...");
+        //Sent
+        let documentsSent = [];
+        this.documents.forEach((doc) => {
+            if(doc.checked)
+                documentsSent.push(doc.url);
+        });
+        try{
+        this.applicationService.createApplication(
+            this.profileService.getLogin(), this.offer.company, this.offer.id, { "files": documentsSent}).subscribe((res) => { console.log(res);this.profileService.reloadAppliedOffers(); });
+        } catch (e) {
+            this.profileService.reloadAppliedOffers();
+        }
+        this.toastService.show('Application successfully sent!');
+        this.profileService.reloadAppliedOffers();
     } else { // click on APPLY
       this.profileService.loadCVs().subscribe((result) => {
         this.documents = JSON.parse(JSON.stringify(result));
       });
     }
+    
+    this._showDocs = true;
   }
 
-  get showApply(): boolean {
-    return this._showApply;
+  get showDocs(): boolean {
+    return this._showDocs;
   }
 
   getDetailsFromInput(): void {

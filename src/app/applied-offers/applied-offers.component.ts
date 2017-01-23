@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from '../_services/profile.service';
+import { ApplicationService } from '../_services/application.service';
 
 import {MdDialog, MdDialogRef } from '@angular/material';
 
@@ -15,27 +16,26 @@ import {MdDialog, MdDialogRef } from '@angular/material';
 export class AppliedOffersComponent implements OnInit {
     @Input() convention;
     dialogRef: MdDialogRef<StudentConventionDialogComponent>;
-    appliedOffers = [];
+    public appliedOffers;
 
   ngOnInit() {
-    /*
-    this.profileService.loadStarredOffers().subscribe((result) => {
-      this.appliedOffers = result;
-    });*/
+    this.appliedOffers = this.profileService.appliedOffers$;
   }
 
     openDialog() {
-        this.dialogRef = this.dialog.open(StudentConventionDialogComponent, {
+        /*this.dialogRef = this.dialog.open(StudentConventionDialogComponent, {
         disableClose: false
         });
 
         this.dialogRef.afterClosed().subscribe(result => {
         console.log('result: ' + result);
         this.dialogRef = null;
-        });
+        });*/
     }
 
-  constructor(private profileService: ProfileService, public dialog: MdDialog) { }
+  constructor(private profileService: ProfileService, 
+              private applicationService: ApplicationService,
+              public dialog: MdDialog) { }
 }
 
 @Component({

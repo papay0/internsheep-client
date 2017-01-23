@@ -1,13 +1,15 @@
-<md-card *ngIf="appliedOffers.length !== 0">
+<md-card>
   <md-card-title>Applied offers</md-card-title>
-  <md-list *ngFor="let offer of appliedOffers">
+  <md-list *ngFor="let offer of (appliedOffers | async)">
       <md-list-item (click)="menuClick(offer)">
         <h3 md-line> {{offer.company}} </h3>
-        <button md-button routerLink="/chat">CHAT</button>
-        <button md-button (click)="openDialog()">CONVENTION</button>
+        <button md-button routerLink="/chat" *ngIf="offer.state!='refused'">CHAT</button>
+        <button md-button (click)="openDialog()" *ngIf="offer.state=='accepted'">CONVENTION</button>
+        <button md-button (click)="openDialog()" *ngIf="offer.state=='refused'" disabled>REFUSED</button>
         <p md-line>
           <span> {{offer.title}} </span>
-          <span> -- {{offer.description}} </span>
+          <!--<span> - {{offer.description}} </span>-->
+          <span> Offre n°{{offer.offer}} </span>
         </p>
       </md-list-item>
   </md-list>

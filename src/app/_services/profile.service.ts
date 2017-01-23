@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { UserService } from './user.service';
+import { BehaviorSubject } from 'rxjs';
+import { ApplicationService } from '../_services/application.service';
 
 @Injectable()
 export class ProfileService {
     private login:string; 
+    public appliedOffers$ = new BehaviorSubject([]);
 
-  ngOnInit(): void {
-    this.userService.getProfile().subscribe((result) => {
-      this.login = result.login;
-    });
+  getLogin() : string {
+    return this.login;
   }
 
   loadCVs() {
@@ -36,6 +37,14 @@ export class ProfileService {
     return this.http.delete(url, { headers });
   }
 
+  reloadAppliedOffers()
+  {
+    this.applicationService.getApplicationsByStudent(this.login).subscribe((result) => {
+        console.log(this.login+" applied: "+JSON.stringify(result));
+        this.appliedOffers$.next(result);
+    });
+  }
+
   loadStarredOffers() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -47,9 +56,10 @@ export class ProfileService {
       .map(res => res.json())
       .map(res => res.offers );
   }
-  constructor(private http: Http, private userService: UserService) { 
+  constructor(private http: Http, private userService: UserService, private applicationService: ApplicationService) { 
     this.userService.getProfile().subscribe((result) => {
       this.login = result.login;
+        this.reloadAppliedOffers();
     });
     console.log("CONS PROFILE SERVICE :");
   }

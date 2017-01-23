@@ -10,19 +10,16 @@ import { User } from '../_model/User';
 export class UserService {
     private loggedIn = false;
     public token: string;
-    private userProfile$: BehaviorSubject<User> = new BehaviorSubject({ id: -1, name: '', familyName: '', type: -1, email: '' });
+    public userProfile$: BehaviorSubject<User> = new BehaviorSubject({ id: -1, name: '', lastName: '', type: -1, email: '' });
 
     constructor(private http: HttpClient) {
         this.loggedIn = !!localStorage.getItem('auth_token');
-        if (localStorage.getItem('user_profile')) {
-            this.userProfile$.next(JSON.parse(localStorage.getItem('user_profile')));
-        }
     }
 
     login(email, password) {
+        this.logout();
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
 
         return this.http
             .post(
@@ -61,6 +58,9 @@ export class UserService {
 
     logout() {
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_profile');
+        localStorage.removeItem('auth_identity');
+        this.userProfile$.next({ id: -1, name: '', type: -1, email: '' });
         this.loggedIn = false;
     }
 

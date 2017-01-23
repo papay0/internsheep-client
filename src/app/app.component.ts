@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import 'hammerjs';
 
@@ -9,8 +9,14 @@ import { UserService } from './_services/user.service';
   templateUrl: 'app.component.html',
   styleUrls: [ 'app.component.css' ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    if (localStorage.getItem('user_profile')) {
+        this.userService.userProfile$.next(JSON.parse(localStorage.getItem('user_profile')));
+    }
+  }
   goLogin(): void {
     this.router.navigate(['login']);
   }
