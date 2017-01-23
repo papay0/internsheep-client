@@ -42,6 +42,14 @@ export let Data = {
             type: 1 ,
             email: 'stage@airbus.com',
             phone: '+33512345678'
+        },
+        {
+            id: 2,
+            login: 'staff',
+            firstName: 'Ginette',
+            lastName: 'Staff',
+            type: 2,
+            email: 'staff@insa-toulouse.fr',
         }
     ],
     testOffers: [
@@ -107,11 +115,11 @@ export let Data = {
         }
     ],
     testApplications: [
-        {id: 0, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '600€', state: 'pending' },
-        {id: 1, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '700€', state: 'pending' },
-        {id: 2, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '800€', state: 'pending' },
-        {id: 3, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '900€', state: 'pending' },
-        {id: 4, description: 'Blablabla', student: 'vincent', company: 'Sigfox', offer: 'a', salary: '1000€', state: 'pending' }
+        {id: 0, description: 'Blablabla', student: 'vincent', company: 'airbus', offer: 'a', salary: '600€', state: 'pending' },
+        {id: 1, description: 'Blablabla', student: 'vincent', company: 'airbus', offer: 'a', salary: '700€', state: 'pending' },
+        {id: 2, description: 'Blablabla', student: 'vincent', company: 'airbus', offer: 'a', salary: '800€', state: 'pending' },
+        {id: 3, description: 'Blablabla', student: 'vincent', company: 'airbus', offer: 'a', salary: '900€', state: 'pending' },
+        {id: 4, description: 'Blablabla', student: 'vincent', company: 'airbus', offer: 'a', salary: '1000€', state: 'pending' }
     ],
     testCVs: [
         {
@@ -150,124 +158,124 @@ export let Data = {
     testMessages: [
         {
             id: 1,
-            senderId: 2,
+            sender: 'airbus',
             date: 1,
             content: 'Do you want an internship?',
             entityName: 'Airbus'
         }, {
             id: 2,
-            senderId: 1,
+            sender: 'vincent',
             date: 2,
             content: 'Yes.',
             entityName: 'Frank'
         }, {
             id: 3,
-            senderId: 2,
+            sender: 'airbus',
             date: 3,
             content: 'How much do you want?',
             entityName: 'Airbus'
         }, {
             id: 4,
-            senderId: 1,
+            sender: 'vincent',
             date: 4,
             content: 'A lot.',
             entityName: 'Frank'
         }, {
             id: 5,
-            senderId: 2,
+            sender: 'airbus',
             date: 5,
             content: 'Ok.',
             entityName: 'Airbus'
         },
         {
             id: 1,
-            senderId: 2,
+            sender: 'airbus',
             date: 1,
             content: 'Do you want an internship?',
             entityName: 'Airbus'
         }, {
             id: 2,
-            senderId: 1,
+            sender: 'vincent',
             date: 2,
             content: 'Yes.',
             entityName: 'Frank'
         }, {
             id: 3,
-            senderId: 2,
+            sender: 'airbus',
             date: 3,
             content: 'How much do you want?',
             entityName: 'Airbus'
         }, {
             id: 4,
-            senderId: 1,
+            sender: 'vincent',
             date: 4,
             content: 'A lot.',
             entityName: 'Frank'
         }, {
             id: 5,
-            senderId: 2,
+            sender: 'airbus',
             date: 5,
             content: 'Ok.',
             entityName: 'Airbus'
         },
         {
             id: 1,
-            senderId: 2,
+            sender: 'airbus',
             date: 1,
             content: 'Do you want an internship?',
             entityName: 'Airbus'
         }, {
             id: 2,
-            senderId: 1,
+            sender: 'vincent',
             date: 2,
             content: 'Yes.',
             entityName: 'Frank'
         }, {
             id: 3,
-            senderId: 2,
+            sender: 'airbus',
             date: 3,
             content: 'How much do you want?',
             entityName: 'Airbus'
         }, {
             id: 4,
-            senderId: 1,
+            sender: 'vincent',
             date: 4,
             content: 'A lot.',
             entityName: 'Frank'
         }, {
             id: 5,
-            senderId: 2,
+            sender: 'airbus',
             date: 5,
             content: 'Ok.',
             entityName: 'Airbus'
         },
         {
             id: 1,
-            senderId: 2,
+            sender: 'airbus',
             date: 1,
             content: 'Do you want an internship?',
             entityName: 'Airbus'
         }, {
             id: 2,
-            senderId: 1,
+            sender: 'vincent',
             date: 2,
             content: 'Yes.',
             entityName: 'Frank'
         }, {
             id: 3,
-            senderId: 2,
+            sender: 'airbus',
             date: 3,
             content: 'How much do you want?',
             entityName: 'Airbus'
         }, {
             id: 4,
-            senderId: 1,
+            sender: 'vincent',
             date: 4,
             content: 'A lot.',
             entityName: 'Frank'
         }, {
             id: 5,
-            senderId: 2,
+            sender: 'airbus',
             date: 5,
             content: 'Ok.',
             entityName: 'Airbus'

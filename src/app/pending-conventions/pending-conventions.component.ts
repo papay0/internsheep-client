@@ -26,8 +26,7 @@ export class PendingConventionsComponent implements OnInit {
     ];
 
     ngOnInit(): void {
-        this.applicationService.getApplications().subscribe((result) => {
-            console.log(result[0]);
+        this.applicationService.getApplicationsForOffice().subscribe((result) => {
             this.conventions = result;
         });
     }

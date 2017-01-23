@@ -1,0 +1,433 @@
+<md-dialog-content>
+    <md-card>
+        <md-card-header style="margin-bottom: 40px">
+            <img md-card-avatar src="http://papailhau.fr/img/me.jpg">
+            <md-card-title>{{convention.student.firstName}} {{convention.student.lastName}}</md-card-title>
+            <md-card-subtitle>{{convention.company.name}}</md-card-subtitle>
+        </md-card-header>
+        <form>
+            <h3>Type du stage</h3>
+            <div class="formGroup formElement">
+                <md-select name="type" placeholder="Choisir le type de stage" [(ngModel)]="convention.type">
+                    <md-option value="1">Immersion PPI</md-option>
+                    <md-option value="2">Stage obligatoire</md-option>
+                    <md-option value="3">Projet multidisciplinaire</md-option>
+                    <md-option value="4">Stage facultatif</md-option>
+                    <md-option value="5">VIE / VIA</md-option>
+                    <md-option value="6">Contrat de professionnalisation</md-option>
+                </md-select>
+                <p>Dans le cadre d'un CDD ou d'un VIE, vous devez déposer une photocopie de votre contrat au bureau des stages.</p>
+            </div>
+
+            <h3>Année universitaire du stage</h3>
+            <div class="formGroup formElement">
+                <md-select name="year" placeholder="Choisir une année universitaire" [(ngModel)]="convention.year">
+                    <md-option value="2016/2017">2016/2017</md-option>
+                    <md-option value="2017/2018">2017/2018</md-option>
+                </md-select>
+            </div>
+
+            <h3>Langue utilisée pour l'édition de la convention</h3>
+            <div class="formGroup formElement">
+                <md-select name="lang" placeholder="Choisir la langue" [(ngModel)]="convention.lang">
+                    <md-option value="fr">Français</md-option>
+                    <md-option value="en">Anglais</md-option>
+                </md-select>
+            </div>
+
+            <h3>Étudiant</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Prénom : </label>
+                    <md-input name="etu_firstName" [(ngModel)]="convention.student.firstName" disabled></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Nom : </label>
+                    <md-input name="etu_lastName" [(ngModel)]="convention.student.lastName" disabled></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Mail : </label>
+                    <md-input name="etu_email" [(ngModel)]="convention.student.email" disabled></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Mail Personnel : </label>
+                    <md-input name="etu_mailPerso" [(ngModel)]="convention.etu_mailPerso"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Numéro Sécurité sociale : </label>
+                    <md-input name="etu_secu" [(ngModel)]="convention.etu_secu"></md-input>
+                </div>
+                <p style="margin-top: 0px">
+                    Si vous bénéficiez d'une carte européenne merci de déposer une photocopie au Bureau
+                    des stages et d'indiquer votre numéro de carte ci-dessus.
+                </p>
+                <div class="formElement">
+                    <label>Adresse : </label>
+                    <md-textarea name="etu_address" [(ngModel)]="convention.etu_address" row="3" cols="50"></md-textarea>
+                </div>
+                <div class="formElement">
+                    <label>Code postal : </label>
+                    <md-input name="etu_post" [(ngModel)]="convention.etu_post"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Ville : </label>
+                    <md-input name="etu_city" [(ngModel)]="convention.etu_city"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Pays : </label>
+                    <md-input name="etu_country" [(ngModel)]="convention.etu_country"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Téléphone : </label>
+                    <md-input name="etu_phone" [(ngModel)]="convention.etu_phone"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>PO/Spécialité : </label>
+                    <md-input name="etu_spe" [(ngModel)]="convention.etu_spe" disabled></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Double diplôme? </label>
+                    <md-radio-group name="etu_double" [(ngModel)]="convention.etu_double">
+                        <md-radio-button value="n">Non</md-radio-button>
+                        <md-radio-button value="y">Oui</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="formElement">
+                    <label>Comment avez vous trouvé votre stage?</label>
+                    <md-select name="etu_mode" [(ngModel)]="convention.etu_mode">
+                        <md-option value="1">Sur cette plateforme</md-option>
+                        <md-option value="2">Candidature spontannée</md-option>
+                        <md-option value="3">Offre sur le site de l'entreprise</md-option>
+                        <md-option value="4">Offre sur un site web spécialisé</md-option>
+                        <md-option value="5">Offre transmise par un Enseignant/Secraitaire INSA</md-option>
+                        <md-option value="6">Offre déposée sur PlaceOjeunes</md-option>
+                        <md-option value="7">Forum INSARelation personelle ou familiale</md-option>
+                        <md-option value="8">Relation personelle ou familiale</md-option>
+                        <md-option value="9">Autre</md-option>
+                    </md-select>
+                </div>
+            </div>
+
+            <h3>Organisme d'accueil</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Type : </label>
+                    <md-radio-group name="ent_type" [(ngModel)]="convention.ent_type">
+                        <md-radio-button value="1">Entreprise</md-radio-button>
+                        <md-radio-button value="2">Association</md-radio-button>
+                        <md-radio-button value="3">Université</md-radio-button>
+                        <md-radio-button value="4">Autre</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="formElement">
+                    <label>Nom : </label>
+                    <md-input name="ent_name" [(ngModel)]="convention.ent_name"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Numéro SIRET : (pour les entreprises françaises) </label>
+                    <md-input name="ent_siret" [(ngModel)]="convention.ent_siret"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Domaine d'activité : </label>
+                    <md-select name="ent_domain" [(ngModel)]="convention.ent_domain">
+                        <md-option value="1">Eco-industrie, environnement et aménagement</md-option>
+                        <md-option value="2">Eco conception</md-option>
+                        <md-option value="3">Industrie agroalimentaire</md-option>
+                        <md-option value="4">Industrie chimique, parachimique, pharmaceutique, cosmétique</md-option>
+                        <md-option value="5">Energie</md-option>
+                        <md-option value="6">Industrie aéronautique - espace</md-option>
+                        <md-option value="7">Industrie automobile, navale, ferroviaire</md-option>
+                        <md-option value="8">Matériaux, métallurgie</md-option>
+                        <md-option value="9">Nanotechnologies</md-option>
+                        <md-option value="10">Instrumentation</md-option>
+                        <md-option value="11">Industrie électronique et microélectronique</md-option>
+                        <md-option value="12">Informatique</md-option>
+                        <md-option value="13">SSII</md-option>
+                        <md-option value="14">Opérateur de télécommunication</md-option>
+                        <md-option value="15">Réseaux</md-option>
+                        <md-option value="16">Institution financière/banque/assurance</md-option>
+                        <md-option value="17">Société de conseil</md-option>
+                        <md-option value="18">Administration d'Etat, territoriale, hospitalière</md-option>
+                        <md-option value="19">Bâtiment travaux publics</md-option>
+                        <md-option value="20">Autres secteurs industriels</md-option>
+                    </md-select>
+                </div>
+                <div class="formElement">
+                    <label>Taille de l'établissement : </label>
+                    <md-select name="ent_size" [(ngModel)]="convention.ent_size">
+                        <md-option value="tpe">1 à 49 (TPE)</md-option>
+                        <md-option value="pme">50 à 249 (PME)</md-option>
+                        <md-option value="eti">250 à 4999 (ETI)</md-option>
+                        <md-option value="gg">&gt; 5000 (Grand Groupe)</md-option>
+                    </md-select>
+                </div>
+                <div class="formElement">
+                    <label>Adresse : </label>
+                    <md-textarea name="ent_address" [(ngModel)]="convention.ent_address" row="3" cols="50"></md-textarea>
+                </div>
+                <div class="formElement">
+                    <label>Code postal : </label>
+                    <md-input name="ent_post" [(ngModel)]="convention.ent_post"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Ville : </label>
+                    <md-input name="ent_city" [(ngModel)]="convention.ent_city"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Pays : </label>
+                    <md-input name="ent_country" [(ngModel)]="convention.ent_country"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Téléphone : </label>
+                    <md-input name="ent_tel" [(ngModel)]="convention.ent_tel"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Site internet : </label>
+                    <md-input name="ent_site" [(ngModel)]="convention.ent_site"></md-input>
+                </div>
+            </div>
+
+            <h3>Représenté par (nom signataire de la convention)</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Civilité : </label>
+                    <md-radio-group name="rep_sex" [(ngModel)]="convention.rep_sex">
+                        <md-radio-button value="mme">Mme</md-radio-button>
+                        <md-radio-button value="mr">Mr</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="formElement">
+                    <label>Nom : </label>
+                    <md-input name="rep_lastname" [(ngModel)]="convention.rep_lastname"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Prénom : </label>
+                    <md-input name="rep_firstname" [(ngModel)]="convention.rep_firstname"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Mail : </label>
+                    <md-input name="rep_email" [(ngModel)]="convention.rep_email"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Qualité du représentant : </label>
+                    <md-select name="rep_fonc" [(ngModel)]="convention.rep_fonc">
+                        <md-option value="pdg">PDG de Société</md-option>
+                        <md-option value="dirSoc">Directeur de la Société</md-option>
+                        <md-option value="dirUsi">Directeur de l'usine ou du site</md-option>
+                        <md-option value="drh">DRH ou chef du personnel</md-option>
+                        <md-option value="com">Commerçant</md-option>
+                        <md-option value="art">Artisan</md-option>
+                        <md-option value="chef">Chef de service ou de département</md-option>
+                        <md-option value="ing">Ingénieur</md-option>
+                        <md-option value="tech">Technicien</md-option>
+                        <md-option value="other">Autre</md-option>
+                    </md-select>
+                    <label>Si "Autre", préciser : </label>
+                    <md-input name="rep_fonc_other" [(ngModel)]="convention.rep_fonc_other"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Téléphone : </label>
+                    <md-input name="rep_tel" [(ngModel)]="convention.rep_tel"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Service dans lequel le stage sera effectué : </label>
+                    <md-input name="rep_serv" [(ngModel)]="convention.rep_serv"></md-input>
+                </div>
+                <div>
+                    <h4>Concerne uniquement les stages à l'étranger :</h4>
+                    <p>
+                        Protection sociale issue de l'organisme d'accueil (en cochant la case appropriée, l'organisme d'accueil indique ci-après
+                        s'il fournit une protection Maladie au stagiaire, en vertu du droit local :
+                    </p>
+                    <md-radio-group name="rep_prot_soc" [(ngModel)]="convention.rep_prot_soc">
+                        <md-radio-button value="y">oui : cette protection s'ajoute au maintien, à l'étranger, des droits issus du droit français</md-radio-button>
+                        <md-radio-button value="n">non : la protection découle alors exclusivement du maintien, à l'étranger, des droits issus du régime
+                            français étudiant
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+
+            <h3>Lieu du stage</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Adresse : </label>
+                    <md-textarea name="place_address" [(ngModel)]="convention.place_address" row="3" cols="50"></md-textarea>
+                </div>
+                <div class="formElement">
+                    <label>Code postal : </label>
+                    <md-input name="place_post" [(ngModel)]="convention.place_post"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Ville : </label>
+                    <md-input name="place_city" [(ngModel)]="convention.place_city"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Pays : </label>
+                    <md-input name="place_country" [(ngModel)]="convention.place_country"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Téléphone : </label>
+                    <md-input name="place_tel" [(ngModel)]="convention.place_tel"></md-input>
+                </div>
+            </div>
+
+            <h3>Tuteur de l'organisme d'accueil</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Civilité : </label>
+                    <md-radio-group name="tut_sex" [(ngModel)]="convention.tut_sex">
+                        <md-radio-button value="mme">Mme</md-radio-button>
+                        <md-radio-button value="mr">Mr</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="formElement">
+                    <label>Nom : </label>
+                    <md-input name="tut_lastname" [(ngModel)]="convention.tut_lastname"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Prénom : </label>
+                    <md-input name="tut_firstname" [(ngModel)]="convention.tut_firstname"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Mail : </label>
+                    <md-input name="tut_email" [(ngModel)]="convention.tut_email"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Fonction : </label>
+                    <md-select name="tut_fonc" [(ngModel)]="convention.tut_fonc">
+                        <md-option value="pdg">PDG de Société</md-option>
+                        <md-option value="dirSoc">Directeur de la Société</md-option>
+                        <md-option value="dirUsi">Directeur de l'usine ou du site</md-option>
+                        <md-option value="drh">DRH ou chef du personnel</md-option>
+                        <md-option value="com">Commerçant</md-option>
+                        <md-option value="art">Artisan</md-option>
+                        <md-option value="chef">Chef de service ou de département</md-option>
+                        <md-option value="ing">Ingénieur</md-option>
+                        <md-option value="tech">Technicien</md-option>
+                        <md-option value="other">Autre</md-option>
+                    </md-select>
+                </div>
+                <div class="formElement">
+                    <label>Téléphone : </label>
+                    <md-input name="tut_tel" [(ngModel)]="convention.tut_tel"></md-input>
+                </div>
+            </div>
+
+            <h3>Contenu du stage</h3>
+            <div class="formGroup">
+                <div class="formElement">
+                    <label>Sujet du stage : </label>
+                    <md-input name="cont_subject" [(ngModel)]="convention.cont_subject"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Activités confiées : </label>
+                    <md-textarea name="cont_activ" [(ngModel)]="convention.cont_activ" row="3" cols="76"></md-textarea>
+                </div>
+                <div class="formElement">
+                    <label>Date de début du stage : </label>
+                    <md-input name="cont_begin" [(ngModel)]="convention.cont_begin"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Date de fin du stage : </label>
+                    <md-input name="cont_end" [(ngModel)]="convention.cont_end"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Nombre d'heures de présence effective dans l'organisme d'accueil sur la totalité du stage : </label>
+                    <md-input name="cont_hours" [(ngModel)]="convention.cont_hours"></md-input>
+                </div>
+                <div class="formElement">
+                    <label>Durée hebdomadaire maximale de présence du stagiaire dans l'organisme d'accueil </label>
+                    <md-input name="cont_time_h" [(ngModel)]="convention.cont_time_h" class="small"></md-input>
+                    <span>h</span>
+                    <md-input name="cont_time_min" [(ngModel)]="convention.cont_time_min" class="small"></md-input>
+                    <span>min</span>
+                </div>
+                <div class="formElement">
+                    <label>correspondant à</label>
+                    <md-input name="cont_days" [(ngModel)]="convention.cont_days" class="small"></md-input>
+                    jours de présence effective dans l'organisme d'accueil sur la totalité du stage<br/>
+                    <label>Voir aide calculateur : 
+            		<a href="https://www.service-public.fr/simulateur/calcul/gratification-stagiaire">service-public.fr</a>
+                    </label>
+                </div>
+                <div>
+                    <ul>
+                        <li class="formElement">
+                            <label>La nuit : </label>
+                            <md-radio-group name="cont_night" [(ngModel)]="convention.cont_night">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                            <label>Si oui, préciser : </label>
+                            <md-input name="cont_night_y" [(ngModel)]="convention.cont_night_y"></md-input>
+                        </li>
+                        <li class="formElement">
+                            <label>Le dimanche : </label>
+                            <md-radio-group     name="cont_sunday" [(ngModel)]="convention.cont_sunday">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                            <label>Si oui, préciser : </label>
+                            <md-input name="cont_sunday_y" [(ngModel)]="convention.cont_sunday_y"></md-input>
+                        </li>
+                        <li class="formElement">
+                            <label>Un jour férié : </label>
+                            <md-radio-group name="cont_holyday" [(ngModel)]="convention.cont_holyday">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                            <label>Si oui, préciser : </label>
+                            <md-input name="cont_holyday_y" [(ngModel)]="convention.cont_holyday_y"></md-input>
+                        </li>
+                    </ul>
+                </div>
+                <div class="formElement">
+                    <label>Montant total en € de la gratification pour la totalité du stage (obligatoire en France si la durée est supérieure à 2 mois ou 44 jours de présence) : 22 jours de présence = 1 mois / 7 heures = 1 journée</label>
+                    <md-input name="cont_salary" [(ngModel)]="convention.cont_salary" class="small"></md-input>
+                </div>
+                <div>
+                    <span>Le stagiaire bénéficiera-t-il d'avantanges?</span>
+                    <ul>
+                        <li class="formElement">
+                            <label>Pour la restauration : </label>
+                            <md-radio-group name="cont_meal" [(ngModel)]="convention.cont_meal">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                        </li>
+                        <li class="formElement">
+                            <label>Pour l'hébergement : </label>
+                            <md-radio-group name="cont_flat" [(ngModel)]="convention.cont_flat">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                        </li>
+                        <li class="formElement">
+                            <label>Pour les frais engagés : </label>
+                            <md-radio-group name="cont_refund" [(ngModel)]="convention.cont_refund">
+                                <md-radio-button value="y">Oui</md-radio-button>
+                                <md-radio-button value="n">Non</md-radio-button>
+                            </md-radio-group>
+                        </li>
+                        <li class="formElement">
+                            <label>Autre : </label>
+                            <md-input name="cont_other" [(ngModel)]="convention.cont_other"></md-input>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </md-card>
+</md-dialog-content>
+<md-dialog-actions>
+    <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="refuseButtonClick()">
+        REFUSE
+    </button>
+    <button md-raised-button color="primary" style="float: right" *ngIf="isStaff()" (click)="acceptButtonClick()">
+        ACCEPT
+    </button>
+    <button md-raised-button color="primary" style="float: right" *ngIf="isStudent()" (click)="refuseButtonClick()">
+        GENERATE CONVENTION
+    </button>
+</md-dialog-actions>
