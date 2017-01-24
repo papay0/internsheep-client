@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from '../_services/application.service';
 import { UserService } from '../_services/user.service';
+import { ProfileService } from '../_services/profile.service';
 import { OffersService } from '../_services/offers.service';
 import { ConventionDialogComponent } from '../convention-dialog/convention-dialog.component';
 
@@ -17,20 +18,17 @@ import {MdDialog, MdDialogRef } from '@angular/material';
 })
 export class AppliedOffersComponent implements OnInit {
     dialogRef: MdDialogRef<ConventionDialogComponent>;
-    appliedOffers = [];
+    appliedOffers;
 
     ngOnInit() {
-        this.applicationService.getApplicationsByStudent(this.userService.getLogin()).subscribe((result) => {
-            this.appliedOffers = result;
-        });
+        this.appliedOffers = this.profileService.appliedOffers$;
     }
 
     openDialog(offer) {
         console.log(offer);
-        this.dialogRef = this.dialog.open(ConventionDialogComponent, {
+        /*this.dialogRef = this.dialog.open(ConventionDialogComponent, {
         disableClose: false
         });
-        console.log('pute');
 
         this.dialogRef.componentInstance.params = {
             student: offer.student,
@@ -41,11 +39,12 @@ export class AppliedOffersComponent implements OnInit {
         this.dialogRef.afterClosed().subscribe(result => {
             console.log('result: ' + result);
             this.dialogRef = null;
-        });
+        });*/
     }
 
     constructor(private applicationService: ApplicationService,
                 private userService: UserService,
+                private profileService: ProfileService,
                 private offersService: OffersService,
                 public dialog: MdDialog) { }
 }

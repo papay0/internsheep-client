@@ -21,8 +21,6 @@ export class HttpClient {
     }
 
     post(url, data, headers) {
-        console.log("POST WITH CLIENT HTTP : "+url);
-        console.log(data);
         return this.http.post(this.urlPrefix + url, data, headers);
     }
 

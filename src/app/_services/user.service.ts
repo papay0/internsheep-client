@@ -18,6 +18,7 @@ export class UserService {
 
     login(email, password) {
         this.logout();
+        email = email.replace("@", "_40");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -39,6 +40,9 @@ export class UserService {
                         )
                         .map((profileStr) => profileStr.json())
                         .subscribe((profile) => {
+                            console.log("Profile: "+JSON.stringify(profile));
+                            profile.login = profile.login.replace("_40", "@");
+                            
                             this.userProfile$.next(profile);
                             localStorage.setItem('user_profile', JSON.stringify(profile));
                         });
