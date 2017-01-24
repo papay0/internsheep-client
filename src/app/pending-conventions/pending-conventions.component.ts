@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { OffersService } from '../_services/offers.service';
 import { ApplicationService } from '../_services/application.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
     `]
 })
 export class PendingConventionsComponent implements OnInit {
-    conventions = [];
+    public conventions$ = new BehaviorSubject([]);
 
     _conventionState = 'Pending applications';
     selectedIndex: number = 0;
@@ -26,8 +27,9 @@ export class PendingConventionsComponent implements OnInit {
     ];
 
     ngOnInit(): void {
+        console.log("NG-PENDING-INIT");
         this.applicationService.getApplicationsForOffice().subscribe((result) => {
-            this.conventions = result;
+            this.conventions$.next(result);
         });
     }
 

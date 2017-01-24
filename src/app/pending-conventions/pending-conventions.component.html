@@ -9,7 +9,7 @@
     </md-tab-group>
 </md-card>
 
-<div *ngFor="let convention of conventions">
+<div *ngFor="let convention of (conventions$ | async)">
     <app-pending-conventions-detail 
         [convention]="convention"
         *ngIf="stateFilters[selectedIndex].state == 'any' || stateFilters[selectedIndex].state == convention.state"

@@ -78,6 +78,7 @@ export class UserService {
     }
 
     isInternshipOffice() {
+        console.log("My type is : "+this.userProfile$.value.type);
         return (+this.userProfile$.value.type === 3);
     }
 

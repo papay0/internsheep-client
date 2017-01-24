@@ -47,10 +47,11 @@ export class ApplicationService {
         headers.append('Content-Type', 'application/json');
         let authToken = localStorage.getItem('auth_token');
         headers.append('Authorization', `Bearer ${authToken}`);
+        console.log("GONNA TRY");
 
         return this.http
-            .get('http://localhost:8173/applications/internship_office', { headers })
-            .map((res) => {console.log("OKLM"); return res.json();});
+            .get('/api/applications/internship_office', { headers })
+            .map((res) => {console.log("INTERNSHIP OFFICE"); return res.json();});
     }
 
     getApplicationsByStudent(student: string) {
