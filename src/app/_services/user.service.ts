@@ -18,7 +18,6 @@ export class UserService {
 
     login(email, password) {
         this.logout();
-        email = email.replace("@", "_40");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -34,6 +33,7 @@ export class UserService {
                 if (token) {
                     this.token = token;
                     this.loggedIn = true;
+                    email = email.replace("@", "_40");
                     this.http
                         .get(
                         '/api/user/' + email + '/profile', (headers)
