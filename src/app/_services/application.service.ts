@@ -24,9 +24,8 @@ export class ApplicationService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .put(`/api/applications/${student}/${company}/${offer}`, JSON.stringify(application), { headers })
-            .map(res => res.json())
-            .map((res) => res.application );
+            .put(`/api/applications/${student}/${company}/${offer}/put`, JSON.stringify(application), { headers })
+            .map(res => res.json());
     }
 
     createApplication(student: string, company: string, offer: number, application) {
@@ -51,7 +50,7 @@ export class ApplicationService {
 
         return this.http
             .get('/api/applications/internship_office', { headers })
-            .map((res) => {console.log("INTERNSHIP OFFICE"); return res.json();});
+            .map(res => res.json());
     }
 
     getApplicationsByStudent(student: string) {
@@ -63,7 +62,6 @@ export class ApplicationService {
         return this.http
             .get(`/api/applications/${student}`, { headers })
             .map(res => res.json());
-            //.map((res) => res.applications );
     }
 
     getApplicationsByOffer(company: string, offer: string) {
@@ -86,8 +84,7 @@ export class ApplicationService {
 
         return this.http
     .get(`/api/company/${company}/applications`, { headers })
-            .map(res => res.json())
-            .map((res) => res.applications );
+            .map(res => res.json());
     }
 
     constructor(private http: HttpClient) {}

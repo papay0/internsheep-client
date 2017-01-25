@@ -7,4 +7,5 @@ export class User {
     type?: number; // 0 for student, 1 for company
     email?: string;
     phone?: string;
+    company?: string;
 }

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ConventionDialogComponent } from '../convention-dialog/convention-dialog.component';
+import { ApplicationService } from '../_services/application.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
@@ -19,6 +20,7 @@ import {MdDialog, MdDialogRef } from '@angular/material';
 })
 export class PendingConventionsDetailComponent {
     @Input() convention;
+    @Output() convention_changed = new EventEmitter() ;
     dialogRef: MdDialogRef<ConventionDialogComponent>;
 
     openDialog() {
@@ -36,8 +38,34 @@ export class PendingConventionsDetailComponent {
             this.dialogRef = null;
         });
     }
+    
+    acceptConvention(){
+        if(this.convention.state == 'wait_for_internship_office'){
+            this.applicationService
+            .setApplication(this.convention.login, this.convention.company, this.convention.offer, {state: "accepted"})
+            .subscribe((result) => {
+                console.log(JSON.stringify("Convention Accepted :)"));
+                this.convention_changed.emit();
+            }).catch((err) => {
+                console.log(JSON.stringify("Convention Accepted :)"));
+                this.convention_changed.emit();
+            });
+        }
+    }
+    
+    refuseConvention(){
+        this.applicationService
+        .setApplication(this.convention.login, this.convention.company, this.convention.offer, {state: "refused"})
+        .subscribe((result) => {
+            console.log(JSON.stringify("Convention Refused :("));
+            this.convention_changed.emit();
+        }).catch((err) => {
+            console.log(JSON.stringify("Convention Refused :("));
+            this.convention_changed.emit();
+        });
+    }
 
-    constructor(public dialog: MdDialog) {
+    constructor(public dialog: MdDialog, private applicationService: ApplicationService) {
     }
 }
 

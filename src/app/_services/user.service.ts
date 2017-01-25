@@ -78,7 +78,6 @@ export class UserService {
     }
 
     isInternshipOffice() {
-        console.log("My type is : "+this.userProfile$.value.type);
         return (+this.userProfile$.value.type === 3);
     }
 
@@ -106,7 +105,10 @@ export class UserService {
     getLogin() {
         let ret = '';
         if (this.isLoggedIn) {
-            ret = this.userProfile$.value.login;
+            if(this.isCompany())
+                ret = this.userProfile$.value.company;
+            else
+                ret = this.userProfile$.value.login;
         }
         return ret;
     }

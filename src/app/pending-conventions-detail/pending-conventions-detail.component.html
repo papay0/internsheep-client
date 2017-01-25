@@ -1,12 +1,12 @@
 <md-card>
     <md-card-header>
-        <md-card-title>{{convention.student}}</md-card-title>
-        <md-card-subtitle>{{convention.company}}</md-card-subtitle>
+        <md-card-title>{{convention.login}} applied to offer n°{{convention.offer}} from {{convention.company}}</md-card-title>
+        <md-card-subtitle>{{convention.state}}</md-card-subtitle>
     </md-card-header>
-    <md-card-actions>
-        <button md-raised-button (click)="openDialog()">SHOW</button>
-        <button md-raised-button color="primary">Accept</button>
-        <button md-raised-button color="accent">Refuse</button>
+    <md-card-actions *ngIf="convention.state != 'accepted' && convention.state != 'refused'">
+        <!--<button md-raised-button (click)="openDialog()">SHOW</button>-->
+        <button md-raised-button (click)="acceptConvention()" *ngIf="convention.state == 'wait_for_internship_office'" color="primary">Accept</button>
+        <button md-raised-button color="accent" (click)="refuseConvention()">Refuse</button>
     </md-card-actions>
 </md-card>
 

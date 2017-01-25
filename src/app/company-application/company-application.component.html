@@ -1,16 +1,18 @@
 <md-card>
     <md-card-header>
-        <md-card-title> {{application.applicant}}</md-card-title>
-        <md-card-subtitle>{{application.title}}</md-card-subtitle>
+        <md-card-title> {{application.login}}</md-card-title>
+        <md-card-subtitle>Applied to offer n°{{application.offer}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-        <p>BLABLABLA</p>
+        <p>{{application.state}}</p>
     </md-card-content>
     <md-card-actions>
         <button md-button (click)="showDocument=!showDocument">SEE DOCUMENTS</button>
-        <button md-button routerLink="/chat">CHAT</button>
-        <button md-button (click)="showApply=!showApply">ACCEPT</button>
-        <button md-button (click)="showApply=!showApply">REFUSE</button>
+        <!--<button md-button routerLink="/chat">CHAT</button>-->
+        <span *ngIf="application.state != 'accepted' && application.state != 'refused'">
+            <button md-button *ngIf="application.state == 'wait_for_company'" (click)="acceptApplication()">ACCEPT</button>
+            <button md-button (click)="refuseApplication()">REFUSE</button>
+        </span>
     </md-card-actions>
 </md-card>
 <div *ngIf="showDocument">

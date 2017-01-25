@@ -1,13 +1,13 @@
 <md-card>
   <md-card-header>
     <img md-card-avatar src="http://logocurio.us/wp-content/uploads/2014/01/Airbus-Logo.png">
-    <md-card-title>{{profile.name}}</md-card-title>
+    <md-card-title>{{profile.firstName}} {{profile.lastName}}</md-card-title>
   </md-card-header>
   <form>
     <table style="width: 100%" cellspacing="0">
       <tr>
         <td>
-          <md-input name="name" placeholder="Company name" style="width: 100%" [(ngModel)]="profile.name" disabled></md-input>
+          <md-input name="name" placeholder="Company name" style="width: 100%" [(ngModel)]="profile.company" disabled></md-input>
         </td>
       </tr>
     </table>

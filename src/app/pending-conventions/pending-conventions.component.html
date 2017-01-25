@@ -12,6 +12,7 @@
 <div *ngFor="let convention of (conventions$ | async)">
     <app-pending-conventions-detail 
         [convention]="convention"
+        (convention_changed)="reloadConventions()"
         *ngIf="stateFilters[selectedIndex].state == 'any' || stateFilters[selectedIndex].state == convention.state"
         >
     </app-pending-conventions-detail>

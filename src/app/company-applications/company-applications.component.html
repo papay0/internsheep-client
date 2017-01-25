@@ -1,6 +1,6 @@
 <h1 style="font-family:arial;">
-	Application you have received
+	Applications you have received
 </h1>
-<div *ngFor="let application of applications">
-   <app-company-application [application]="application"></app-company-application>
+<div *ngFor="let application of (applications$ | async)">
+   <app-company-application [application]="application" (application_changed)="reloadApplications()"></app-company-application>
 </div>
