@@ -1,38 +1,38 @@
 <md-card>
     <md-card-header>
-        <md-card-title> {{application.login}}</md-card-title>
+        <md-card-title *ngIf="!(applicant$ | async).firstName">{{application.login}}</md-card-title>
+        <md-card-title *ngIf="(applicant$ | async).firstName">{{(applicant$ | async).firstName}} {{(applicant$ | async).lastName}}</md-card-title>
         <md-card-subtitle>Applied to offer n°{{application.offer}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-        <p>{{application.state}}</p>
+        <!--<p>{{application.state}}</p>-->
     </md-card-content>
     <md-card-actions>
-        <button md-button (click)="showDocument=!showDocument">SEE DOCUMENTS</button>
+        <button *ngIf="documents.length>0" md-raised-button (click)="showDocument=!showDocument">SEE DOCUMENTS</button>
         <!--<button md-button routerLink="/chat">CHAT</button>-->
-        <span *ngIf="application.state != 'accepted' && application.state != 'refused'">
-            <button md-button *ngIf="application.state == 'wait_for_company'" (click)="acceptApplication()">ACCEPT</button>
-            <button md-button (click)="refuseApplication()">REFUSE</button>
+        <span *ngIf="application.state != 'accepted' && application.state != 'refused' && !(was_refused$ | async)">
+            <button md-raised-button *ngIf="application.state == 'wait_for_company' && !(was_accepted$ | async)" (click)="acceptApplication()" color="primary">ACCEPT</button>
+            <button md-raised-button (click)="refuseApplication()" color="accent">REFUSE</button>
         </span>
+        <span *ngIf="!(application.state != 'accepted' && application.state != 'refused' && !(was_refused$ | async))">
+            <button md-raised-button disabled *ngIf="application.state == 'accepted' || (was_accepted$ | async)" color="primary">ACCEPTED</button>
+            <button md-raised-button disabled *ngIf="application.state == 'refused' || (was_refused$ | async)" color="primary">REFUSED</button>
+        </span>
+        <div *ngIf="showDocument">
+            <md-card>
+                <md-card-content>
+                    <md-list>
+                        <h3>Documents</h3>
+                        <md-list-item *ngFor="let document of documents">
+                            <a target="_blank" href="{{document.url}}">OPEN</a>
+                            <h3 md-line> {{document.applicant}}</h3>
+                            <p md-line>
+                                <span> {{document.title}} </span>
+                            </p>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
     </md-card-actions>
 </md-card>
-<div *ngIf="showDocument">
-    <md-card>
-        <md-card-content>
-            <md-list>
-                <h3>Documents</h3>
-                <md-list-item *ngFor="let document of documents">
-                    <a target="_blank" href="{{document.url}}">OPEN</a>
-                    <h3 md-line> {{document.applicant}}</h3>
-                    <p md-line>
-                        <span> {{document.title}} </span>
-                    </p>
-                </md-list-item>
-            </md-list>
-            <!--
-                    <div *ngFor="let document of documents">
-                        <button md-button color="primary" (click)="showApply=!showApply">OPEN</button> <p>{{document.title}}</p>
-                    </div>
-                    -->
-        </md-card-content>
-    </md-card>
-</div>

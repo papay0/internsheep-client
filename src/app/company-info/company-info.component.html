@@ -12,7 +12,7 @@
       </tr>
     </table>
     <md-input name="email" placeholder="Email" [(ngModel)]="profile.email" style="width: 100%" disabled></md-input>
-    <md-input name="phone" placeholder="Phone Number" #phoneNumber id="phoneNumber" [(ngModel)]="profile.phone" [disabled]="stateFormProfile.inputDisabled"></md-input>
+    <md-input *ngIf="profile.phone" name="phone" placeholder="Phone Number" #phoneNumber id="phoneNumber" [(ngModel)]="profile.phone" [disabled]="stateFormProfile.inputDisabled"></md-input>
     <!--<md-card-actions layout="row" layout-align="end center">
       <button md-raised-button color="{{stateFormProfile.color}}" style="float: right" (click)="editButtonClick()">
           {{stateFormProfile.label}}

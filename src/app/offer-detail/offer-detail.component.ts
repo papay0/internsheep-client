@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import { ToastService } from '../_services/toast.service';
 import { ProfileService } from '../_services/profile.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-offer-detail',
@@ -36,6 +37,8 @@ export class OfferDetailComponent implements OnInit {
     'November',
     'December'
   ];
+
+  private applied$ = new BehaviorSubject(false);
 
   private _showDetails: boolean = false;
   private _showDocs: boolean = false;
@@ -81,6 +84,7 @@ export class OfferDetailComponent implements OnInit {
         }
         this.toastService.show('Application successfully sent!');
         this.profileService.reloadAppliedOffers();
+        this.applied$.next(true);
     } else { // click on APPLY
       this.profileService.loadCVs().subscribe((result) => {
         this.documents = JSON.parse(JSON.stringify(result));

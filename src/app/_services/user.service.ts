@@ -124,7 +124,7 @@ export class UserService {
         headers.append('Authorization', `Bearer ${authToken}`);
 
         return this.http
-            .get('/api/user/' + userId + '/profile/', { headers })
+            .get('/api/user/' + userId + '/profile', { headers })
             .map(res => res.json());
     }
 

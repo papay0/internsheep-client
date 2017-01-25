@@ -1,12 +1,21 @@
 <md-card>
     <md-card-header>
-        <md-card-title>{{convention.login}} applied to offer n°{{convention.offer}} from {{convention.company}}</md-card-title>
+        <md-card-title>
+            <span *ngIf="!(applicant$ | async).firstName">{{convention.login}} </span>
+            <span *ngIf=" (applicant$ | async).firstName">{{(applicant$ | async).firstName}} {{(applicant$ | async).lastName}} </span>
+            applied to offer n°{{convention.offer}} from {{convention.company}}
+        </md-card-title>
         <md-card-subtitle>{{convention.state}}</md-card-subtitle>
     </md-card-header>
-    <md-card-actions *ngIf="convention.state != 'accepted' && convention.state != 'refused'">
-        <!--<button md-raised-button (click)="openDialog()">SHOW</button>-->
-        <button md-raised-button (click)="acceptConvention()" *ngIf="convention.state == 'wait_for_internship_office'" color="primary">Accept</button>
-        <button md-raised-button color="accent" (click)="refuseConvention()">Refuse</button>
+    <md-card-actions>
+        <span *ngIf="convention.state != 'accepted' && convention.state != 'refused' && !(was_refused$ | async)">
+            <button md-raised-button *ngIf="convention.state == 'wait_for_internship_office' && !(was_accepted$ | async)" (click)="acceptConvention()" color="primary">ACCEPT</button>
+            <button md-raised-button (click)="refuseConvention()" color="accent">REFUSE</button>
+        </span>
+        <span *ngIf="!(convention.state != 'accepted' && convention.state != 'refused' && !(was_refused$ | async))">
+            <button md-raised-button disabled *ngIf="convention.state == 'accepted' || (was_accepted$ | async)" color="primary">ACCEPTED</button>
+            <button md-raised-button disabled *ngIf="convention.state == 'refused' || (was_refused$ | async)" color="primary">REFUSED</button>
+        </span>
     </md-card-actions>
 </md-card>
 

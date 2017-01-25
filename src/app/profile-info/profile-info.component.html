@@ -16,7 +16,7 @@
       </tr>
     </table>
     <md-input placeholder="Email" [value]="(userprofile$ | async).email" style="width: 100%" disabled></md-input>
-    <md-input placeholder="Phone Number" #phoneNumber id="phoneNumber" value="+33678675645" [disabled]="stateFormProfile.inputDisabled"></md-input>
+    <md-input placeholder="Phone Number" *ngIf="(userprofile$ | async).phone" #phoneNumber id="phoneNumber" value="(userprofile$ | async).phone" [disabled]="stateFormProfile.inputDisabled"></md-input>
     <!--<md-card-actions layout="row" layout-align="end center">
       <button md-raised-button color="{{stateFormProfile.color}}" style="float: right" (click)="editButtonClick()">
           {{stateFormProfile.label}}

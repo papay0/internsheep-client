@@ -3,13 +3,14 @@
   <md-list *ngFor="let offer of (appliedOffers | async)">
       <md-list-item (click)="menuClick(offer)">
         <h3 md-line> {{offer.company}} </h3>
-        <button md-button routerLink="/chat" *ngIf="offer.state!='refused'">CHAT</button>
-        <button md-button (click)="openDialog(offer)" *ngIf="offer.state=='accepted'">CONVENTION</button>
-        <button md-button (click)="openDialog(offer)" *ngIf="offer.state=='refused'" disabled>REFUSED</button>
+        <button md-raised-button routerLink="/chat" *ngIf="offer.state!='refused'">CHAT</button>
+        <button md-raised-button (click)="openDialog(offer)" *ngIf="offer.state=='accepted'">CONVENTION</button>
+        <button md-raised-button (click)="openDialog(offer)" *ngIf="offer.state=='refused'" disabled>REFUSED</button>
+        <button md-raised-button *ngIf="offer.state!='refused' && offer.state!='accepted'" disabled>PENDING</button>
         <p md-line>
           <span> {{offer.title}} </span>
           <!--<span> - {{offer.description}} </span>-->
-          <span> Offre n°{{offer.offer}} </span>
+          <span> Offer n°{{offer.offer}} </span>
         </p>
       </md-list-item>
   </md-list>

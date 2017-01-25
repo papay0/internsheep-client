@@ -1,7 +1,7 @@
-<md-card>
+<md-card *ngIf="!(applied$ | async)">
 
   <md-card-header>
-    <md-card-title><a [routerLink]="['/offer',offer.company_id,offer.id]">{{offer.title}}</a></md-card-title>
+    <md-card-title>{{offer.title}}</md-card-title>
     <md-card-subtitle>{{offer.company}} n°{{offer.id}}</md-card-subtitle>
   </md-card-header>
   
@@ -35,7 +35,7 @@
   <md-card-actions>
     <!--<button md-button *ngIf="showDetails" (click)="showDetails=false">HIDE</button>
       <button md-button *ngIf="!showDetails" (click)="showDetails=true">MORE</button>-->
-      <button md-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
-      <button md-button (click)="handleApply()">{{!showDocs? "APPLY":"CONFIRM"}}</button>
+      <button md-raised-button (click)="showDetails=!showDetails">{{showDetails? "HIDE":"MORE"}}</button>
+      <button md-raised-button (click)="handleApply()" color="primary">{{!showDocs? "APPLY":"CONFIRM"}}</button>
   </md-card-actions>
 </md-card>

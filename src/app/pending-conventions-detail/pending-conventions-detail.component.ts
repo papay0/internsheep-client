@@ -1,8 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ConventionDialogComponent } from '../convention-dialog/convention-dialog.component';
 import { ApplicationService } from '../_services/application.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import { BehaviorSubject } from 'rxjs';
+import { UserService } from '../_services/user.service';
 
 import {MdDialog, MdDialogRef } from '@angular/material';
 
@@ -18,10 +20,20 @@ import {MdDialog, MdDialogRef } from '@angular/material';
         }
         `]
 })
-export class PendingConventionsDetailComponent {
+export class PendingConventionsDetailComponent implements OnInit {
     @Input() convention;
     @Output() convention_changed = new EventEmitter() ;
     dialogRef: MdDialogRef<ConventionDialogComponent>;
+    applicant$ = new BehaviorSubject({});
+    was_accepted$ = new BehaviorSubject(false);
+    was_refused$ = new BehaviorSubject(false);
+
+    ngOnInit() {
+        this.userService.getInfoById(this.convention.login)
+            .subscribe((result) => {
+                this.applicant$.next(result);
+        });
+    }
 
     openDialog() {
         this.dialogRef = this.dialog.open(ConventionDialogComponent, {
@@ -41,31 +53,27 @@ export class PendingConventionsDetailComponent {
     
     acceptConvention(){
         if(this.convention.state == 'wait_for_internship_office'){
+            console.log(JSON.stringify("Convention Accepted :)"));
+            this.was_accepted$.next(true);
             this.applicationService
             .setApplication(this.convention.login, this.convention.company, this.convention.offer, {state: "accepted"})
             .subscribe((result) => {
                 console.log(JSON.stringify("Convention Accepted :)"));
-                this.convention_changed.emit();
-            }).catch((err) => {
-                console.log(JSON.stringify("Convention Accepted :)"));
-                this.convention_changed.emit();
             });
         }
     }
     
     refuseConvention(){
+        console.log(JSON.stringify("Convention Refused :("));
+        this.was_refused$.next(true);
         this.applicationService
         .setApplication(this.convention.login, this.convention.company, this.convention.offer, {state: "refused"})
         .subscribe((result) => {
             console.log(JSON.stringify("Convention Refused :("));
-            this.convention_changed.emit();
-        }).catch((err) => {
-            console.log(JSON.stringify("Convention Refused :("));
-            this.convention_changed.emit();
         });
     }
 
-    constructor(public dialog: MdDialog, private applicationService: ApplicationService) {
+    constructor(public dialog: MdDialog, private applicationService: ApplicationService, private userService: UserService) {
     }
 }
 
